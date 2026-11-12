@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Illustration of a stack of five small PCs with status lights, cabled to switched power plugs">
+  <rect width="800" height="560" fill="#16181c"/>
+  <g fill="none" stroke="#2c3038" stroke-width="1"><path d="M0 80h800M0 160h800M0 240h800M0 320h800M0 400h800M0 480h800M80 0v560M160 0v560M240 0v560M320 0v560M400 0v560M480 0v560M560 0v560M640 0v560M720 0v560"/></g>
+  <defs><g id="nuc">
+    <rect x="150" y="0" width="330" height="62" rx="12" fill="#2a2e36" stroke="#444a55" stroke-width="2"/>
+    <rect x="166" y="18" width="70" height="26" rx="5" fill="#1b1e24"/>
+    <circle cx="452" cy="31" r="6" fill="#3ddc84"/>
+    <rect x="300" y="27" width="10" height="8" rx="2" fill="#11131a"/><rect x="318" y="27" width="10" height="8" rx="2" fill="#11131a"/><rect x="336" y="27" width="16" height="8" rx="2" fill="#11131a"/>
+  </g></defs>
+  <use href="#nuc" y="110"/><use href="#nuc" y="190"/><use href="#nuc" y="270"/><use href="#nuc" y="350"/><use href="#nuc" y="430"/>
+  <text x="182" y="146" fill="#8b93a1" font-family="Menlo,monospace" font-size="15">nuc-01</text>
+  <text x="182" y="226" fill="#8b93a1" font-family="Menlo,monospace" font-size="15">nuc-02</text>
+  <text x="182" y="306" fill="#8b93a1" font-family="Menlo,monospace" font-size="15">nuc-03</text>
+  <text x="182" y="386" fill="#8b93a1" font-family="Menlo,monospace" font-size="15">nuc-04</text>
+  <text x="182" y="466" fill="#8b93a1" font-family="Menlo,monospace" font-size="15">nuc-05</text>
+  <g fill="none" stroke="#DD0000" stroke-width="4" stroke-linecap="round">
+    <path d="M480 221C560 221 560 150 620 150"/><path d="M480 301C560 301 560 230 620 230"/><path d="M480 381C560 381 560 310 620 310"/><path d="M480 461C560 461 560 390 620 390"/>
+  </g>
+  <g fill="#2a2e36" stroke="#444a55" stroke-width="2">
+    <rect x="620" y="126" width="64" height="48" rx="10"/><rect x="620" y="206" width="64" height="48" rx="10"/><rect x="620" y="286" width="64" height="48" rx="10"/><rect x="620" y="366" width="64" height="48" rx="10"/>
+  </g>
+  <g fill="#DD0000"><circle cx="668" cy="150" r="5"/><circle cx="668" cy="230" r="5"/><circle cx="668" cy="310" r="5"/><circle cx="668" cy="390" r="5"/></g>
+  <path d="M120 141C60 141 60 381 120 381" fill="none" stroke="#5b8def" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
+  <text x="400" y="535" fill="#e9eaec" font-family="Helvetica Neue,Arial,sans-serif" font-size="20" text-anchor="middle" letter-spacing="3">REAL HARDWARE, EVERY BUILD</text>
+</svg>

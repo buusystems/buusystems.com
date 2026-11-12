@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Illustration of a thumb-sized USB dongle with a small screen, sending Wi-Fi signals">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d2b4f"/><stop offset="1" stop-color="#0b1020"/></linearGradient>
+    <linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a7bd5"/><stop offset="1" stop-color="#00d2ff"/></linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bg)"/>
+  <g transform="rotate(-14 400 300)">
+    <rect x="128" y="246" width="96" height="84" rx="6" fill="#c9ccd2"/>
+    <rect x="148" y="264" width="20" height="12" fill="#6d727c"/><rect x="184" y="264" width="20" height="12" fill="#6d727c"/>
+    <rect x="148" y="300" width="20" height="12" fill="#6d727c"/><rect x="184" y="300" width="20" height="12" fill="#6d727c"/>
+    <rect x="216" y="220" width="400" height="136" rx="30" fill="#24262b" stroke="#3b3f47" stroke-width="3"/>
+    <rect x="282" y="244" width="190" height="88" rx="8" fill="url(#scr)"/>
+    <text x="298" y="282" fill="#fff" font-family="Menlo,monospace" font-size="17">link up</text>
+    <text x="298" y="310" fill="#e8f7ff" font-family="Menlo,monospace" font-size="15">wifi relay ok</text>
+    <circle cx="560" cy="288" r="13" fill="#DD0000"/>
+  </g>
+  <g fill="none" stroke="#7fd3ff" stroke-width="7" stroke-linecap="round">
+    <path d="M622 168a60 60 0 0 1 60 60" opacity="0.95"/><path d="M630 118a110 110 0 0 1 102 102" opacity="0.65"/><path d="M638 68a160 160 0 0 1 144 144" opacity="0.35"/>
+  </g>
+  <text x="400" y="510" fill="#e9eaec" font-family="Helvetica Neue,Arial,sans-serif" font-size="20" text-anchor="middle" letter-spacing="3">BOOT DISK · USB LINK · WI-FI RELAY</text>
+</svg>

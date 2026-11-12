@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" role="img" aria-label="Illustration of Genie Marie, a sweet smiling blue genie rising in a wisp of smoke from a gold lamp that carries your company's logo.">
+  <defs>
+    <linearGradient id="smoke" gradientUnits="userSpaceOnUse" x1="240" y1="232" x2="400" y2="470">
+      <stop offset="0" stop-color="#1e62bd"/>
+      <stop offset="1" stop-color="#cfe8fb"/>
+    </linearGradient>
+  </defs>
+  <!-- Smoke tail, from the spout up to her waist -->
+  <path d="M198 232C196 300 262 352 330 382C362 396 384 430 392 466L406 468C402 420 378 372 340 345C310 325 286 290 282 232Z" fill="url(#smoke)"/>
+  <!-- Lamp -->
+  <path d="M100 505C38 478 28 572 112 566" fill="none" stroke="#e0ab3a" stroke-width="14" stroke-linecap="round"/>
+  <path d="M300 488C340 500 362 480 390 460L408 470C386 512 360 556 300 568Z" fill="#e0ab3a"/>
+  <path d="M170 590Q220 606 270 590L284 622Q220 638 156 622Z" fill="#e0ab3a"/>
+  <ellipse cx="220" cy="530" rx="125" ry="68" fill="#e0ab3a"/>
+  <path d="M166 470Q220 430 274 470Q220 486 166 470Z" fill="#e0ab3a"/>
+  <path d="M214 446h12l-2-14h-8z" fill="#e0ab3a"/>
+  <circle cx="220" cy="426" r="10" fill="#e0ab3a"/>
+  <!-- Hair behind -->
+  <circle cx="240" cy="92" r="47" fill="#0f2d66"/>
+  <circle cx="240" cy="42" r="20" fill="#0f2d66"/>
+  <!-- Arms -->
+  <path d="M212 160C188 180 164 176 146 152" fill="none" stroke="#3d97e3" stroke-width="18" stroke-linecap="round"/>
+  <path d="M268 160C292 180 316 176 334 152" fill="none" stroke="#3d97e3" stroke-width="18" stroke-linecap="round"/>
+  <path d="M139 159L155 148M341 159L325 148" stroke="#e0ab3a" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="138" cy="144" r="11" fill="#62b5f2"/>
+  <circle cx="342" cy="144" r="11" fill="#62b5f2"/>
+  <!-- Neck and top -->
+  <rect x="228" y="126" width="24" height="30" fill="#3d97e3"/>
+  <path d="M204 150C196 180 192 205 198 234H282C288 205 284 180 276 150C262 142 218 142 204 150Z" fill="#1e62bd"/>
+  <path d="M222 150Q240 166 258 150" fill="none" stroke="#e0ab3a" stroke-width="4" stroke-linecap="round"/>
+  <!-- Face -->
+  <circle cx="240" cy="98" r="42" fill="#62b5f2"/>
+  <path d="M197 94C196 38 284 38 283 94C268 76 250 72 240 78C226 72 210 78 197 94Z" fill="#0f2d66"/>
+  <rect x="226" y="52" width="28" height="7" rx="3.500" fill="#e0ab3a"/>
+  <path d="M218 102q8-8 16 0M246 102q8-8 16 0" fill="none" stroke="#0f2d66" stroke-width="3.500" stroke-linecap="round"/>
+  <circle cx="214" cy="114" r="7" fill="#c6e6ff" opacity=".7"/>
+  <circle cx="266" cy="114" r="7" fill="#c6e6ff" opacity=".7"/>
+  <path d="M227 116q13 13 26 0" fill="none" stroke="#0f2d66" stroke-width="3.500" stroke-linecap="round"/>
+  <circle cx="198" cy="110" r="4.500" fill="#e0ab3a"/>
+  <circle cx="282" cy="110" r="4.500" fill="#e0ab3a"/>
+  <!-- Sparkles -->
+  <g fill="#e0ab3a">
+    <path class="spark" d="M96 62l5 15 15 5-15 5-5 15-5-15-15-5 15-5z"/>
+    <path class="spark spark-2" d="M384 54l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/>
+    <path class="spark spark-3" d="M404 330l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/>
+    <path class="spark spark-2" d="M138 306l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+  </g>
+</svg>

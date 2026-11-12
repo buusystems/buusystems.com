@@ -281,8 +281,8 @@
   const last = (sel) => { const all = thread.querySelectorAll(sel); return all[all.length - 1]; };
 
   // Reaction artwork, cut from Apple's iOS 27 reaction tray (assets/ios).
-  const art = (name) => `<img src="assets/ios/${name}.png" alt="">`;
-  [ "heart", "like", "dislike", "haha", "bang", "ask", "love", "smile" ].forEach((n) => { new Image().src = `assets/ios/${n}.png`; });
+  const art = (name) => `<img src="/assets/ios/${name}.png" alt="">`;
+  [ "heart", "like", "dislike", "haha", "bang", "ask", "love", "smile" ].forEach((n) => { new Image().src = `/assets/ios/${n}.png`; });
   const dim = $("#dim");
   const clearPress = () => {
     dim.classList.remove("is-on");
@@ -385,7 +385,7 @@
   const playHome = async (id) => {
     homeEl.hidden = false;
     screenEl.classList.add("is-home");
-    const icon = (src, plate) => `<img class="${plate ? "home-plate" : ""}" src="assets/brand/${src}" alt="">`;
+    const icon = (src, plate) => `<img class="${plate ? "home-plate" : ""}" src="/assets/brand/${src}" alt="">`;
     homeEl.innerHTML = `${widget()}
       <div class="home-icons">${icon("ramp.svg")}${icon("stable.png", true)}${icon("facetime.svg")}</div>
       <div class="home-dock">${icon("phone.svg")}${icon("imessage.svg")}</div>`;
