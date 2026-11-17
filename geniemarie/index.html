@@ -15,12 +15,15 @@
   <meta property="og:description" content="Repairs for property managers, run from one iMessage thread.">
   <meta property="og:url" content="https://buusystems.com/geniemarie/">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=5">
   <link rel="stylesheet" href="/genie-marie.css?v=28e">
 </head>
 <body>
-  <header class="site-header wrap">
-    <a href="/" aria-label="BUU Systems home"><img class="logo" src="/assets/logo.svg" alt="BUU Systems"></a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="/" aria-label="BUU Systems home"><img class="logo" src="/assets/logo.svg" alt="BUU Systems"></a>
+      <a class="pill pill-sm" href="/#contact">Contact</a>
+    </div>
   </header>
 
   <main id="top">
@@ -160,15 +163,17 @@
       <div class="wrap cta-inner">
         <h2>Put Genie Marie to&nbsp;work</h2>
         <p>One lamp with your logo on it. One thread to run every repair from.</p>
-        <a class="button button-invert" href="/geniemarie/#top">See her in action</a>
+        <a class="pill pill-invert" href="/geniemarie/#top">See her in action</a>
         <small class="cta-note">Demo conversations use fictional people, properties and companies.</small>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer wrap">
-    <img class="logo logo-small" src="/assets/logo.svg" alt="BUU Systems">
-    <small>&copy; 2026 BUU Systems</small>
+  <footer class="site-footer">
+    <div class="wrap footer-base">
+      <a href="/" aria-label="BUU Systems home"><img class="logo logo-small" src="/assets/logo.svg" alt="BUU Systems"></a>
+      <small>&copy; 2026 BUU Systems · <a href="mailto:ross@buusystems.com">ross@buusystems.com</a></small>
+    </div>
   </footer>
   <dialog id="logo-dialog" aria-labelledby="logo-title">
     <div class="dialog-head">
@@ -177,7 +182,7 @@
     </div>
     <form id="company-form" class="company-form">
       <input id="company-name" type="text" aria-label="Company name" autocomplete="organization" spellcheck="false" placeholder="Company name">
-      <button class="button" type="submit">Use this name</button>
+      <button class="pill" type="submit">Use this name</button>
     </form>
     <p class="dialog-foot"><span id="logo-message">Have a logo?</span> <input id="logo-file" class="visually-hidden" type="file" accept="image/png,.png"><label for="logo-file">Upload a PNG</label> <button type="button" class="link-button" id="logo-reset" hidden>Reset</button></p>
   </dialog>
