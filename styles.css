@@ -96,8 +96,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 .pill-invert:hover { background: var(--ink); color: #fff; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .5); }
 .pill-line { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .55); }
 .pill-line:hover { background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px #fff; }
-.pill-text { padding-left: .5rem; }
-.pill-text .app { --s: 30px; box-shadow: none; transition: transform .35s var(--ease); }
+.pill-text { gap: .7rem; padding: .6rem 1.4rem .6rem .9rem; }
+.pill-text .app { --s: 30px; border-radius: 8px; box-shadow: none; transition: transform .35s var(--ease); }
 .pill-text:hover .app { transform: rotate(-8deg) scale(1.08); }
 
 /* ---------- Header ---------- */
@@ -149,6 +149,9 @@ h1 { font-size: clamp(3.25rem, 7.2vw, 6.25rem); line-height: .98; }
   background-size: 250% 100%;
   -webkit-background-clip: text; background-clip: text; color: transparent;
   animation: sheen 8s ease-in-out infinite;
+  /* Italic glyphs overhang their box; pad it so the clipped gradient covers them. */
+  padding: .12em .2em .14em .08em; margin: 0 -.2em 0 -.08em;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 .lede { max-width: 34rem; margin: 1.75rem 0 2.25rem; font-size: 1.1875rem; line-height: 1.55; color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
