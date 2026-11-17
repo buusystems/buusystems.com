@@ -15,9 +15,9 @@
   <meta property="og:description" content="AI products, integrations into business tools, and embedded IoT systems.">
   <meta property="og:url" content="https://buusystems.com/">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/styles.css?v=7">
+  <link rel="stylesheet" href="/styles.css?v=8">
   <script>document.documentElement.classList.add("js")</script>
-  <script src="/site.js?v=4" defer></script>
+  <script src="/site.js?v=8" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -26,7 +26,6 @@
       <nav id="nav" aria-label="Primary">
         <a href="#work">Work</a>
         <a href="#built">Built</a>
-        <a href="#stack">Stack</a>
         <a href="#about">About</a>
         <a class="pill pill-sm" href="#contact">Contact</a>
       </nav>
@@ -48,41 +47,23 @@
           </div>
         </div>
 
-        <!-- Outer orbit: the front office Genie Marie runs. Inner orbit: the hardware stack. -->
-        <div class="hero-visual" aria-hidden="true">
+                <div class="hero-visual" aria-hidden="true">
           <div class="aura"></div>
           <div class="ring ring-1"></div>
           <div class="ring ring-2"></div>
           <div class="orbit orbit-1">
-            <span class="node" style="--a:0deg"><i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i></span>
-            <span class="node" style="--a:90deg"><i class="app app-full"><img src="/assets/brand/ramp.svg" alt=""></i></span>
-            <span class="node" style="--a:180deg"><i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i></span>
-            <span class="node" style="--a:270deg"><i class="app app-stable"><img src="/assets/brand/stable.png" alt=""></i></span>
+            <span class="sat sat-lg" style="--a:0deg"></span>
+            <span class="sat sat-sm sat-ink" style="--a:115deg"></span>
+            <span class="sat sat-md" style="--a:230deg"></span>
           </div>
           <div class="orbit orbit-2">
-            <span class="node" style="--a:45deg"><i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i></span>
-            <span class="node" style="--a:165deg"><i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i></span>
-            <span class="node" style="--a:285deg"><i class="app app-linux"><img src="/assets/brand/linux.svg" alt=""></i></span>
+            <span class="sat sat-md sat-ink" style="--a:60deg"></span>
+            <span class="sat sat-sm" style="--a:200deg"></span>
           </div>
           <img class="hero-mark" src="/assets/mark.svg" alt="" width="800" height="800">
         </div>
       </div>
     </section>
-
-    <div class="marquee" aria-label="Tools and platforms we build on">
-      <ul class="marquee-track">
-        <li><i class="app app-genie"><img src="/assets/genie.svg" alt=""></i>Genie Marie</li>
-        <li><i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i>iMessage</li>
-        <li><i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i>Phone</li>
-        <li><i class="app app-stable"><img src="/assets/brand/stable.png" alt=""></i>Stablemail</li>
-        <li><i class="app app-full"><img src="/assets/brand/ramp.svg" alt=""></i>Ramp</li>
-        <li><i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i>ESP32-S3</li>
-        <li><i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i>eBPF</li>
-        <li><i class="app app-linux"><img src="/assets/brand/linux.svg" alt=""></i>Linux</li>
-        <li><i class="app app-ubuntu"><img src="/assets/brand/ubuntu.svg" alt=""></i>Ubuntu</li>
-        <li><i class="app app-qemu"><img src="/assets/brand/qemu.svg" alt=""></i>QEMU</li>
-      </ul>
-    </div>
 
     <section id="work" class="section wrap" aria-labelledby="work-title">
       <div class="section-head reveal">
@@ -93,12 +74,14 @@
         <article class="card reveal">
           <div class="stack" aria-hidden="true">
             <i class="app app-genie"><img src="/assets/genie.svg" alt=""></i>
-            <i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i>
-            <i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i>
           </div>
           <h3 data-edit="p1-title">AI products</h3>
           <p data-edit="p1-body">Assistants that do the work, not just talk about it. They read the mail, answer the phone, book the vendor and pay the bill, and only bring you the judgment calls.</p>
-          <p class="uses" data-edit="p1-uses">Genie Marie · iMessage · Voice AI</p>
+          <dl class="tools">
+            <div><dt data-edit="ai-1">Genie Marie</dt><dd data-edit="ai-1-d">Our flagship assistant for property managers.</dd></div>
+            <div><dt data-edit="ai-2">Voice AI</dt><dd data-edit="ai-2-d">Answers the line and reports who called.</dd></div>
+            <div><dt data-edit="ai-3">AI mail reading</dt><dd data-edit="ai-3-d">Reads each letter and does what it asks.</dd></div>
+          </dl>
         </article>
         <article class="card reveal" style="--d:100ms">
           <div class="stack" aria-hidden="true">
@@ -109,18 +92,30 @@
           </div>
           <h3 data-edit="p2-title">Integrations</h3>
           <p data-edit="p2-body">Your business already lives in iMessage, mail, the phone and company cards. We connect AI to those tools so nobody has to learn a new dashboard.</p>
-          <p class="uses" data-edit="p2-uses">iMessage · Stablemail · Ramp · Phone</p>
+          <dl class="tools">
+            <div><dt data-edit="int-1">iMessage</dt><dd data-edit="int-1-d">The whole front office in one thread.</dd></div>
+            <div><dt data-edit="int-3">Stablemail</dt><dd data-edit="int-3-d">Paper mail scanned and handed to the AI.</dd></div>
+            <div><dt data-edit="int-4">Ramp</dt><dd data-edit="int-4-d">Capped cards by text, bills paid, receipts filed.</dd></div>
+            <div><dt data-edit="int-2">Phone</dt><dd data-edit="int-2-d">Your office line, answered by Voice AI.</dd></div>
+          </dl>
         </article>
         <article class="card reveal" style="--d:200ms">
           <div class="stack" aria-hidden="true">
             <i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i>
             <i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i>
             <i class="app app-linux"><img src="/assets/brand/linux.svg" alt=""></i>
+            <i class="app app-ubuntu"><img src="/assets/brand/ubuntu.svg" alt=""></i>
             <i class="app app-qemu"><img src="/assets/brand/qemu.svg" alt=""></i>
           </div>
           <h3 data-edit="p3-title">Embedded &amp; IoT</h3>
           <p data-edit="p3-body">Firmware, boot stages, dongles and sensors. We build and test on real devices, so the software keeps working when it leaves the bench.</p>
-          <p class="uses" data-edit="p3-uses">ESP32-S3 · eBPF · Linux · QEMU</p>
+          <dl class="tools">
+            <div><dt data-edit="hw-1">ESP32-S3</dt><dd data-edit="hw-1-d">The chip inside our provisioning dongle.</dd></div>
+            <div><dt data-edit="hw-2">eBPF</dt><dd data-edit="hw-2-d">Programmable hooks in our boot stage.</dd></div>
+            <div><dt data-edit="hw-3">Linux</dt><dd data-edit="hw-3-d">Real-time kernels and USB drivers.</dd></div>
+            <div><dt data-edit="hw-4">Ubuntu</dt><dd data-edit="hw-4-d">Hands-free installs onto bare machines.</dd></div>
+            <div><dt data-edit="hw-5">QEMU</dt><dd data-edit="hw-5-d">Every firmware build boots here first.</dd></div>
+          </dl>
         </article>
       </div>
     </section>
@@ -137,22 +132,16 @@
           <a class="tile tile-wide reveal" href="/geniemarie/">
             <img src="/assets/genie.svg" alt="Genie Marie, a blue genie rising from a gold lamp" data-edit="tile1-img" class="tile-art tile-art-genie">
             <div class="tile-text">
-              <span class="tag"><i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i><span data-edit="tile1-tag">AI product</span></span>
+              <span class="tag"><span data-edit="tile1-tag">AI product</span></span>
               <h3 data-edit="tile1-title">Genie Marie</h3>
               <p data-edit="tile1-body">An AI front office in one iMessage thread. A tenant texts a leak, you text back “yes,” and the plumber is booked, paid and filed.</p>
               <span class="more" data-edit="tile1-more">See her in action</span>
-              <div class="tile-apps" aria-hidden="true">
-                <i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i>
-                <i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i>
-                <i class="app app-stable"><img src="/assets/brand/stable.png" alt=""></i>
-                <i class="app app-full"><img src="/assets/brand/ramp.svg" alt=""></i>
-              </div>
             </div>
           </a>
           <figure class="tile reveal">
             <div class="tile-media"><img src="/assets/bpfboot-screen.jpg" alt="A monitor showing a custom boot stage starting on a Minisforum mini PC" data-edit="tile2-img" class="tile-photo"></div>
             <figcaption class="tile-text">
-              <span class="tag"><i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i><span data-edit="tile2-tag">Firmware</span></span>
+              <span class="tag"><span data-edit="tile2-tag">Firmware</span></span>
               <h3 data-edit="tile2-title">A programmable boot stage</h3>
               <p data-edit="tile2-body">Plug in, and a bare machine comes up on our console: BIOS settings, logs and OS installs, no keyboard or monitor needed.</p>
             </figcaption>
@@ -160,42 +149,11 @@
           <figure class="tile reveal" style="--d:100ms">
             <div class="tile-media"><img src="/assets/dongle-photo.jpg" alt="The BUU provisioning dongle plugged into a PC, its screen showing the BUU logo, Wi-Fi relay online, PC attached, READY" width="1200" height="840" loading="lazy" data-edit="tile3-img" class="tile-photo"></div>
             <figcaption class="tile-text">
-              <span class="tag"><i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i><span data-edit="tile3-tag">IoT device</span></span>
+              <span class="tag"><span data-edit="tile3-tag">IoT device</span></span>
               <h3 data-edit="tile3-title">The provisioning dongle</h3>
               <p data-edit="tile3-body">An ESP32-S3 the size of a thumb drive. It is a boot disk, a USB network link and a Wi-Fi relay at once.</p>
             </figcaption>
           </figure>
-        </div>
-      </div>
-    </section>
-
-    <section id="stack" class="stack-section">
-      <div class="wrap">
-        <div class="section-head center reveal">
-          <p class="kicker">The stack</p>
-          <h2 class="section-title" data-edit="int-title">Plugs into what you already use</h2>
-          <p class="section-lede" data-edit="int-lede">Real tools, wired together, and what each one does for us.</p>
-        </div>
-
-        <div class="stack-group reveal">
-          <h3 class="group-title" data-edit="grp-1">Front office</h3>
-          <ul class="apps">
-            <li><i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i><strong data-edit="int-1">iMessage</strong><span data-edit="int-1-d">The whole front office in one thread.</span></li>
-            <li><i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i><strong data-edit="int-2">Voice AI</strong><span data-edit="int-2-d">Answers the line and reports who called.</span></li>
-            <li><i class="app app-stable"><img src="/assets/brand/stable.png" alt=""></i><strong data-edit="int-3">Stablemail</strong><span data-edit="int-3-d">Paper mail scanned, read and acted on.</span></li>
-            <li><i class="app app-full"><img src="/assets/brand/ramp.svg" alt=""></i><strong data-edit="int-4">Ramp</strong><span data-edit="int-4-d">Capped cards by text, bills paid, receipts filed.</span></li>
-          </ul>
-        </div>
-
-        <div class="stack-group reveal">
-          <h3 class="group-title" data-edit="grp-2">Hardware &amp; firmware</h3>
-          <ul class="apps apps-5">
-            <li><i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i><strong data-edit="hw-1">ESP32-S3</strong><span data-edit="hw-1-d">The chip inside our provisioning dongle.</span></li>
-            <li><i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i><strong data-edit="hw-2">eBPF</strong><span data-edit="hw-2-d">Programmable hooks in our boot stage.</span></li>
-            <li><i class="app app-linux"><img src="/assets/brand/linux.svg" alt=""></i><strong data-edit="hw-3">Linux</strong><span data-edit="hw-3-d">Real-time kernels and USB drivers.</span></li>
-            <li><i class="app app-ubuntu"><img src="/assets/brand/ubuntu.svg" alt=""></i><strong data-edit="hw-4">Ubuntu</strong><span data-edit="hw-4-d">Hands-free installs onto bare machines.</span></li>
-            <li><i class="app app-qemu"><img src="/assets/brand/qemu.svg" alt=""></i><strong data-edit="hw-5">QEMU</strong><span data-edit="hw-5-d">Every firmware build boots here first.</span></li>
-          </ul>
         </div>
       </div>
     </section>
@@ -237,7 +195,6 @@
       <nav aria-label="Footer">
         <h4>Company</h4>
         <a href="#work">Work</a>
-        <a href="#stack">Stack</a>
         <a href="#about">About</a>
       </nav>
       <nav aria-label="Products">

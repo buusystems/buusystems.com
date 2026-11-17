@@ -15,34 +15,11 @@
   header.querySelectorAll("nav a").forEach((a) =>
     a.addEventListener("click", () => { header.classList.remove("open"); menu.setAttribute("aria-expanded", false); }));
 
-  // Marquee: duplicate the items once so the -50% loop is seamless.
-  const track = document.querySelector(".marquee-track");
-  if (track) [...track.children].forEach((li) => {
-    const c = li.cloneNode(true);
-    c.setAttribute("aria-hidden", "true");
-    track.append(c);
-  });
-
-  // Count-up numbers.
-  function countUp(el) {
-    const to = +el.dataset.to;
-    if (reduce || to === 0) { el.textContent = to; return; }
-    const t0 = performance.now(), dur = 1200;
-    const step = (t) => {
-      const k = Math.min(1, (t - t0) / dur);
-      el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
-      if (k < 1) requestAnimationFrame(step);
-    };
-    el.textContent = 0;
-    requestAnimationFrame(step);
-  }
-
   // Reveal on scroll.
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue;
       e.target.classList.add("in");
-      e.target.querySelectorAll(".count").forEach(countUp);
       io.unobserve(e.target);
     }
   }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
