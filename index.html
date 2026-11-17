@@ -15,9 +15,9 @@
   <meta property="og:description" content="AI products, integrations into business tools, and embedded IoT systems.">
   <meta property="og:url" content="https://buusystems.com/">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/styles.css?v=8">
+  <link rel="stylesheet" href="/styles.css?v=9">
   <script>document.documentElement.classList.add("js")</script>
-  <script src="/site.js?v=8" defer></script>
+  <script src="/site.js?v=9" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -47,20 +47,31 @@
           </div>
         </div>
 
-                <div class="hero-visual" aria-hidden="true">
-          <div class="aura"></div>
-          <div class="ring ring-1"></div>
-          <div class="ring ring-2"></div>
+                <div class="hero-visual" aria-label="The tools we build with. Hover or tap a logo.">
+          <div class="aura" aria-hidden="true"></div>
+          <div class="ring ring-1" aria-hidden="true"></div>
+          <div class="ring ring-2" aria-hidden="true"></div>
           <div class="orbit orbit-1">
-            <span class="sat sat-lg" style="--a:0deg"></span>
-            <span class="sat sat-sm sat-ink" style="--a:115deg"></span>
-            <span class="sat sat-md" style="--a:230deg"></span>
+            <button type="button" class="node" style="--a:18deg" data-tool="hw-1" data-group="hw" aria-label="ESP32-S3"><i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i></button>
+            <button type="button" class="node" style="--a:90deg" data-tool="hw-2" data-group="hw" aria-label="eBPF"><i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i></button>
+            <button type="button" class="node" style="--a:162deg" data-tool="hw-3" data-group="hw" aria-label="Linux"><i class="app app-linux"><img src="/assets/brand/linux.svg" alt=""></i></button>
+            <button type="button" class="node" style="--a:234deg" data-tool="hw-4" data-group="hw" aria-label="Ubuntu"><i class="app app-ubuntu"><img src="/assets/brand/ubuntu.svg" alt=""></i></button>
+            <button type="button" class="node" style="--a:306deg" data-tool="hw-5" data-group="hw" aria-label="QEMU"><i class="app app-qemu"><img src="/assets/brand/qemu.svg" alt=""></i></button>
           </div>
           <div class="orbit orbit-2">
-            <span class="sat sat-md sat-ink" style="--a:60deg"></span>
-            <span class="sat sat-sm" style="--a:200deg"></span>
+            <button type="button" class="node" style="--a:0deg" data-tool="ai-1" data-group="ai" aria-label="Genie Marie"><i class="app app-genie"><img src="/assets/genie.svg" alt=""></i></button>
+            <button type="button" class="node" style="--a:72deg" data-tool="int-1" data-group="int" aria-label="iMessage"><i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i></button>
+            <button type="button" class="node" style="--a:144deg" data-tool="int-3" data-group="int" aria-label="Stablemail"><i class="app app-stable"><img src="/assets/brand/stable.png" alt=""></i></button>
+            <button type="button" class="node" style="--a:216deg" data-tool="int-4" data-group="int" aria-label="Ramp"><i class="app app-full"><img src="/assets/brand/ramp.svg" alt=""></i></button>
+            <button type="button" class="node" style="--a:288deg" data-tool="int-2" data-group="int" aria-label="Phone"><i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i></button>
           </div>
-          <img class="hero-mark" src="/assets/mark.svg" alt="" width="800" height="800">
+          <div class="orbit-tip" role="status" hidden>
+            <span class="tip-cat"></span>
+            <strong class="tip-name"></strong>
+            <span class="tip-desc"></span>
+            <a class="tip-more" href="#work">Read more</a>
+          </div>
+          <img class="hero-mark" src="/assets/mark.svg" alt="" width="800" height="800" aria-hidden="true">
         </div>
       </div>
     </section>
@@ -71,50 +82,37 @@
         <h2 id="work-title" class="section-title" data-edit="work-title">Three disciplines, one team</h2>
       </div>
       <div class="pillars">
-        <article class="card reveal">
-          <div class="stack" aria-hidden="true">
-            <i class="app app-genie"><img src="/assets/genie.svg" alt=""></i>
-          </div>
+        <article class="card reveal" data-group="ai">
+          <span class="num" aria-hidden="true">I</span>
           <h3 data-edit="p1-title">AI products</h3>
           <p data-edit="p1-body">Assistants that do the work, not just talk about it. They read the mail, answer the phone, book the vendor and pay the bill, and only bring you the judgment calls.</p>
           <dl class="tools">
-            <div><dt data-edit="ai-1">Genie Marie</dt><dd data-edit="ai-1-d">Our flagship assistant for property managers.</dd></div>
+            <div id="tool-ai-1" data-tool="ai-1"><dt data-edit="ai-1">Genie Marie</dt><dd data-edit="ai-1-d">Our flagship assistant for property managers.</dd></div>
             <div><dt data-edit="ai-2">Voice AI</dt><dd data-edit="ai-2-d">Answers the line and reports who called.</dd></div>
             <div><dt data-edit="ai-3">AI mail reading</dt><dd data-edit="ai-3-d">Reads each letter and does what it asks.</dd></div>
           </dl>
         </article>
-        <article class="card reveal" style="--d:100ms">
-          <div class="stack" aria-hidden="true">
-            <i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i>
-            <i class="app app-stable"><img src="/assets/brand/stable.png" alt=""></i>
-            <i class="app app-full"><img src="/assets/brand/ramp.svg" alt=""></i>
-            <i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i>
-          </div>
+        <article class="card reveal" style="--d:100ms" data-group="int">
+          <span class="num" aria-hidden="true">II</span>
           <h3 data-edit="p2-title">Integrations</h3>
           <p data-edit="p2-body">Your business already lives in iMessage, mail, the phone and company cards. We connect AI to those tools so nobody has to learn a new dashboard.</p>
           <dl class="tools">
-            <div><dt data-edit="int-1">iMessage</dt><dd data-edit="int-1-d">The whole front office in one thread.</dd></div>
-            <div><dt data-edit="int-3">Stablemail</dt><dd data-edit="int-3-d">Paper mail scanned and handed to the AI.</dd></div>
-            <div><dt data-edit="int-4">Ramp</dt><dd data-edit="int-4-d">Capped cards by text, bills paid, receipts filed.</dd></div>
-            <div><dt data-edit="int-2">Phone</dt><dd data-edit="int-2-d">Your office line, answered by Voice AI.</dd></div>
+            <div id="tool-int-1" data-tool="int-1"><dt data-edit="int-1">iMessage</dt><dd data-edit="int-1-d">The whole front office in one thread.</dd></div>
+            <div id="tool-int-3" data-tool="int-3"><dt data-edit="int-3">Stablemail</dt><dd data-edit="int-3-d">Paper mail scanned and handed to the AI.</dd></div>
+            <div id="tool-int-4" data-tool="int-4"><dt data-edit="int-4">Ramp</dt><dd data-edit="int-4-d">Capped cards by text, bills paid, receipts filed.</dd></div>
+            <div id="tool-int-2" data-tool="int-2"><dt data-edit="int-2">Phone</dt><dd data-edit="int-2-d">Your office line, answered by Voice AI.</dd></div>
           </dl>
         </article>
-        <article class="card reveal" style="--d:200ms">
-          <div class="stack" aria-hidden="true">
-            <i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i>
-            <i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i>
-            <i class="app app-linux"><img src="/assets/brand/linux.svg" alt=""></i>
-            <i class="app app-ubuntu"><img src="/assets/brand/ubuntu.svg" alt=""></i>
-            <i class="app app-qemu"><img src="/assets/brand/qemu.svg" alt=""></i>
-          </div>
+        <article class="card reveal" style="--d:200ms" data-group="hw">
+          <span class="num" aria-hidden="true">III</span>
           <h3 data-edit="p3-title">Embedded &amp; IoT</h3>
           <p data-edit="p3-body">Firmware, boot stages, dongles and sensors. We build and test on real devices, so the software keeps working when it leaves the bench.</p>
           <dl class="tools">
-            <div><dt data-edit="hw-1">ESP32-S3</dt><dd data-edit="hw-1-d">The chip inside our provisioning dongle.</dd></div>
-            <div><dt data-edit="hw-2">eBPF</dt><dd data-edit="hw-2-d">Programmable hooks in our boot stage.</dd></div>
-            <div><dt data-edit="hw-3">Linux</dt><dd data-edit="hw-3-d">Real-time kernels and USB drivers.</dd></div>
-            <div><dt data-edit="hw-4">Ubuntu</dt><dd data-edit="hw-4-d">Hands-free installs onto bare machines.</dd></div>
-            <div><dt data-edit="hw-5">QEMU</dt><dd data-edit="hw-5-d">Every firmware build boots here first.</dd></div>
+            <div id="tool-hw-1" data-tool="hw-1"><dt data-edit="hw-1">ESP32-S3</dt><dd data-edit="hw-1-d">The chip inside our provisioning dongle.</dd></div>
+            <div id="tool-hw-2" data-tool="hw-2"><dt data-edit="hw-2">eBPF</dt><dd data-edit="hw-2-d">Programmable hooks in our boot stage.</dd></div>
+            <div id="tool-hw-3" data-tool="hw-3"><dt data-edit="hw-3">Linux</dt><dd data-edit="hw-3-d">Real-time kernels and USB drivers.</dd></div>
+            <div id="tool-hw-4" data-tool="hw-4"><dt data-edit="hw-4">Ubuntu</dt><dd data-edit="hw-4-d">Hands-free installs onto bare machines.</dd></div>
+            <div id="tool-hw-5" data-tool="hw-5"><dt data-edit="hw-5">QEMU</dt><dd data-edit="hw-5-d">Every firmware build boots here first.</dd></div>
           </dl>
         </article>
       </div>

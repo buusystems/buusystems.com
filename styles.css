@@ -169,21 +169,41 @@ h1 { font-size: clamp(3.25rem, 7.2vw, 6.25rem); line-height: .98; }
 .orbit { position: absolute; inset: 0; animation: spin var(--t, 48s) linear infinite; }
 .orbit-1 { --r: 46cqw; --t: 48s; }
 .orbit-2 { --r: 30cqw; --t: 36s; animation-direction: reverse; }
-.sat {
-  position: absolute; top: 50%; left: 50%; width: var(--z); height: var(--z); margin: calc(var(--z) / -2) 0 0 calc(var(--z) / -2);
-  border-radius: 50%; background: var(--red); box-shadow: 0 0 0 6px rgba(221, 0, 0, .1), 0 0 24px rgba(221, 0, 0, .55);
-  transform: rotate(var(--a)) translateY(calc(var(--r) * -1));
+.node {
+  position: absolute; top: 50%; left: 50%; width: 52px; height: 52px; margin: -26px 0 0 -26px; padding: 0;
+  border: 0; background: none; cursor: pointer; border-radius: 14px;
+  transform: rotate(var(--a)) translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1));
+  transition: opacity .35s, filter .35s;
 }
-.sat-lg { --z: 18px; }
-.sat-md { --z: 12px; }
-.sat-sm { --z: 8px; }
-.sat-ink { background: var(--ink); box-shadow: 0 0 0 5px rgba(0, 0, 0, .06); }
-/* a fading comet tail behind each red satellite */
-.sat:not(.sat-ink)::after {
-  content: ""; position: absolute; top: 50%; right: 50%; width: calc(var(--z) * 6); height: 2px; margin-top: -1px;
-  background: linear-gradient(90deg, transparent, rgba(221, 0, 0, .5)); border-radius: 2px;
+.node .app {
+  --s: 100%;
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .45);
+  animation: spin var(--t) linear infinite reverse;
+  transition: scale .35s var(--ease), box-shadow .35s;
 }
-.orbit-2 .sat:not(.sat-ink)::after { right: auto; left: 50%; transform: scaleX(-1); transform-origin: left; }
+.orbit-2 .node .app { animation-direction: normal; }
+.node:hover .app, .node:focus-visible .app, .node.is-on .app { scale: 1.18; box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--red), 0 18px 34px -12px rgba(221, 0, 0, .55); }
+.node:focus-visible { outline: none; }
+.hero-visual.dim .node:not(.is-lit) { opacity: .22; filter: grayscale(1); }
+/* pause the whole system while someone is looking at it */
+.hero-visual:hover .orbit, .hero-visual:hover .node .app,
+.hero-visual.paused .orbit, .hero-visual.paused .node .app { animation-play-state: paused; }
+
+.orbit-tip {
+  position: absolute; z-index: 5; width: 250px; padding: 1rem 1.1rem 1.05rem;
+  display: grid; gap: .2rem; border-radius: 14px;
+  background: rgba(11, 11, 12, .92); color: #fff; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .6);
+  font-size: .875rem; line-height: 1.45;
+  animation: tip-in .25s var(--ease);
+}
+.orbit-tip[hidden] { display: none; }
+.tip-cat { font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #ff6b5c; }
+.tip-name { font: italic 400 1.5rem/1.15 var(--display); }
+.tip-desc { color: #c9ccd2; }
+.tip-more { justify-self: start; margin-top: .45rem; color: #fff; font-weight: 500; text-decoration: none; border-bottom: 1.5px solid var(--red); }
+.tip-more:hover { color: #ff6b5c; }
+@keyframes tip-in { from { opacity: 0; transform: translateY(6px); } }
 
 /* ---------- Sections ---------- */
 .section { padding-block: 7rem 2rem; }
@@ -208,20 +228,14 @@ h1 { font-size: clamp(3.25rem, 7.2vw, 6.25rem); line-height: .98; }
   transition: box-shadow .35s, transform .35s var(--ease);
 }
 .card:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px #e2c9c6, 0 24px 50px -24px rgba(0, 0, 0, .18); }
-.stack { display: flex; height: 56px; }
-.stack .app { --s: 52px; margin-right: -14px; border: 3px solid #fff; transition: transform .45s var(--ease), margin .45s var(--ease); }
-.stack .app:nth-child(1) { z-index: 4; transform: rotate(-6deg); }
-.stack .app:nth-child(2) { z-index: 3; transform: rotate(3deg); }
-.stack .app:nth-child(3) { z-index: 2; transform: rotate(-3deg); }
-.stack .app:nth-child(4) { z-index: 1; transform: rotate(5deg); }
-.stack .app:nth-child(5) { z-index: 0; transform: rotate(-4deg); }
-.stack .app:only-child { transform: rotate(-6deg); }
-.card:hover .stack .app:only-child { transform: rotate(0) scale(1.06); }
-.card:hover .stack .app { margin-right: 8px; transform: none; }
-.card:hover .stack .app:nth-child(odd) { transform: translateY(-4px); }
-.card h3 { margin: 1.5rem 0 .75rem; font-size: 2.1rem; }
-.tools { display: grid; gap: .8rem; margin: 1.5rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
-.tools div { display: grid; gap: .1rem; }
+.card:hover .card:hover .card:hover .num { font: italic 1.75rem/1 var(--display); color: var(--red); }
+.card h3 { margin: 1rem 0 .75rem; font-size: 2.1rem; }
+.tools { display: grid; gap: .3rem; margin: 1.5rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.tools div { display: grid; gap: .1rem; margin-inline: -.6rem; padding: .35rem .6rem; border-radius: 8px; transition: background-color .3s; }
+.tools [data-tool] { cursor: default; }
+.tools [data-tool]:hover, .tools .flash { background: #fdeceb; }
+.tools .flash { animation: flash 1.6s var(--ease); }
+@keyframes flash { 0%, 40% { background: #fbd3d0; } 100% { background: transparent; } }
 .tools dt { font-size: .9375rem; font-weight: 500; }
 .tools dd { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.45; }
 .card p { color: var(--muted); }
@@ -334,6 +348,8 @@ blockquote { font-size: clamp(2.25rem, 4vw, 3.5rem); }
   .hero { padding-block: 1.5rem 4rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 1rem; }
   .hero-visual { justify-self: center; max-width: 340px; order: -1; margin: 1rem 0 2.5rem; }
+  .node { width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 10px; }
+  .orbit-tip { width: 220px; }
   .section { padding-block: 5rem 1rem; }
   .pillars, .tiles { grid-template-columns: 1fr; }
   .founder, .cta, .showcase { padding-block: 5rem; }
