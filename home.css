@@ -60,8 +60,7 @@ h1 { font-size: clamp(2.75rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.
 .copy { padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) 0; }
 .name { margin-bottom: .5rem; font-size: 1.0625rem; font-weight: 600; }
 .tile h2 { font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 700; line-height: 1.07; letter-spacing: -.034em; text-wrap: balance; }
-.tile .copy > p:not(.name):not(.status) { max-width: 25rem; margin-top: .9rem; font-size: 1.125rem; line-height: 1.42; opacity: .78; text-wrap: pretty; }
-.status { display: inline-block; margin-top: 1.2rem; padding: .28rem .8rem; border-radius: 99px; background: rgba(127, 127, 140, .16); font-size: .8125rem; font-weight: 500; }
+.tile .copy > p:not(.name) { max-width: 25rem; margin-top: .9rem; font-size: 1.125rem; line-height: 1.42; opacity: .78; text-wrap: pretty; }
 .wide { grid-column: 1 / -1; flex-direction: row; align-items: center; min-height: 540px; }
 .wide .copy { flex: 1 1 50%; padding-bottom: clamp(1.75rem, 4vw, 3rem); }
 .wide h2 { font-size: clamp(2.1rem, 5vw, 3.6rem); }
@@ -88,7 +87,6 @@ h1 { font-size: clamp(2.75rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.
 /* Dan */
 .t-dan { background: radial-gradient(120% 80% at 50% 105%, #5a1a8f, #170a26 62%, #0c0614); color: #fff; }
 .t-dan .name { color: #ff5fd2; }
-.t-dan .status { background: rgba(255, 255, 255, .13); }
 .stage { position: relative; display: flex; justify-content: center; align-items: flex-end; padding: 1rem 0 0; }
 .stage::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: 14px; height: 18px; border-radius: 50%; background: #ff5fd2; filter: blur(22px); opacity: .6; }
 .dancer { height: 300px; overflow: visible; fill: none; stroke: #ff5fd2; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 9px rgba(255, 95, 210, .75)); position: relative; z-index: 1; margin-bottom: 14px; }
@@ -136,7 +134,7 @@ h1 { font-size: clamp(2.75rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.
 .t-brm .name { color: #0a6f8f; }
 .t-dray { background: linear-gradient(145deg, #2c2c2e, #000); color: #fff; text-align: center; }
 .t-dray .name { color: #a1a1a6; }
-.t-dray .big { font-size: clamp(4.5rem, 10vw, 7.5rem); letter-spacing: -.06em; line-height: 1; background: linear-gradient(180deg, #fff 20%, #8e8e93); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
+.t-dray .big { font-size: clamp(4.5rem, 10vw, 7.5rem); letter-spacing: -.06em; line-height: 1; background: linear-gradient(180deg, #fff 20%, #8e8e93); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .08em .08em; }
 .t-dray .copy > p:not(.name) { margin-inline: auto !important; }
 
 /* About */
