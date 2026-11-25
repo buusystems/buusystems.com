@@ -2,8 +2,8 @@
 
 Static site served by GitHub Pages from `main` of `buusystems/buusystems.com`.
 
-- `/`: landing page (`index.html`, `styles.css`)
-- `/geniemarie/`: Genie Marie product page (`geniemarie/index.html`, `genie-marie.css`, `genie-marie.js`)
+- `/`: home page, one tile per product (`index.html`, `home.css`, `home.js`; icons in `assets/apps/`)
+- `/geniemarie/`: Genie Marie pages (`geniemarie/`, shared `styles.css`, `genie-marie.css`, `genie-marie.js`)
 
 ## Editing
 

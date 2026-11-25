@@ -2,214 +2,194 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BUU Systems | AI products, integrations and embedded systems</title>
-  <meta name="description" content="BUU Systems builds AI products, plugs them into the tools a business already runs on, and puts them on real hardware, from phones to firmware.">
-  <meta name="theme-color" content="#DD0000">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BUU Systems</title>
+  <meta name="description" content="BUU Systems makes Genie Marie, Bool, Arboretum, Dan, PestLeadWire, bpfboot and more: AI, apps and hardware that do real work.">
+  <meta name="theme-color" content="#fbfbfd">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <meta property="og:site_name" content="BUU Systems">
   <meta property="og:title" content="BUU Systems">
-  <meta property="og:description" content="AI products, integrations into business tools, and embedded IoT systems.">
+  <meta property="og:description" content="Software that reaches the real world.">
   <meta property="og:url" content="https://buusystems.com/">
+  <meta property="og:image" content="https://buusystems.com/assets/icon-512.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/styles.css?v=9">
+  <link rel="stylesheet" href="/home.css?v=1">
   <script>document.documentElement.classList.add("js")</script>
-  <script src="/site.js?v=9" defer></script>
+  <script src="/home.js?v=1" defer></script>
 </head>
-<body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a href="/" class="brand" aria-label="BUU Systems home"><img class="logo" src="/assets/logo.svg" alt="BUU Systems"></a>
-      <nav id="nav" aria-label="Primary">
-        <a href="#work">Work</a>
-        <a href="#built">Built</a>
+<body id="top">
+  <header class="bar">
+    <div class="wrap bar-in">
+      <a href="/" aria-label="BUU Systems home"><img class="logo" src="/assets/logo.svg" alt="BUU Systems"></a>
+      <nav aria-label="Primary">
+        <a href="#products">Products</a>
         <a href="#about">About</a>
-        <a class="pill pill-sm" href="#contact">Contact</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <button class="menu" type="button" aria-controls="nav" aria-expanded="false">Menu</button>
     </div>
   </header>
 
-  <main id="top">
+  <main>
     <section class="hero">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow reveal"><span class="dot"></span><span data-edit="hero-eyebrow">AI · Integrations · Embedded systems</span></p>
-          <h1 class="reveal" style="--d:80ms" data-edit="hero-title">Software that reaches <span class="hl">the real world</span></h1>
-          <p class="lede reveal" style="--d:160ms" data-edit="hero-lede">BUU Systems builds AI products, wires them into the tools your business already runs on, and puts them on real hardware: from the phone in your pocket to the firmware of the machine on your desk.</p>
-          <div class="hero-actions reveal" style="--d:240ms">
-            <a class="pill" href="#contact"><span data-edit="hero-cta">Start a project</span></a>
-            <a class="pill pill-ghost" href="#built"><span data-edit="hero-cta2">See what we build</span></a>
-          </div>
-        </div>
-
-                <div class="hero-visual" aria-label="The tools we build with. Hover or tap a logo.">
-          <div class="aura" aria-hidden="true"></div>
-          <div class="ring ring-1" aria-hidden="true"></div>
-          <div class="ring ring-2" aria-hidden="true"></div>
-          <div class="orbit orbit-1">
-            <button type="button" class="node" style="--a:18deg" data-tool="hw-1" data-group="hw" aria-label="ESP32-S3"><i class="app app-espressif"><img src="/assets/brand/espressif.svg" alt=""></i></button>
-            <button type="button" class="node" style="--a:90deg" data-tool="hw-2" data-group="hw" aria-label="eBPF"><i class="app app-ebpf"><img src="/assets/brand/ebpf.svg" alt=""></i></button>
-            <button type="button" class="node" style="--a:162deg" data-tool="hw-3" data-group="hw" aria-label="Linux"><i class="app app-linux"><img src="/assets/brand/linux.svg" alt=""></i></button>
-            <button type="button" class="node" style="--a:234deg" data-tool="hw-4" data-group="hw" aria-label="Ubuntu"><i class="app app-ubuntu"><img src="/assets/brand/ubuntu.svg" alt=""></i></button>
-            <button type="button" class="node" style="--a:306deg" data-tool="hw-5" data-group="hw" aria-label="QEMU"><i class="app app-qemu"><img src="/assets/brand/qemu.svg" alt=""></i></button>
-          </div>
-          <div class="orbit orbit-2">
-            <button type="button" class="node" style="--a:0deg" data-tool="ai-1" data-group="ai" aria-label="Genie Marie"><i class="app app-genie"><img src="/assets/genie.svg" alt=""></i></button>
-            <button type="button" class="node" style="--a:72deg" data-tool="int-1" data-group="int" aria-label="iMessage"><i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i></button>
-            <button type="button" class="node" style="--a:144deg" data-tool="int-3" data-group="int" aria-label="Stablemail"><i class="app app-stable"><img src="/assets/brand/stable.png" alt=""></i></button>
-            <button type="button" class="node" style="--a:216deg" data-tool="int-4" data-group="int" aria-label="Ramp"><i class="app app-full"><img src="/assets/brand/ramp.svg" alt=""></i></button>
-            <button type="button" class="node" style="--a:288deg" data-tool="int-2" data-group="int" aria-label="Phone"><i class="app app-full"><img src="/assets/brand/phone.svg" alt=""></i></button>
-          </div>
-          <div class="orbit-tip" role="status" hidden>
-            <span class="tip-cat"></span>
-            <strong class="tip-name"></strong>
-            <span class="tip-desc"></span>
-            <a class="tip-more" href="#work">Read more</a>
-          </div>
-          <img class="hero-mark" src="/assets/mark.svg" alt="" width="800" height="800" aria-hidden="true">
-        </div>
-      </div>
-    </section>
-
-    <section id="work" class="section wrap" aria-labelledby="work-title">
-      <div class="section-head reveal">
-        <p class="kicker">What we do</p>
-        <h2 id="work-title" class="section-title" data-edit="work-title">Three disciplines, one team</h2>
-      </div>
-      <div class="pillars">
-        <article class="card reveal" data-group="ai">
-          <span class="num" aria-hidden="true">I</span>
-          <h3 data-edit="p1-title">AI products</h3>
-          <p data-edit="p1-body">Assistants that do the work, not just talk about it. They read the mail, answer the phone, book the vendor and pay the bill, and only bring you the judgment calls.</p>
-          <dl class="tools">
-            <div id="tool-ai-1" data-tool="ai-1"><dt data-edit="ai-1">Genie Marie</dt><dd data-edit="ai-1-d">Our flagship assistant for property managers.</dd></div>
-            <div><dt data-edit="ai-2">Voice AI</dt><dd data-edit="ai-2-d">Answers the line and reports who called.</dd></div>
-            <div><dt data-edit="ai-3">AI mail reading</dt><dd data-edit="ai-3-d">Reads each letter and does what it asks.</dd></div>
-          </dl>
-        </article>
-        <article class="card reveal" style="--d:100ms" data-group="int">
-          <span class="num" aria-hidden="true">II</span>
-          <h3 data-edit="p2-title">Integrations</h3>
-          <p data-edit="p2-body">Your business already lives in iMessage, mail, the phone and company cards. We connect AI to those tools so nobody has to learn a new dashboard.</p>
-          <dl class="tools">
-            <div id="tool-int-1" data-tool="int-1"><dt data-edit="int-1">iMessage</dt><dd data-edit="int-1-d">The whole front office in one thread.</dd></div>
-            <div id="tool-int-3" data-tool="int-3"><dt data-edit="int-3">Stablemail</dt><dd data-edit="int-3-d">Paper mail scanned and handed to the AI.</dd></div>
-            <div id="tool-int-4" data-tool="int-4"><dt data-edit="int-4">Ramp</dt><dd data-edit="int-4-d">Capped cards by text, bills paid, receipts filed.</dd></div>
-            <div id="tool-int-2" data-tool="int-2"><dt data-edit="int-2">Phone</dt><dd data-edit="int-2-d">Your office line, answered by Voice AI.</dd></div>
-          </dl>
-        </article>
-        <article class="card reveal" style="--d:200ms" data-group="hw">
-          <span class="num" aria-hidden="true">III</span>
-          <h3 data-edit="p3-title">Embedded &amp; IoT</h3>
-          <p data-edit="p3-body">Firmware, boot stages, dongles and sensors. We build and test on real devices, so the software keeps working when it leaves the bench.</p>
-          <dl class="tools">
-            <div id="tool-hw-1" data-tool="hw-1"><dt data-edit="hw-1">ESP32-S3</dt><dd data-edit="hw-1-d">The chip inside our provisioning dongle.</dd></div>
-            <div id="tool-hw-2" data-tool="hw-2"><dt data-edit="hw-2">eBPF</dt><dd data-edit="hw-2-d">Programmable hooks in our boot stage.</dd></div>
-            <div id="tool-hw-3" data-tool="hw-3"><dt data-edit="hw-3">Linux</dt><dd data-edit="hw-3-d">Real-time kernels and USB drivers.</dd></div>
-            <div id="tool-hw-4" data-tool="hw-4"><dt data-edit="hw-4">Ubuntu</dt><dd data-edit="hw-4-d">Hands-free installs onto bare machines.</dd></div>
-            <div id="tool-hw-5" data-tool="hw-5"><dt data-edit="hw-5">QEMU</dt><dd data-edit="hw-5-d">Every firmware build boots here first.</dd></div>
-          </dl>
-        </article>
-      </div>
-    </section>
-
-    <section id="built" class="showcase">
-      <div class="showcase-glow" aria-hidden="true"></div>
+      <div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
-        <div class="section-head reveal">
-          <p class="kicker kicker-dark">Portfolio</p>
-          <h2 class="section-title" data-edit="built-title">Things we've built</h2>
-          <p class="section-lede" data-edit="built-lede">A product and the devices behind it.</p>
-        </div>
-        <div class="tiles">
-          <a class="tile tile-wide reveal" href="/geniemarie/">
-            <img src="/assets/genie.svg" alt="Genie Marie, a blue genie rising from a gold lamp" data-edit="tile1-img" class="tile-art tile-art-genie">
-            <div class="tile-text">
-              <span class="tag"><span data-edit="tile1-tag">AI product</span></span>
-              <h3 data-edit="tile1-title">Genie Marie</h3>
-              <p data-edit="tile1-body">An AI front office in one iMessage thread. A tenant texts a leak, you text back “yes,” and the plumber is booked, paid and filed.</p>
-              <span class="more" data-edit="tile1-more">See her in action</span>
-            </div>
-          </a>
-          <figure class="tile reveal">
-            <div class="tile-media"><img src="/assets/bpfboot-screen.jpg" alt="A monitor showing a custom boot stage starting on a Minisforum mini PC" data-edit="tile2-img" class="tile-photo"></div>
-            <figcaption class="tile-text">
-              <span class="tag"><span data-edit="tile2-tag">Firmware</span></span>
-              <h3 data-edit="tile2-title">A programmable boot stage</h3>
-              <p data-edit="tile2-body">Plug in, and a bare machine comes up on our console: BIOS settings, logs and OS installs, no keyboard or monitor needed.</p>
-            </figcaption>
-          </figure>
-          <figure class="tile reveal" style="--d:100ms">
-            <div class="tile-media"><img src="/assets/dongle-photo.jpg" alt="The BUU provisioning dongle plugged into a PC, its screen showing the BUU logo, Wi-Fi relay online, PC attached, READY" width="1200" height="840" loading="lazy" data-edit="tile3-img" class="tile-photo"></div>
-            <figcaption class="tile-text">
-              <span class="tag"><span data-edit="tile3-tag">IoT device</span></span>
-              <h3 data-edit="tile3-title">The provisioning dongle</h3>
-              <p data-edit="tile3-body">An ESP32-S3 the size of a thumb drive. It is a boot disk, a USB network link and a Wi-Fi relay at once.</p>
-            </figcaption>
-          </figure>
-        </div>
+        <h1 class="rise" data-edit="hero-title">Software that reaches <span class="hl">the real world.</span></h1>
+        <p class="lede rise" style="--d:90ms" data-edit="hero-lede">AI, apps and hardware. Simple to use, built to do real work.</p>
+        <nav class="dock rise" style="--d:180ms" aria-label="Our products">
+          <a href="#genie"><i class="icon i-genie"><img src="/assets/genie.svg" alt=""></i><span>Genie Marie</span></a>
+          <a href="#bool"><i class="icon"><img src="/assets/apps/bool.svg" alt=""></i><span>Bool</span></a>
+          <a href="#arboretum"><i class="icon"><img src="/assets/apps/arboretum.svg" alt=""></i><span>Arboretum</span></a>
+          <a href="#dan"><i class="icon"><img src="/assets/apps/dan.png" alt=""></i><span>Dan</span></a>
+          <a href="#dray"><i class="icon i-dray"><b>D</b></i><span>Dray</span></a>
+          <a href="#pestleadwire"><i class="icon i-plw"><b></b><b></b><b></b></i><span>PestLeadWire</span></a>
+          <a href="#bpfboot"><i class="icon i-boot"><img src="/assets/mark-white.svg" alt=""></i><span>bpfboot</span></a>
+          <a href="#brm"><i class="icon i-brm"><b>brm</b></i><span>brm</span></a>
+        </nav>
       </div>
     </section>
 
-    <section id="about" class="founder">
-      <div class="wrap founder-grid">
-        <div class="headshot-frame reveal">
-          <img class="headshot" src="/assets/headshot.jpg" alt="Ross Mikulskis, founder of BUU Systems" width="800" height="996" data-edit="headshot">
+    <section id="products" class="wrap grid" aria-label="Products">
+
+      <article id="bool" class="tile wide t-bool rise">
+        <div class="copy">
+          <p class="name" data-edit="bool-name">Bool</p>
+          <h2 data-edit="bool-title">The group chat that runs your group.</h2>
+          <p data-edit="bool-body">Messages, calendar and tasks in one place. Make your own stickers, your own like button, even your own apps.</p>
+          <p class="status" data-edit="bool-status">Private preview</p>
         </div>
-        <div class="reveal" style="--d:120ms">
-          <p class="kicker">About</p>
+        <div class="art chat" aria-hidden="true">
+          <div class="row"><em style="--c:#ffd60a">🦊</em><p>dinner friday?</p></div>
+          <div class="row me"><p>in. who's driving</p></div>
+          <div class="row"><em style="--c:#64d2ff">🐼</em><p>let the wheel decide</p><s>🥒 4</s></div>
+          <div class="card"><div class="wheel"></div><div><small>Spin the Wheel</small><strong>Priya drives</strong></div></div>
+        </div>
+      </article>
+
+      <article id="dan" class="tile t-dan rise">
+        <div class="copy">
+          <p class="name" data-edit="dan-name">Dan</p>
+          <h2 data-edit="dan-title">Your dance coach, in your phone.</h2>
+          <p data-edit="dan-body">Pick a dance. Dan watches you move, scores it, and shows you what to fix.</p>
+          <p class="status" data-edit="dan-status">In development</p>
+        </div>
+        <div class="art stage" aria-hidden="true">
+          <svg class="dancer" viewBox="0 0 200 260">
+            <g class="body">
+              <circle cx="100" cy="38" r="17"/>
+              <path d="M72 74H128L116 146H84Z"/>
+              <g class="limb arm-l"><path d="M72 74L48 104"/><path class="fore" d="M48 104L30 74"/></g>
+              <g class="limb arm-r"><path d="M128 74L154 100"/><path class="fore" d="M154 100L172 130"/></g>
+            </g>
+            <g class="limb leg-l"><path d="M84 146L70 196L62 244"/></g>
+            <g class="limb leg-r"><path d="M116 146L136 192L130 244"/></g>
+          </svg>
+          <div class="score"><b>98</b><small>match</small></div>
+        </div>
+      </article>
+
+      <article id="arboretum" class="tile t-arb rise" style="--d:90ms">
+        <div class="copy">
+          <p class="name" data-edit="arb-name">Arboretum</p>
+          <h2 data-edit="arb-title">Merges that understand your code.</h2>
+          <p data-edit="arb-body">A home for all your code. Two people can edit one file, and it comes together by function, not by line.</p>
+          <p class="status" data-edit="arb-status">Private preview</p>
+        </div>
+        <div class="art tree" aria-hidden="true">
+          <svg viewBox="0 0 440 230">
+            <path class="ln" d="M220 230V24"/>
+            <path class="ln a" d="M220 200C220 150 92 168 92 118S220 92 220 52"/>
+            <path class="ln b" d="M220 200C220 150 348 168 348 118S220 92 220 52"/>
+            <circle class="pt" cx="220" cy="200" r="9"/><circle class="pt" cx="220" cy="52" r="12"/>
+            <g class="fn"><rect x="22" y="96" width="140" height="44" rx="22"/><text x="92" y="124">play()</text></g>
+            <g class="fn"><rect x="278" y="96" width="140" height="44" rx="22"/><text x="348" y="124">pause()</text></g>
+          </svg>
+        </div>
+      </article>
+
+      <article id="genie" class="tile wide t-genie rise">
+        <div class="copy">
+          <p class="name" data-edit="genie-name">Genie Marie</p>
+          <h2 data-edit="genie-title">Your front office, in one text thread.</h2>
+          <p data-edit="genie-body">A tenant texts a leak. You text back “yes.” The plumber is booked, paid and filed.</p>
+          <a class="btn" href="/geniemarie/"><span data-edit="genie-cta">See her in action</span></a>
+        </div>
+        <img class="art genie" src="/assets/genie.svg" alt="Genie Marie, a blue genie rising from a gold lamp" data-edit="genie-img">
+      </article>
+
+      <article id="pestleadwire" class="tile t-plw rise">
+        <div class="copy">
+          <p class="name" data-edit="plw-name">PestLeadWire</p>
+          <h2 data-edit="plw-title">Every Monday, who to call next.</h2>
+          <p data-edit="plw-body">We read public health inspections. Pest control companies get the nearby businesses that were just cited.</p>
+        </div>
+        <div class="art leads" aria-hidden="true">
+          <div><b>Taqueria</b><span>Mice</span><i>0.8 mi</i></div>
+          <div><b>Bakery</b><span>Roaches</span><i>1.4 mi</i></div>
+          <div><b>Grocery</b><span>Flies</span><i>2.1 mi</i></div>
+        </div>
+      </article>
+
+      <article id="bpfboot" class="tile t-boot rise" style="--d:90ms">
+        <img class="photo" src="/assets/dongle-photo.jpg" alt="The BUU dongle plugged into a PC, its screen reading READY" width="1200" height="840" loading="lazy" data-edit="boot-img">
+        <div class="copy">
+          <p class="name" data-edit="boot-name">bpfboot</p>
+          <h2 data-edit="boot-title">Set up a PC. No monitor.</h2>
+          <p data-edit="boot-body">Plug in one tiny dongle. Change BIOS settings, read logs and install an OS from your own desk.</p>
+        </div>
+      </article>
+
+      <article id="brm" class="tile short t-brm rise">
+        <div class="copy">
+          <p class="name" data-edit="brm-name">brm</p>
+          <h2 data-edit="brm-title">Write SQL. Get an API.</h2>
+          <p data-edit="brm-body">Plain tables in, live routes out. Your code runs when a row changes.</p>
+          <a class="btn" href="https://github.com/buusystems/brm"><span data-edit="brm-cta">View on GitHub</span></a>
+        </div>
+      </article>
+
+      <article id="dray" class="tile short t-dray rise" style="--d:90ms">
+        <div class="copy">
+          <p class="name" data-edit="dray-name">New</p>
+          <h2 class="big" data-edit="dray-title">Dray</h2>
+          <p data-edit="dray-body">In the works.</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="about" class="about">
+      <div class="wrap about-in">
+        <img class="headshot rise" src="/assets/headshot.jpg" alt="Ross Mikulskis, founder of BUU Systems" width="800" height="996" loading="lazy" data-edit="headshot">
+        <div class="rise" style="--d:90ms">
           <blockquote data-edit="quote">I like building things you can hold, and software that does real work.</blockquote>
           <p class="byline" data-edit="byline"><strong>Ross Mikulskis</strong><br>Founder, BUU Systems</p>
-          <p data-edit="about-1">BUU Systems sits where AI, business software and hardware meet. We take an idea from a sketch to something running on a real device or inside a real business, and we stay with it once it's live.</p>
-          <p data-edit="about-2">If you have work that should run itself, or a device that should be smarter, let's talk.</p>
+          <p data-edit="about-1">We build for other businesses, too: AI products, integrations with the tools you already use, and embedded systems. From a sketch to something running, and we stay with it once it's live.</p>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="cta">
-      <img class="cta-mark" src="/assets/mark-white.svg" alt="" width="800" height="800">
-      <div class="wrap cta-inner reveal">
-        <h2 data-edit="cta-title">Have something that should run itself?</h2>
-        <p data-edit="cta-body">Tell us what you're building. We reply within a day.</p>
-        <div class="cta-actions">
-          <a class="pill pill-invert" href="mailto:ross@buusystems.com"><span data-edit="cta-button">ross@buusystems.com</span></a>
-          <a class="pill pill-line pill-text" href="sms:+16176909816" aria-label="Text +1 (617) 690 9816"><i class="app app-full"><img src="/assets/brand/imessage.svg" alt=""></i><span data-edit="cta-phone">+1 (617) 690 9816</span></a>
+    <section id="contact" class="contact">
+      <div class="wrap rise">
+        <h2 data-edit="cta-title">Let's build something.</h2>
+        <p data-edit="cta-body">Tell us what you have in mind. We reply within a day.</p>
+        <div class="actions">
+          <a class="btn solid" href="mailto:ross@buusystems.com"><span data-edit="cta-button">Email us</span></a>
+          <a class="btn line" href="sms:+16176909816"><span data-edit="cta-phone">Text +1 (617) 690 9816</span></a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div>
-        <img class="logo logo-small" src="/assets/logo.svg" alt="BUU Systems">
-        <p class="footer-note" data-edit="footer-note">AI products, integrations and embedded systems.</p>
-      </div>
-      <nav aria-label="Footer">
-        <h4>Company</h4>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-      </nav>
-      <nav aria-label="Products">
-        <h4>Products</h4>
-        <a href="/geniemarie/">Genie Marie</a>
-        <a href="#built">Firmware &amp; devices</a>
-      </nav>
-      <div class="footer-contact">
-        <h4>Contact</h4>
-        <a href="mailto:ross@buusystems.com">ross@buusystems.com</a>
-        <a href="sms:+16176909816">Text +1 (617) 690 9816</a>
-        <a href="tel:+16176909816">Call +1 (617) 690 9816</a>
-      </div>
-    </div>
-    <div class="wrap footer-base">
+  <footer class="foot">
+    <div class="wrap foot-in">
       <small data-edit="footer">&copy; 2026 BUU Systems</small>
-      <a href="#top" class="to-top">Back to top</a>
+      <nav aria-label="Footer">
+        <a href="/geniemarie/">Genie Marie</a>
+        <a href="mailto:ross@buusystems.com">ross@buusystems.com</a>
+        <a href="tel:+16176909816">Call</a>
+      </nav>
     </div>
   </footer>
 </body>
