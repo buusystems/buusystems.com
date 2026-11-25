@@ -3,7 +3,7 @@
 Static site served by GitHub Pages from `main` of `buusystems/buusystems.com`.
 
 - `/`: home page, one tile per product (`index.html`, `home.css`, `home.js`; icons in `assets/apps/`)
-- `/dan/`, `/arboretum/`, `/pestleadwire/`, `/bpfboot/`, `/dray/`: product pages (`home.css` + `product.css`).
+- `/dan/`, `/arboretum/`, `/bpfboot/`, `/dray/`: product pages (`home.css` + `product.css`).
   `_tools/subdomains.sh` copies dan, bpfboot and dray to `<name>.buusystems.com`; Publish runs it.
 - `/geniemarie/`: Genie Marie pages (`geniemarie/`, shared `styles.css`, `genie-marie.css`, `genie-marie.js`)
 
