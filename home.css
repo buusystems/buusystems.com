@@ -129,13 +129,18 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .meta time { color: #77777d; font-size: 9.5px; }
 .brow { display: flex; align-items: flex-end; gap: 1px; }
 .mine .brow { flex-direction: row-reverse; }
-/* Bool's bubbles have no tail: the corner next to the sender is tighter instead. */
-.bubble { max-width: 172px; padding: 6px 11px; border-radius: 16px 16px 16px 16px; border-top-left-radius: 6px; background: #f1f1f3; transition: filter .3s, transform .35s var(--ease); }
-.mine .bubble { border-top-left-radius: 16px; border-top-right-radius: 6px; background: #0a84ff; color: #fff; }
-.bot .card { border-top-left-radius: 6px; }
+/* Round bubbles with a tail, mirrored so it comes off the top corner next to the sender. The tail shares the
+   bubble's colour and overlaps it, so it joins without a seam. */
+.bubble { position: relative; max-width: 172px; padding: 6px 11px; border-radius: 17px; border-top-left-radius: 4px; background: #e9e9eb; transition: filter .3s, transform .35s var(--ease); }
+.bubble::before { content: ""; position: absolute; top: 0; left: -6px; width: 13px; height: 15px; background: inherit; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'%3E%3Cpath d='M0 0H14V16C11 14.5 8.6 11.5 7.4 8.2 6.4 5 4 1.6 0 0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'%3E%3Cpath d='M0 0H14V16C11 14.5 8.6 11.5 7.4 8.2 6.4 5 4 1.6 0 0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; }
+.mine .bubble { border-top-left-radius: 17px; border-top-right-radius: 4px; background: #0a84ff; color: #fff; }
+.mine .bubble::before { left: auto; right: -6px; transform: scaleX(-1); }
+.bot .card { border-top-left-radius: 4px; }
 /* Likes: nothing shows until someone likes a message (double tap or press and hold); then a heart and a count. */
-.like { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-width: 26px; height: 26px; padding: 0 4px; border: 0; border-radius: 13px; background: none; font: inherit; font-size: 10.5px; color: #5b5b61; transition: transform .25s var(--spring); }
-.like i { font-size: 13px; font-style: normal; filter: grayscale(1); opacity: .35; transition: filter .25s, opacity .25s, transform .3s var(--spring); }
+.brow { position: relative; }
+[data-react] .brow { margin-bottom: 11px; }
+.like { position: absolute; right: -9px; bottom: -13px; z-index: 2; display: inline-flex; align-items: center; justify-content: center; gap: 2px; height: 22px; padding: 0 7px 0 6px; border: 0; border-radius: 11px; background: #fff; box-shadow: 0 0 0 1px #e9e9ec, 0 2px 6px -2px rgba(0, 0, 0, .2); font: inherit; font-size: 10.5px; color: #5b5b61; transition: transform .25s var(--spring); }
+.like i { font-size: 11px; font-style: normal; filter: grayscale(1); opacity: .35; transition: filter .25s, opacity .25s, transform .3s var(--spring); }
 .like b { font-weight: 650; }
 .like b:empty { display: none; }
 .like:not(.some) { visibility: hidden; }
