@@ -78,7 +78,7 @@
     });
   }
 
-  // Bool's wheel: tap it to pick who drives. It also spins once by itself after the chat has played.
+  // Bool's wheel: tap it to pick who drives. It also spins once by itself after the chat has played (below).
   for (const card of $$("[data-wheel]")) {
     const wheel = card.querySelector(".wheel"), out = card.querySelector("strong"), hint = card.querySelector("small");
     const faces = [...wheel.children];
@@ -94,7 +94,28 @@
       setTimeout(() => { out.textContent = faces[pick].dataset.name + " drives"; hint.textContent = "Tap to spin again"; busy = false; }, still ? 60 : 3450);
     };
     card.addEventListener("click", spin);
-    if (!still) new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); setTimeout(spin, 1900); } }, { threshold: 0.6 }).observe(card);
+    card.autoSpin = spin;
+  }
+
+  // Bool's chat plays out when it scrolls into view: someone types, their message lands, a reply, a heart,
+  // then the wheel spins. Each message keeps its space throughout, so nothing below it moves.
+  if (!editing && !still) for (const chat of $$(".chat")) {
+    const items = [...chat.children], tap = chat.querySelector(".tap"), wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    chat.classList.add("play");
+    new IntersectionObserver(async ([e], o) => {
+      if (!e.isIntersecting) return;
+      o.disconnect();
+      await wait(350);
+      for (const el of items) {
+        const typed = el.querySelector(".dots");
+        if (typed) { el.classList.add("on", "typing"); await wait(1150); el.classList.remove("typing"); }
+        else el.classList.add("on");
+        if (el.contains(tap)) { await wait(650); tap.classList.add("on"); }
+        await wait(typed ? 750 : 600);
+      }
+      await wait(300);
+      if (chat.querySelector("[data-wheel]")?.autoSpin) chat.querySelector("[data-wheel]").autoSpin();
+    }, { threshold: 0.5 }).observe(chat);
   }
 
   // The globe: the "o" in "world". A flat land map (256x128, light = land) is wrapped onto a sphere
