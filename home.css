@@ -179,15 +179,10 @@ blockquote .q { transition: opacity .25s linear; }
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-top: 1rem; }
 .btn.solid { background: var(--red); color: #fff; box-shadow: 0 14px 30px -14px rgba(221, 0, 0, .7); }
 .btn.line { background: #fff; }
-/* Small app-style tiles on the contact buttons. Generic drawings (an envelope, a speech bubble), not any
-   company's logo: the links open whatever mail and messaging apps the visitor uses. */
+/* The iOS Mail and Messages icons on the contact buttons. */
 .actions .btn { white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; padding-left: .5rem; }
-.app { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 8px; }
-.app svg { width: 20px; height: 20px; }
-.app.mail { background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); }
-.app.mail svg { fill: none; stroke: var(--red); stroke-width: 1.9; stroke-linejoin: round; stroke-linecap: round; }
-.app.msg { background: linear-gradient(#6ef08a, #1fc44a); box-shadow: inset 0 0 0 .5px rgba(0, 0, 0, .08); }
-.app.msg svg { fill: #fff; }
+.app { flex: none; width: 30px; height: 30px; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .2)); }
+.app svg { width: 100%; height: 100%; }
 .btn.line > span::after { content: none; }
 
 /* Footer: a glass pill like the top bar. On the home page it floats over the contact glow. */
