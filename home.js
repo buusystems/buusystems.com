@@ -97,24 +97,44 @@
     card.autoSpin = spin;
   }
 
-  // Bool's chat plays out when it scrolls into view: someone types, their message lands, a reply, a heart,
-  // then the wheel spins. Each message keeps its space throughout, so nothing below it moves.
+  // Bool's chat plays out when it scrolls into view, at a conversational pace: someone types, their message
+  // lands, a reply, a second message; a moment later the hearts come in one at a time, someone taps them to
+  // see who reacted, and then the wheel spins. Each message keeps its space throughout, so nothing moves.
   if (!editing && !still) for (const chat of $$(".chat")) {
-    const items = [...chat.children], tap = chat.querySelector(".tap"), wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    const items = [...chat.querySelectorAll(":scope > .row, :scope > .card")];
+    const tap = chat.querySelector(".tap"), count = tap && tap.querySelector("b"), likers = chat.querySelector(".likers"), finger = chat.querySelector(".finger");
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
     chat.classList.add("play");
     new IntersectionObserver(async ([e], o) => {
       if (!e.isIntersecting) return;
       o.disconnect();
-      await wait(350);
+      await wait(700);
       for (const el of items) {
         const typed = el.querySelector(".dots");
-        if (typed) { el.classList.add("on", "typing"); await wait(1150); el.classList.remove("typing"); }
+        if (typed) { el.classList.add("on", "typing"); await wait(1700); el.classList.remove("typing"); }
         else el.classList.add("on");
-        if (el.contains(tap)) { await wait(650); tap.classList.add("on"); }
-        await wait(typed ? 750 : 600);
+        if (tap && el.contains(tap)) {
+          await wait(2000);
+          count.textContent = "1"; tap.classList.add("on");
+          await wait(1500);
+          count.textContent = "2"; tap.classList.remove("bump"); void tap.offsetWidth; tap.classList.add("bump");
+          if (likers && finger) {
+            await wait(1300);
+            finger.classList.add("show"); await wait(350);
+            finger.classList.add("go"); await wait(1200);
+            finger.classList.add("press"); tap.classList.add("pressed"); await wait(170);
+            finger.classList.remove("press"); tap.classList.remove("pressed");
+            likers.classList.add("open"); await wait(450);
+            finger.classList.remove("show"); await wait(2800);
+            likers.classList.remove("open"); await wait(400);
+            finger.classList.remove("go");
+          }
+        }
+        await wait(typed ? 1300 : 1500);
       }
-      await wait(300);
-      if (chat.querySelector("[data-wheel]")?.autoSpin) chat.querySelector("[data-wheel]").autoSpin();
+      await wait(600);
+      const wheel = chat.querySelector("[data-wheel]");
+      if (wheel && wheel.autoSpin) wheel.autoSpin();
     }, { threshold: 0.5 }).observe(chat);
   }
 
