@@ -97,18 +97,27 @@
     card.autoSpin = spin;
   }
 
-  // Bool's chat plays out on the phone when it scrolls into view, at a conversational pace: someone types,
-  // their message lands, a reply, a second message; Maya hearts it; then you press and hold that message,
-  // pick the heart from the reactions, tap the badge to see who reacted, and the wheel spins.
-  // Each message keeps its space throughout, so nothing on the page moves.
+  // Bool's chat plays out on the phone when it scrolls into view, at a conversational pace: Maya types and
+  // sends, you reply, Sam types and sends, Maya likes Sam's message; then you press and hold it, Bool's
+  // message sheet rises showing who liked it, you tap the heart, the sheet closes and the like lands on the
+  // message; then the wheel spins. Each message keeps its space throughout, so nothing on the page moves.
   if (!editing && !still) for (const chat of $$(".phone .chat")) {
-    const screen = chat.closest(".screen"), items = [...chat.querySelectorAll(":scope > .row, :scope > .card")];
-    const row = chat.querySelector("[data-react]"), tap = chat.querySelector(".tap"), count = tap && tap.querySelector("b");
-    const picker = chat.querySelector(".picker"), heart = picker && picker.querySelector(".heart"), likers = chat.querySelector(".likers");
+    const screen = chat.closest(".screen"), items = [...chat.children];
+    const row = chat.querySelector("[data-react]"), like = row && row.querySelector(".like"), count = like && like.querySelector("b");
+    const heart = screen.querySelector(".reacts .heart"), liked = screen.querySelector(".liked");
     const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-    const bump = () => { tap.classList.remove("bump"); void tap.offsetWidth; tap.classList.add("bump"); };
+    const again = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+    const burst = () => {
+      const s = screen.getBoundingClientRect(), r = like.getBoundingClientRect();
+      for (let k = 0; k < 6; k++) {
+        const b = document.createElement("i"); b.className = "burst"; b.textContent = "\u2764\ufe0f";
+        b.style.left = r.left - s.left + 6 + "px"; b.style.top = r.top - s.top + 4 + "px";
+        const ang = -Math.PI / 2 + (k - 2.5) * 0.45;
+        b.style.setProperty("--bx", Math.cos(ang) * 34 + "px"); b.style.setProperty("--by", Math.sin(ang) * 34 + "px");
+        screen.append(b); setTimeout(() => b.remove(), 950);
+      }
+    };
     chat.classList.add("play");
-    if (tap) { tap.classList.remove("mine"); count.textContent = "1"; }
     new IntersectionObserver(async ([e], o) => {
       if (!e.isIntersecting) return;
       o.disconnect();
@@ -117,24 +126,18 @@
         const typed = el.querySelector(".dots");
         if (typed) { el.classList.add("on", "typing"); await wait(1700); el.classList.remove("typing"); }
         else el.classList.add("on");
-        if (el === row && tap && picker) {
+        if (el === row && like) {
           await wait(1900);
-          tap.classList.add("on");                                   // Maya's heart
-          await wait(1700);
-          row.classList.add("hold"); await wait(600);                // you press and hold the message
-          row.classList.remove("hold"); row.classList.add("lift"); screen.classList.add("focus");
-          picker.classList.add("open"); await wait(1300);
-          heart.classList.add("pick"); await wait(550);              // and pick the heart
-          picker.classList.remove("open"); row.classList.remove("lift"); screen.classList.remove("focus");
-          await wait(300);
-          tap.classList.add("mine"); count.textContent = "2"; bump();
+          like.classList.add("some"); count.textContent = "1"; again(like, "bump");           // Maya likes it
+          await wait(1800);
+          row.classList.add("hold"); await wait(650);                                         // press and hold
+          row.classList.remove("hold"); screen.classList.add("sheeted");
+          await wait(1900);                                                                    // read who liked it
+          heart.classList.add("pick"); await wait(450);                                        // tap the heart
+          screen.classList.remove("sheeted"); await wait(420);
           heart.classList.remove("pick");
-          if (likers) {
-            await wait(1600);
-            tap.classList.add("pressed"); await wait(160); tap.classList.remove("pressed");   // tap the badge
-            likers.classList.add("open"); await wait(2900);
-            likers.classList.remove("open"); await wait(500);
-          }
+          like.classList.add("on"); count.textContent = "2"; again(like, "bump"); again(like, "pop"); burst();
+          if (liked) liked.insertAdjacentHTML("beforeend", '<em style="--c:#b8b8c0">\ud83d\ude42</em>You');
         }
         await wait(typed ? 1300 : 1500);
       }

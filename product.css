@@ -12,6 +12,15 @@
 .lead .job { flex: none; margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); width: min(420px, 100% - 2.5rem); }
 .lead.t-bool { justify-content: flex-start; }
 .lead .phone { margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); text-align: left; }
+/* The Bool page: copy and phone side by side, so the phone is in view as soon as the page opens. */
+@media (min-width: 861px) {
+  .lead.t-bool { flex-direction: row; align-items: center; justify-content: center; gap: clamp(2rem, 6vw, 5rem); }
+  .lead.t-bool .copy { flex: 0 1 30rem; align-items: flex-start; padding-bottom: clamp(2.5rem, 6vw, 4.5rem); text-align: left; }
+  .lead.t-bool h1 { max-width: 12ch; font-size: clamp(2.6rem, 4.4vw, 3.9rem); }
+  .lead.t-bool .copy > p:not(.name) { max-width: 28rem; }
+  .lead.t-bool .ctas { justify-content: flex-start; }
+  .lead.t-bool .phone { margin: clamp(2.5rem, 5vw, 4rem) 0; }
+}
 .btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
 .lead .photo { height: min(56%, 520px); object-position: 60% 62%; }
 .t-boot.lead { min-height: 1000px; }
