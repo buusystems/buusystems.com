@@ -2,8 +2,9 @@
 
 Static site served by GitHub Pages from `main` of `buusystems/buusystems.com`.
 
-- `/`: home page with Bool, Riser and uKVM (`index.html`, `home.css`, `product.css`, `home.js`)
-- `/riser/`: Riser page (the app itself is https://riser.buusystems.com, repo ~/code/riser)
+- `/`: home page with Bool, Gas Check NYC and uKVM (`index.html`, `home.css`, `product.css`, `home.js`)
+- `/gascheck/`: Gas Check NYC page (the app itself is https://gascheck.buusystems.com, repo ~/code/riser;
+  its first name was Riser, and `/riser/` redirects here)
 - `/ukvm/`: uKVM page (`home.css` + `product.css`; formerly bpfboot, and /bpfboot/ redirects). `_tools/subdomains.sh` copies it to
   `ukvm.buusystems.com`; Publish runs it.
 - Bool lives at https://bool.buusystems.com (its own server, not this repo).

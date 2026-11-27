@@ -69,9 +69,9 @@ h1 { font-size: clamp(2.75rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.
 .card strong { font-size: 1.3rem; letter-spacing: -.02em; }
 .wheel { flex: none; width: 82px; height: 82px; border-radius: 50%; background: radial-gradient(#fff 9px, transparent 10px), conic-gradient(#ffd60a 0 25%, #ff8fa3 0 50%, #6fdcae 0 75%, #80bfff 0); animation: wheel 7s cubic-bezier(.2, .7, .1, 1) infinite; }
 
-/* Riser */
-.t-riser { background: linear-gradient(160deg, #fff6ea, #ffe6cc); }
-.t-riser .name { color: #d4570f; }
+/* Gas Check NYC */
+.t-gascheck { background: linear-gradient(160deg, #fff6ea, #ffe6cc); }
+.t-gascheck .name { color: #d4570f; }
 .job { flex: 0 1 400px; margin: 2rem clamp(1.5rem, 4vw, 3.5rem) 2rem 0; }
 .job-card { padding: 1.6rem; border-radius: 30px; background: #fff; box-shadow: 0 34px 70px -30px rgba(160, 70, 10, .45); }
 .job-card small { color: #d4570f; font-size: .8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
