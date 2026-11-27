@@ -13,8 +13,8 @@
   <meta property="og:description" content="Plug in one tiny dongle. Change BIOS settings, read logs and install an OS from your own desk.">
   <meta property="og:url" content="https://buusystems.com/bpfboot/">
   <meta property="og:image" content="https://buusystems.com/assets/icon-512.png">
-  <link rel="stylesheet" href="/home.css?v=5">
-  <link rel="stylesheet" href="/product.css?v=1">
+  <link rel="stylesheet" href="/home.css?v=6">
+  <link rel="stylesheet" href="/product.css?v=2">
   <script>document.documentElement.classList.add("js")</script>
   <script src="/home.js?v=1" defer></script>
 </head>
@@ -44,10 +44,16 @@
       </article>
     </section>
 
-    <section class="wrap feats" aria-label="What it does">
-        <div class="feat rise" style="--d:0ms"><h2 data-edit="bpfboot-f1-t">See the setup screen.</h2><p data-edit="bpfboot-f1-b">The firmware’s own screen, mirrored to you, with your keyboard.</p></div>
-        <div class="feat rise" style="--d:80ms"><h2 data-edit="bpfboot-f2-t">Settings as a file.</h2><p data-edit="bpfboot-f2-b">Read, compare and change BIOS settings as JSON.</p></div>
-        <div class="feat rise" style="--d:160ms"><h2 data-edit="bpfboot-f3-t">From bare to booted.</h2><p data-edit="bpfboot-f3-b">Start Linux in memory over the link and install onto the disk.</p></div>
+    <section class="wrap">
+      <div class="feats in-grid" aria-label="What it does">
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="bpfboot-f1-t">See the setup screen.</h3><p data-edit="bpfboot-f1-b">The firmware's own screen, text or graphics, live in your browser. Type with your own keyboard.</p></div>
+        <div class="feat rise" style="--d:80ms"><h3 data-edit="bpfboot-f2-t">Settings as a file.</h3><p data-edit="bpfboot-f2-b">Every BIOS setting as JSON. Compare, change and apply them. An undo file is saved first.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="bpfboot-f3-t">From bare to booted.</h3><p data-edit="bpfboot-f3-b">Start Linux in memory over the link, then write the OS straight onto the disk.</p></div>
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="bpfboot-f4-t">Wi-Fi or a wire.</h3><p data-edit="bpfboot-f4-b">The dongle relays over Wi-Fi. No Wi-Fi? It uses the machine's own Ethernet port or a USB cable.</p></div>
+        <div class="feat rise" style="--d:80ms"><h3 data-edit="bpfboot-f5-t">Safe by default.</h3><p data-edit="bpfboot-f5-b">Read-only until you allow changes. Every message is signed, and Secure Boot keys are off-limits.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="bpfboot-f6-t">Scriptable.</h3><p data-edit="bpfboot-f6-b">Small signed eBPF programs automate the firmware. Each one is checked before it runs.</p></div>
+      </div>
+      <p class="fine rise" data-edit="bpfboot-fine">Tested on AMI Aptio machines: the Minisforum MS-01 and Beelink MINI S.</p>
     </section>
   </main>
 

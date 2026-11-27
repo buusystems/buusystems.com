@@ -2,10 +2,10 @@
 
 Static site served by GitHub Pages from `main` of `buusystems/buusystems.com`.
 
-- `/`: home page, one tile per product (`index.html`, `home.css`, `home.js`; icons in `assets/apps/`)
-- `/dan/`, `/arboretum/`, `/bpfboot/`, `/dray/`: product pages (`home.css` + `product.css`).
-  `_tools/subdomains.sh` copies dan, bpfboot and dray to `<name>.buusystems.com`; Publish runs it.
-- `/geniemarie/apps/{terms,privacy,paid}.html`: Genie Marie legal and payment pages (`styles.css`), kept online but not linked from the site
+- `/`: home page with Bool and bpfboot (`index.html`, `home.css`, `product.css`, `home.js`)
+- `/bpfboot/`: bpfboot page (`home.css` + `product.css`). `_tools/subdomains.sh` copies it to
+  `bpfboot.buusystems.com`; Publish runs it.
+- Bool lives at https://bool.buusystems.com (its own server, not this repo).
 
 ## Editing
 

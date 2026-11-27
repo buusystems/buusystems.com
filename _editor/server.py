@@ -218,7 +218,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
         log.append(out)
         if code != 0:
             return self.send(400, {"error": out})
-        # Refresh the copies on dan., bpfboot. and dray.buusystems.com.
+        # Refresh the copy on bpfboot.buusystems.com.
         done = subprocess.run([str(ROOT / "_tools" / "subdomains.sh")], capture_output=True, text=True)
         log.append(done.stdout + done.stderr)
         if done.returncode != 0:

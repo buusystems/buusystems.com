@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>BUU Systems</title>
-  <meta name="description" content="BUU Systems makes Bool, Arboretum, Dan, bpfboot and more: AI, apps and hardware that do real work.">
+  <meta name="description" content="BUU Systems makes Bool, the group chat that runs your group, and bpfboot, which sets up a PC with no monitor.">
   <meta name="theme-color" content="#fbfbfd">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
@@ -16,7 +16,8 @@
   <meta property="og:url" content="https://buusystems.com/">
   <meta property="og:image" content="https://buusystems.com/assets/icon-512.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/home.css?v=5">
+  <link rel="stylesheet" href="/home.css?v=6">
+  <link rel="stylesheet" href="/product.css?v=2">
   <script>document.documentElement.classList.add("js")</script>
   <script src="/home.js?v=1" defer></script>
 </head>
@@ -37,15 +38,7 @@
       <div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
         <h1 class="rise" data-edit="hero-title">Software that reaches <span class="hl">the real world.</span></h1>
-        <p class="lede rise" style="--d:90ms" data-edit="hero-lede">AI, apps and hardware. Simple to use, built to do real work.</p>
-        <nav class="dock rise" style="--d:180ms" aria-label="Our products">
-          <a href="#bool"><i class="icon"><img src="/assets/apps/bool.svg" alt=""></i><span>Bool</span></a>
-          <a href="#arboretum"><i class="icon"><img src="/assets/apps/arboretum.svg" alt=""></i><span>Arboretum</span></a>
-          <a href="#dan"><i class="icon"><img src="/assets/apps/dan.png" alt=""></i><span>Dan</span></a>
-          <a href="#dray"><i class="icon i-dray"><b>D</b></i><span>Dray</span></a>
-          <a href="#bpfboot"><i class="icon i-boot"><img src="/assets/mark-white.svg" alt=""></i><span>bpfboot</span></a>
-          <a href="#brm"><i class="icon i-brm"><b>brm</b></i><span>brm</span></a>
-        </nav>
+        <p class="lede rise" style="--d:90ms" data-edit="hero-lede">Two products. One for the people in your group, one for the machines on your desk.</p>
       </div>
     </section>
 
@@ -57,6 +50,7 @@
           <h2 data-edit="bool-title">The group chat that runs your group.</h2>
           <p data-edit="bool-body">Messages, calendar and tasks in one place. Make your own stickers, your own like button, even your own apps.</p>
           <a class="btn" href="https://bool.buusystems.com/"><span data-edit="bool-cta">Open Bool</span></a>
+          <p class="note" data-edit="bool-note">Free to start. Works in any browser and installs on your phone.</p>
         </div>
         <div class="art chat" aria-hidden="true">
           <div class="row"><em style="--c:#ffd60a">🦊</em><p>dinner friday?</p></div>
@@ -65,47 +59,14 @@
           <div class="card"><div class="wheel"></div><div><small>Spin the Wheel</small><strong>Priya drives</strong></div></div>
         </div>
       </article>
-
-      <article id="dan" class="tile t-dan rise">
-        <div class="copy">
-          <p class="name" data-edit="dan-name">Dan</p>
-          <h2 data-edit="dan-title">Your dance coach, in your phone.</h2>
-          <p data-edit="dan-body">Pick a dance. Dan watches you move, scores it, and shows you what to fix.</p>
-          <a class="btn" href="/dan/"><span data-edit="dan-cta">Meet Dan</span></a>
-        </div>
-        <div class="art stage" aria-hidden="true">
-          <svg class="dancer" viewBox="0 0 200 260">
-            <g class="body">
-              <circle cx="100" cy="38" r="17"/>
-              <path d="M72 74H128L116 146H84Z"/>
-              <g class="limb arm-l"><path d="M72 74L48 104"/><path class="fore" d="M48 104L30 74"/></g>
-              <g class="limb arm-r"><path d="M128 74L154 100"/><path class="fore" d="M154 100L172 130"/></g>
-            </g>
-            <g class="limb leg-l"><path d="M84 146L70 196L62 244"/></g>
-            <g class="limb leg-r"><path d="M116 146L136 192L130 244"/></g>
-          </svg>
-          <div class="score"><b>98</b><small>match</small></div>
-        </div>
-      </article>
-
-      <article id="arboretum" class="tile t-arb rise" style="--d:90ms">
-        <div class="copy">
-          <p class="name" data-edit="arb-name">Arboretum</p>
-          <h2 data-edit="arb-title">Merges that understand your code.</h2>
-          <p data-edit="arb-body">A home for all your code. Two people can edit one file, and it comes together by function, not by line.</p>
-          <a class="btn" href="/arboretum/"><span data-edit="arb-cta">See Arboretum</span></a>
-        </div>
-        <div class="art tree" aria-hidden="true">
-          <svg viewBox="0 0 440 230">
-            <path class="ln" d="M220 230V24"/>
-            <path class="ln a" d="M220 200C220 150 92 168 92 118S220 92 220 52"/>
-            <path class="ln b" d="M220 200C220 150 348 168 348 118S220 92 220 52"/>
-            <circle class="pt" cx="220" cy="200" r="9"/><circle class="pt" cx="220" cy="52" r="12"/>
-            <g class="fn"><rect x="22" y="96" width="140" height="44" rx="22"/><text x="92" y="124">play()</text></g>
-            <g class="fn"><rect x="278" y="96" width="140" height="44" rx="22"/><text x="348" y="124">pause()</text></g>
-          </svg>
-        </div>
-      </article>
+      <div class="feats in-grid" aria-label="What it does">
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="bool-f1-t">Start with a chat.</h3><p data-edit="bool-f1-b">Channels for everyone, for announcements or just a few people. Direct messages for up to 12.</p></div>
+        <div class="feat rise" style="--d:80ms"><h3 data-edit="bool-f2-t">Add what you need.</h3><p data-edit="bool-f2-b">Calendar, tasks, sign-ups, notes and splitting costs are apps. Add them, order them, remove them.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="bool-f3-t">Just ask Bool.</h3><p data-edit="bool-f3-b">Mention @Bool and it sets things up for you, or writes a brand-new app from a sentence.</p></div>
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="bool-f4-t">Private means private.</h3><p data-edit="bool-f4-b">Private channels have no admin override. Apps and AI can't read them.</p></div>
+        <div class="feat rise" style="--d:80ms"><h3 data-edit="bool-f5-t">Make it yours.</h3><p data-edit="bool-f5-b">Your own like button, stickers and emoji. Pick a look: White, Paper, Gray or Black.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="bool-f6-t">Works with what you use.</h3><p data-edit="bool-f6-b">Two-way Google Calendar sync. Slack and Discord webhooks. Sign in with a passkey, no password.</p></div>
+      </div>
 
       <article id="bpfboot" class="tile wide t-boot rise">
         <img class="photo" src="/assets/dongle-photo.jpg" alt="The BUU dongle plugged into a PC, its screen reading READY" width="1200" height="840" loading="lazy" data-edit="boot-img">
@@ -113,26 +74,17 @@
           <p class="name" data-edit="boot-name">bpfboot</p>
           <h2 data-edit="boot-title">Set up a PC. No monitor.</h2>
           <p data-edit="boot-body">Plug in one tiny dongle. Change BIOS settings, read logs and install an OS from your own desk.</p>
-          <a class="btn" href="/bpfboot/"><span data-edit="boot-cta">See how it works</span></a>
+          <a class="btn" href="/bpfboot/"><span data-edit="boot-cta">Learn more</span></a>
         </div>
       </article>
-
-      <article id="brm" class="tile short t-brm rise">
-        <div class="copy">
-          <p class="name" data-edit="brm-name">brm</p>
-          <h2 data-edit="brm-title">Write SQL. Get an API.</h2>
-          <p data-edit="brm-body">Plain tables in, live routes out. Your code runs when a row changes.</p>
-          <a class="btn" href="https://github.com/buusystems/brm"><span data-edit="brm-cta">View on GitHub</span></a>
-        </div>
-      </article>
-
-      <article id="dray" class="tile short t-dray rise" style="--d:90ms">
-        <div class="copy">
-          <p class="name" data-edit="dray-name">New</p>
-          <h2 class="big" data-edit="dray-title">Dray</h2>
-          <a class="btn" href="/dray/"><span data-edit="dray-cta">Visit Dray</span></a>
-        </div>
-      </article>
+      <div class="feats in-grid" aria-label="What it does">
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="boot-f1-t">See the setup screen.</h3><p data-edit="boot-f1-b">The firmware's own screen, text or graphics, live in your browser. Type with your own keyboard.</p></div>
+        <div class="feat rise" style="--d:80ms"><h3 data-edit="boot-f2-t">Settings as a file.</h3><p data-edit="boot-f2-b">Every BIOS setting as JSON. Compare, change and apply them. An undo file is saved first.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="boot-f3-t">From bare to booted.</h3><p data-edit="boot-f3-b">Start Linux in memory over the link, then write the OS straight onto the disk.</p></div>
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="boot-f4-t">Wi-Fi or a wire.</h3><p data-edit="boot-f4-b">The dongle relays over Wi-Fi. No Wi-Fi? It uses the machine's own Ethernet port or a USB cable.</p></div>
+        <div class="feat rise" style="--d:80ms"><h3 data-edit="boot-f5-t">Safe by default.</h3><p data-edit="boot-f5-b">Read-only until you allow changes. Every message is signed, and Secure Boot keys are off-limits.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="boot-f6-t">Scriptable.</h3><p data-edit="boot-f6-b">Small signed eBPF programs automate the firmware. Each one is checked before it runs.</p></div>
+      </div>
     </section>
 
     <section id="about" class="about">
