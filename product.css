@@ -24,7 +24,6 @@
 .feats.in-grid { grid-column: 1 / -1; margin: 0 0 clamp(2.5rem, 6vw, 4.5rem); padding-bottom: 0; }
 section.wrap > .feats.in-grid { margin: 1.25rem 0 0; }
 .fine { margin: 2rem 0 clamp(4rem, 8vw, 7rem); text-align: center; color: var(--soft); font-size: .9375rem; }
-.foot.plain { background: none; }
 @media (max-width: 860px) {
   .feats { grid-template-columns: 1fr; gap: .75rem; }
   .feat { padding: 1.35rem 1.4rem; border-radius: 22px; }
