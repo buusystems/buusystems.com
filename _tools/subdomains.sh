@@ -5,7 +5,7 @@
 set -euo pipefail
 root="$(cd "$(dirname "$0")/.." && pwd)"
 export GH_TOKEN="$(gh auth token -u ross-buu)"
-for p in ${@:-bpfboot}; do
+for p in ${@:-ukvm}; do
   host="$p.buusystems.com"; repo="buusystems/$host"
   gh repo view "$repo" >/dev/null 2>&1 || gh repo create "$repo" --public --description "Landing page for $host (copied from buusystems.com)" >/dev/null
   tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT

@@ -2,9 +2,10 @@
 
 Static site served by GitHub Pages from `main` of `buusystems/buusystems.com`.
 
-- `/`: home page with Bool and bpfboot (`index.html`, `home.css`, `product.css`, `home.js`)
-- `/bpfboot/`: bpfboot page (`home.css` + `product.css`). `_tools/subdomains.sh` copies it to
-  `bpfboot.buusystems.com`; Publish runs it.
+- `/`: home page with Bool, Riser and uKVM (`index.html`, `home.css`, `product.css`, `home.js`)
+- `/riser/`: Riser page (the app itself is https://riser.buusystems.com, repo ~/code/riser)
+- `/ukvm/`: uKVM page (`home.css` + `product.css`; formerly bpfboot, and /bpfboot/ redirects). `_tools/subdomains.sh` copies it to
+  `ukvm.buusystems.com`; Publish runs it.
 - Bool lives at https://bool.buusystems.com (its own server, not this repo).
 
 ## Editing

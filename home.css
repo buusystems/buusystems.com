@@ -69,6 +69,18 @@ h1 { font-size: clamp(2.75rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.
 .card strong { font-size: 1.3rem; letter-spacing: -.02em; }
 .wheel { flex: none; width: 82px; height: 82px; border-radius: 50%; background: radial-gradient(#fff 9px, transparent 10px), conic-gradient(#ffd60a 0 25%, #ff8fa3 0 50%, #6fdcae 0 75%, #80bfff 0); animation: wheel 7s cubic-bezier(.2, .7, .1, 1) infinite; }
 
+/* Riser */
+.t-riser { background: linear-gradient(160deg, #fff6ea, #ffe6cc); }
+.t-riser .name { color: #d4570f; }
+.job { flex: 0 1 400px; margin: 2rem clamp(1.5rem, 4vw, 3.5rem) 2rem 0; }
+.job-card { padding: 1.6rem; border-radius: 30px; background: #fff; box-shadow: 0 34px 70px -30px rgba(160, 70, 10, .45); }
+.job-card small { color: #d4570f; font-size: .8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.job-card strong { display: block; margin-top: .3rem; font-size: 1.5rem; letter-spacing: -.025em; }
+.job-card ul { margin: 1.1rem 0 1.3rem; padding: 0; list-style: none; }
+.job-card li { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem 0; border-top: 1px solid #f0e6dc; font-size: .9375rem; }
+.job-card li span { color: var(--soft); }
+.job-card em { display: block; padding: .85rem; border-radius: 99px; background: #ff7a1a; color: #fff; font-style: normal; font-weight: 600; text-align: center; }
+
 /* bpfboot */
 .t-boot { background: #05070f; color: #fff; justify-content: flex-start; }
 .t-boot .name { color: #8db4ff; }
@@ -109,6 +121,7 @@ blockquote { font-size: clamp(1.9rem, 4.2vw, 3.1rem); font-weight: 700; line-hei
   .wide { flex-direction: column; align-items: stretch; }
   .tile { min-height: 0; border-radius: 28px; }
   .wide .copy { padding-bottom: 0; }
+  .job { flex: none; width: min(420px, 100% - 2.5rem); margin: 2rem auto 1.5rem; }
   .chat { flex: none; width: min(440px, 100% - 2.5rem); margin: 2rem auto 1.5rem; padding: 1.1rem; }
   .t-boot { min-height: 560px; }
       .icon { width: 58px; }
