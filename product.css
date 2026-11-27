@@ -9,12 +9,16 @@
 .ctas .btn { margin-top: 0; }
 .btn.dark { background: #1d1d1f; color: #fff; }
 .lead.t-gascheck { justify-content: flex-start; }
-.lead .job { margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); width: min(420px, 100% - 2.5rem); }
+.lead .job { flex: none; margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); width: min(420px, 100% - 2.5rem); }
+.lead.t-bool { justify-content: flex-start; }
+.lead .chat { flex: none; margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); width: min(440px, 100% - 2.5rem); text-align: left; }
 .btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
 .lead .photo { height: min(56%, 520px); object-position: 60% 62%; }
 .t-boot.lead { min-height: 1000px; }
 .feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.25rem; padding-bottom: clamp(4rem, 8vw, 7rem); }
-.feat { padding: 2.25rem 2rem; border-radius: 28px; background: #f2f2f5; }
+.feat { position: relative; padding: 2.25rem 2rem; border-radius: 28px; overflow: hidden; background: #f2f2f5; }
+.feat::after { background: radial-gradient(340px circle at calc(var(--mx, .5) * 100%) calc(var(--my, .5) * 100%), #fff, transparent 70%); mix-blend-mode: normal; z-index: 0; }
+.feat > * { position: relative; z-index: 1; }
 .feat h2, .feat h3 { margin: 0; font-size: 1.6rem; font-weight: 700; letter-spacing: -.03em; line-height: 1.15; }
 .feat p { margin-top: .6rem; color: var(--soft); font-size: 1.0625rem; }
 .feats.in-grid { grid-column: 1 / -1; margin: 0 0 clamp(2.5rem, 6vw, 4.5rem); padding-bottom: 0; }

@@ -16,10 +16,10 @@
   <meta property="og:url" content="https://buusystems.com/">
   <meta property="og:image" content="https://buusystems.com/assets/icon-512.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/home.css?v=10">
-  <link rel="stylesheet" href="/product.css?v=4">
-  <script>document.documentElement.classList.add("js")</script>
-  <script src="/home.js?v=1" defer></script>
+  <link rel="stylesheet" href="/home.css?v=12">
+  <link rel="preload" href="/assets/earth.png" as="image">
+  <script>document.documentElement.classList.add("js");addEventListener("pagereveal",function(e){if(e.viewTransition)document.documentElement.classList.add("vt")})</script>
+  <script src="/home.js?v=2" defer></script>
 </head>
 <body id="top">
   <header class="bar">
@@ -28,7 +28,7 @@
       <nav aria-label="Primary">
         <a href="#products">Products</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a class="cta" href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -37,8 +37,13 @@
     <section class="hero">
       <div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
-        <h1 class="rise" data-edit="hero-title">Software that reaches <span class="hl">the real world.</span></h1>
-        <p class="lede rise" style="--d:90ms" data-edit="hero-lede">For the people in your group, the buildings in your city and the machines on your desk.</p>
+        <h1 data-edit="hero-title">Software that reaches <span class="hl">the real w<span class="globe">o</span>rld.</span></h1>
+        <p class="lede rise" style="--d:420ms" data-edit="hero-lede">For the people in your group, the buildings in your city and the machines on your desk.</p>
+        <nav class="dock rise" style="--d:560ms" aria-label="Products">
+          <a href="#bool"><img src="/assets/apps/bool.svg?v=19" alt="" width="30" height="30">Bool</a>
+          <a href="#gascheck"><img src="/assets/apps/gascheck.svg?v=7" alt="" width="30" height="30">Gas Check NYC</a>
+          <a href="#ukvm"><img src="/assets/apps/ukvm.svg?v=7" alt="" width="30" height="30">uKVM</a>
+        </nav>
       </div>
     </section>
 
@@ -50,7 +55,10 @@
           <p class="name" data-edit="bool-name">Bool</p>
           <h2 data-edit="bool-title">The group chat that runs your group.</h2>
           <p data-edit="bool-body">Messages, calendar and tasks in one place. Make your own stickers, your own like button, even your own apps.</p>
-          <a class="btn" href="https://bool.buusystems.com/"><span data-edit="bool-cta">Open Bool</span></a>
+          <div class="acts">
+            <a class="btn" href="https://bool.buusystems.com/"><span data-edit="bool-cta">Open Bool</span></a>
+            <a class="more" href="/bool/" data-edit="bool-more">Learn more</a>
+          </div>
           <p class="note" data-edit="bool-note">Free to start. Works in any browser and installs on your phone.</p>
         </div>
         <div class="art chat" aria-hidden="true">
@@ -60,16 +68,8 @@
           <div class="card"><div class="wheel"></div><div><small>Spin the Wheel</small><strong>Priya drives</strong></div></div>
         </div>
       </article>
-      <div class="feats in-grid" aria-label="What it does">
-        <div class="feat rise" style="--d:0ms"><h3 data-edit="bool-f1-t">Start with a chat.</h3><p data-edit="bool-f1-b">Channels for everyone, for announcements or just a few people. Direct messages for up to 12.</p></div>
-        <div class="feat rise" style="--d:80ms"><h3 data-edit="bool-f2-t">Add what you need.</h3><p data-edit="bool-f2-b">Calendar, tasks, sign-ups, notes and splitting costs are apps. Add them, order them, remove them.</p></div>
-        <div class="feat rise" style="--d:160ms"><h3 data-edit="bool-f3-t">Just ask Bool.</h3><p data-edit="bool-f3-b">Mention @Bool and it sets things up for you, or writes a brand-new app from a sentence.</p></div>
-        <div class="feat rise" style="--d:0ms"><h3 data-edit="bool-f4-t">Private means private.</h3><p data-edit="bool-f4-b">Private channels have no admin override. Apps and AI can't read them.</p></div>
-        <div class="feat rise" style="--d:80ms"><h3 data-edit="bool-f5-t">Make it yours.</h3><p data-edit="bool-f5-b">Your own like button, stickers and emoji. Pick a look: White, Paper, Gray or Black.</p></div>
-        <div class="feat rise" style="--d:160ms"><h3 data-edit="bool-f6-t">Works with what you use.</h3><p data-edit="bool-f6-b">Two-way Google Calendar sync. Slack and Discord webhooks. Sign in with a passkey, no password.</p></div>
-      </div>
 
-      <article id="gascheck" class="tile wide t-gascheck rise">
+      <article id="gascheck" class="tile t-gascheck rise">
         <div class="copy">
           <i class="icon"><img src="/assets/apps/gascheck.svg?v=7" alt=""></i>
           <p class="name" data-edit="gascheck-name">Gas Check NYC</p>
@@ -86,14 +86,9 @@
           </div>
         </div>
       </article>
-      <div class="feats in-grid" aria-label="What it does">
-        <div class="feat rise" style="--d:0ms"><h3 data-edit="gascheck-f1-t">For building managers.</h3><p data-edit="gascheck-f1-b">Your building has an open gas piping notice. Say you'd like a quote, and a licensed master plumber reaches out.</p></div>
-        <div class="feat rise" style="--d:80ms"><h3 data-edit="gascheck-f2-t">For plumbers.</h3><p data-edit="gascheck-f2-b">Each job arrives as a link. Tap to take it, and the address and contact unlock once it's yours.</p></div>
-        <div class="feat rise" style="--d:160ms"><h3 data-edit="gascheck-f3-t">Built on the record.</h3><p data-edit="gascheck-f3-b">Every job starts from an open Local Law 152 notice at the NYC Department of Buildings.</p></div>
-      </div>
 
-      <article id="ukvm" class="tile wide t-boot rise">
-        <img class="photo" src="/assets/dongle-photo.jpg" alt="The BUU dongle plugged into a PC, its screen reading READY" width="1200" height="840" loading="lazy" data-edit="boot-img">
+      <article id="ukvm" class="tile t-boot rise" style="--d:90ms">
+        <img class="photo" src="/assets/dongle-photo.webp" alt="The BUU dongle plugged into a PC, its screen reading READY" width="1200" height="840" loading="lazy" data-edit="boot-img">
         <div class="copy">
           <i class="icon"><img src="/assets/apps/ukvm.svg?v=7" alt=""></i>
           <p class="name" data-edit="boot-name">uKVM</p>
@@ -102,19 +97,11 @@
           <a class="btn" href="/ukvm/"><span data-edit="boot-cta">Learn more</span></a>
         </div>
       </article>
-      <div class="feats in-grid" aria-label="What it does">
-        <div class="feat rise" style="--d:0ms"><h3 data-edit="boot-f1-t">See the setup screen.</h3><p data-edit="boot-f1-b">The firmware's own screen, text or graphics, live in your browser. Type with your own keyboard.</p></div>
-        <div class="feat rise" style="--d:80ms"><h3 data-edit="boot-f2-t">Settings as a file.</h3><p data-edit="boot-f2-b">Every BIOS setting as JSON. Compare, change and apply them. An undo file is saved first.</p></div>
-        <div class="feat rise" style="--d:160ms"><h3 data-edit="boot-f3-t">From bare to booted.</h3><p data-edit="boot-f3-b">Start Linux in memory over the link, then write the OS straight onto the disk.</p></div>
-        <div class="feat rise" style="--d:0ms"><h3 data-edit="boot-f4-t">Wi-Fi or a wire.</h3><p data-edit="boot-f4-b">The dongle relays over Wi-Fi. No Wi-Fi? It uses the machine's own Ethernet port or a USB cable.</p></div>
-        <div class="feat rise" style="--d:80ms"><h3 data-edit="boot-f5-t">Safe by default.</h3><p data-edit="boot-f5-b">Read-only until you allow changes. Every message is signed, and Secure Boot keys are off-limits.</p></div>
-        <div class="feat rise" style="--d:160ms"><h3 data-edit="boot-f6-t">Scriptable.</h3><p data-edit="boot-f6-b">Small signed eBPF programs automate the firmware. Each one is checked before it runs.</p></div>
-      </div>
     </section>
 
     <section id="about" class="about">
       <div class="wrap about-in">
-        <img class="headshot rise" src="/assets/headshot.jpg" alt="Ross Mikulskis, founder of BUU Systems" width="800" height="996" loading="lazy" data-edit="headshot">
+        <img class="headshot rise" src="/assets/headshot.webp" alt="Ross Mikulskis, founder of BUU Systems" width="640" height="797" loading="lazy" data-edit="headshot">
         <div class="rise" style="--d:90ms">
           <blockquote data-edit="quote">I like building things you can hold, and software that does real work.</blockquote>
           <p class="byline" data-edit="byline"><strong>Ross Mikulskis</strong><br>Founder, BUU Systems</p>

@@ -12,8 +12,8 @@ for p in ${@:-ukvm}; do
   git clone -q "github-buu:$repo.git" "$tmp" 2>/dev/null
   git -C "$tmp" checkout -qB main
   rm -rf "$tmp"/assets; cp "$root/$p/index.html" "$root"/{home.css,product.css,home.js,favicon.ico} "$tmp"/
-  # only the assets this page uses
-  { grep -oE '/assets/[A-Za-z0-9_./-]+' "$tmp/index.html" | sort -u; } | while read -r a; do
+  # only the assets this page and its stylesheets use
+  { grep -ohE '/assets/[A-Za-z0-9_./-]+' "$tmp/index.html" "$tmp/home.css" "$tmp/product.css" | sort -u; } | while read -r a; do
     [ -f "$root$a" ] && mkdir -p "$tmp$(dirname "$a")" && cp "$root$a" "$tmp$a"; done
   echo "$host" > "$tmp/CNAME"
   echo "Copy of \`$p/\` in buusystems/buusystems.com, made by \`_tools/subdomains.sh\`. Edit it there." > "$tmp/README.md"

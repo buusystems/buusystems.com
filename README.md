@@ -3,6 +3,8 @@
 Static site served by GitHub Pages from `main` of `buusystems/buusystems.com`.
 
 - `/`: home page with Bool, Gas Check NYC and uKVM (`index.html`, `home.css`, `product.css`, `home.js`)
+- `/bool/`: Bool page with its feature cards (the home page shows one tile per product; details live on
+  these pages)
 - `/gascheck/`: Gas Check NYC page (the app itself is https://gascheck.buusystems.com, repo ~/code/riser;
   its first name was Riser, and `/riser/` redirects here)
 - `/ukvm/`: uKVM page (`home.css` + `product.css`; formerly bpfboot, and /bpfboot/ redirects). `_tools/subdomains.sh` copies it to
