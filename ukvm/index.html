@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>uKVM | BUU Systems</title>
-  <meta name="description" content="Set up a PC. No monitor. Plug in one tiny dongle. Change BIOS settings, read logs and install an OS from your own desk.">
+  <meta name="description" content="uKVM gives you firmware-level remote access to every server in your datacenter or fleet: BIOS settings, logs, and OS installs through one small dongle per machine.">
   <meta name="theme-color" content="#fbfbfd">
   <link rel="canonical" href="https://buusystems.com/ukvm/">
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
   <meta property="og:site_name" content="BUU Systems">
   <meta property="og:title" content="uKVM">
-  <meta property="og:description" content="Plug in one tiny dongle. Change BIOS settings, read logs and install an OS from your own desk.">
+  <meta property="og:description" content="uKVM gives you firmware-level remote access to every server in your datacenter or fleet: BIOS settings, logs, and OS installs through one small dongle per machine.">
   <meta property="og:url" content="https://buusystems.com/ukvm/">
   <meta property="og:image" content="https://buusystems.com/assets/icon-512.png">
-  <link rel="stylesheet" href="/home.css?v=12">
-  <link rel="stylesheet" href="/product.css?v=5">
+  <link rel="stylesheet" href="/home.css?v=13">
+  <link rel="stylesheet" href="/product.css?v=6">
   <script>document.documentElement.classList.add("js");addEventListener("pagereveal",function(e){if(e.viewTransition)document.documentElement.classList.add("vt")})</script>
-  <script src="/home.js?v=2" defer></script>
+  <script src="/home.js?v=3" defer></script>
 </head>
 <body id="top">
   <header class="bar">
@@ -34,24 +34,24 @@
         <div class="copy">
           <i class="icon"><img src="/assets/apps/ukvm.svg?v=7" alt=""></i>
           <p class="name" data-edit="bpfboot-name">uKVM</p>
-          <h1 data-edit="bpfboot-title">Set up a PC. No monitor.</h1>
-          <p data-edit="bpfboot-lede">Plug in one tiny dongle. Change BIOS settings, read logs and install an OS from your own desk.</p>
+          <h1 data-edit="bpfboot-title">Every server, within reach.</h1>
+          <p data-edit="bpfboot-lede">One small dongle per machine gives you its BIOS, its logs, and a fresh OS install from anywhere. Built for datacenters, labs, and fleets in the field.</p>
           <div class="ctas">
             <a class="btn" href="mailto:ross@buusystems.com?subject=uKVM"><span data-edit="bpfboot-cta">Ask about uKVM</span></a>
           </div>
         </div>
-        <img class="photo" src="/assets/dongle-photo.webp" alt="The BUU dongle plugged into a PC, its screen reading READY" width="1200" height="840">
+        <img class="photo" src="/assets/dongle-photo.webp" alt="The uKVM dongle plugged into a machine, its screen reading READY" width="1200" height="840">
       </article>
     </section>
 
     <section class="wrap">
       <div class="feats in-grid" aria-label="What it does">
-        <div class="feat rise" style="--d:0ms"><h3 data-edit="bpfboot-f1-t">See the setup screen.</h3><p data-edit="bpfboot-f1-b">The firmware's own screen, text or graphics, live in your browser. Type with your own keyboard.</p></div>
-        <div class="feat rise" style="--d:80ms"><h3 data-edit="bpfboot-f2-t">Settings as a file.</h3><p data-edit="bpfboot-f2-b">Every BIOS setting as JSON. Compare, change and apply them. An undo file is saved first.</p></div>
-        <div class="feat rise" style="--d:160ms"><h3 data-edit="bpfboot-f3-t">From bare to booted.</h3><p data-edit="bpfboot-f3-b">Start Linux in memory over the link, then write the OS straight onto the disk.</p></div>
-        <div class="feat rise" style="--d:0ms"><h3 data-edit="bpfboot-f4-t">Wi-Fi or a wire.</h3><p data-edit="bpfboot-f4-b">The dongle relays over Wi-Fi. No Wi-Fi? It uses the machine's own Ethernet port or a USB cable.</p></div>
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="bpfboot-f1-t">The console, from anywhere.</h3><p data-edit="bpfboot-f1-b">Each machine's firmware screen, text or graphics, live in your browser. No monitor, no crash cart, no site visit.</p></div>
+        <div class="feat rise" style="--d:80ms"><h3 data-edit="bpfboot-f2-t">Settings as a file.</h3><p data-edit="bpfboot-f2-b">Every BIOS setting as JSON. Compare machines, spot drift, and apply changes. An undo file is saved first.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="bpfboot-f3-t">From bare metal to booted.</h3><p data-edit="bpfboot-f3-b">Start Linux in memory over the link, then write the OS straight onto the disk. No USB stick to carry in.</p></div>
+        <div class="feat rise" style="--d:0ms"><h3 data-edit="bpfboot-f4-t">No ports to open.</h3><p data-edit="bpfboot-f4-b">Each dongle dials out to your relay over Wi-Fi, the machine's own Ethernet, or USB, so it works behind firewalls and NAT.</p></div>
         <div class="feat rise" style="--d:80ms"><h3 data-edit="bpfboot-f5-t">Safe by default.</h3><p data-edit="bpfboot-f5-b">Read-only until you allow changes. Every message is signed, and Secure Boot keys are off-limits.</p></div>
-        <div class="feat rise" style="--d:160ms"><h3 data-edit="bpfboot-f6-t">Scriptable.</h3><p data-edit="bpfboot-f6-b">Small signed eBPF programs automate the firmware. Each one is checked before it runs.</p></div>
+        <div class="feat rise" style="--d:160ms"><h3 data-edit="bpfboot-f6-t">Automate the fleet.</h3><p data-edit="bpfboot-f6-b">Small signed eBPF programs script the firmware. Each one is checked before it runs.</p></div>
       </div>
       <p class="fine rise" data-edit="bpfboot-fine">Tested on AMI Aptio machines: the Minisforum MS-01 and Beelink MINI S.</p>
     </section>
@@ -66,5 +66,6 @@
       </nav>
     </div>
   </footer>
+  <script>(function(){var o=new IntersectionObserver(function(l){l.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");o.unobserve(e.target)}})},{threshold:.08});[].forEach.call(document.querySelectorAll(".rise,.tile"),function(e){o.observe(e)})})()</script>
 </body>
 </html>

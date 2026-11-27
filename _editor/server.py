@@ -165,6 +165,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
         if target.suffix == ".html":
             text = body.decode()
             text = text.replace("</body>", INJECT + "\n</body>", 1) if "</body>" in text else text + INJECT
+            # Pages check this before running scripts that rewrite their own markup (see home.js).
+            text = text.replace("<head>", "<head><script>window.buuEditor=1</script>", 1)
             body, ctype = text.encode(), "text/html; charset=utf-8"
         self.send(200, body, ctype)
 

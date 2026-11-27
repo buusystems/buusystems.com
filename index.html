@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>BUU Systems</title>
-  <meta name="description" content="BUU Systems makes Bool, the group chat that runs your group; Gas Check NYC, which books gas piping inspections in New York; and uKVM, which sets up a PC with no monitor.">
+  <meta name="description" content="BUU Systems makes Bool, the group chat that runs your group; Gas Check NYC, which books gas piping inspections in New York; and uKVM, which gives you remote, BIOS-level access to every server in your fleet.">
   <meta name="theme-color" content="#fbfbfd">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
@@ -16,10 +16,9 @@
   <meta property="og:url" content="https://buusystems.com/">
   <meta property="og:image" content="https://buusystems.com/assets/icon-512.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/home.css?v=12">
-  <link rel="preload" href="/assets/earth.png" as="image">
+  <link rel="stylesheet" href="/home.css?v=13">
   <script>document.documentElement.classList.add("js");addEventListener("pagereveal",function(e){if(e.viewTransition)document.documentElement.classList.add("vt")})</script>
-  <script src="/home.js?v=2" defer></script>
+  <script src="/home.js?v=3" defer></script>
 </head>
 <body id="top">
   <header class="bar">
@@ -38,8 +37,9 @@
       <div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
         <h1 data-edit="hero-title">Software that reaches <span class="hl">the real w<span class="globe">o</span>rld.</span></h1>
-        <p class="lede rise" style="--d:420ms" data-edit="hero-lede">For the people in your group, the buildings in your city and the machines on your desk.</p>
-        <nav class="dock rise" style="--d:560ms" aria-label="Products">
+        <script>(function(h){if(window.buuEditor)return;var i=0;[].slice.call(h.childNodes).forEach(function(n){if(n.nodeType==1){n.classList.add("w");n.style.setProperty("--i",i++);return}var f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(function(p){if(!p)return;if(!p.trim()){f.appendChild(document.createTextNode(" "));return}var w=document.createElement("span");w.className="w";w.style.setProperty("--i",i++);w.textContent=p;f.appendChild(w)});h.replaceChild(f,n)})})(document.currentScript.previousElementSibling)</script>
+        <p class="lede" data-edit="hero-lede">For the people in your group, the buildings in your city, and the servers in your fleet.</p>
+        <nav class="dock" aria-label="Products">
           <a href="#bool"><img src="/assets/apps/bool.svg?v=19" alt="" width="30" height="30">Bool</a>
           <a href="#gascheck"><img src="/assets/apps/gascheck.svg?v=7" alt="" width="30" height="30">Gas Check NYC</a>
           <a href="#ukvm"><img src="/assets/apps/ukvm.svg?v=7" alt="" width="30" height="30">uKVM</a>
@@ -54,18 +54,18 @@
           <i class="icon"><img src="/assets/apps/bool.svg?v=19" alt=""></i>
           <p class="name" data-edit="bool-name">Bool</p>
           <h2 data-edit="bool-title">The group chat that runs your group.</h2>
-          <p data-edit="bool-body">Messages, calendar and tasks in one place. Make your own stickers, your own like button, even your own apps.</p>
-          <div class="acts">
-            <a class="btn" href="https://bool.buusystems.com/"><span data-edit="bool-cta">Open Bool</span></a>
-            <a class="more" href="/bool/" data-edit="bool-more">Learn more</a>
-          </div>
-          <p class="note" data-edit="bool-note">Free to start. Works in any browser and installs on your phone.</p>
+          <p data-edit="bool-body">Messages, calendar, and tasks in one place. Make your own stickers, your own like button, even your own apps.</p>
+          <a class="btn" href="/bool/"><span data-edit="bool-cta">Learn more</span></a>
+          <p class="note" data-edit="bool-note">Coming soon.</p>
         </div>
-        <div class="art chat" aria-hidden="true">
-          <div class="row"><em style="--c:#ffd60a">🦊</em><p>dinner friday?</p></div>
+        <div class="art chat">
+          <div class="row"><em style="--c:#ffd60a">🦊</em><div><b>Maya</b><p>dinner friday?</p></div></div>
           <div class="row me"><p>in. who's driving</p></div>
-          <div class="row"><em style="--c:#64d2ff">🐼</em><p>let the wheel decide</p><s>🥒 4</s></div>
-          <div class="card"><div class="wheel"></div><div><small>Spin the Wheel</small><strong>Priya drives</strong></div></div>
+          <div class="row"><em style="--c:#64d2ff">🐼</em><div><b>Sam</b><p>let the wheel decide</p></div><s>👍 4</s></div>
+          <button class="card" type="button" data-wheel aria-label="Spin the wheel to pick who drives">
+            <span class="spin"><span class="wheel"><i style="--a:45deg" data-name="Priya">🦉</i><i style="--a:135deg" data-name="Maya">🦊</i><i style="--a:225deg" data-name="Sam">🐼</i><i style="--a:315deg" data-name="Leo">🐸</i></span></span>
+            <span><small>Spin the Wheel</small><strong aria-live="polite">Priya drives</strong></span>
+          </button>
         </div>
       </article>
 
@@ -88,12 +88,12 @@
       </article>
 
       <article id="ukvm" class="tile t-boot rise" style="--d:90ms">
-        <img class="photo" src="/assets/dongle-photo.webp" alt="The BUU dongle plugged into a PC, its screen reading READY" width="1200" height="840" loading="lazy" data-edit="boot-img">
+        <img class="photo" src="/assets/dongle-photo.webp" alt="The uKVM dongle plugged into a machine, its screen reading READY" width="1200" height="840" loading="lazy" data-edit="boot-img">
         <div class="copy">
           <i class="icon"><img src="/assets/apps/ukvm.svg?v=7" alt=""></i>
           <p class="name" data-edit="boot-name">uKVM</p>
-          <h2 data-edit="boot-title">Set up a PC. No monitor.</h2>
-          <p data-edit="boot-body">Plug in one tiny dongle. Change BIOS settings, read logs and install an OS from your own desk.</p>
+          <h2 data-edit="boot-title">Every server, within reach.</h2>
+          <p data-edit="boot-body">One small dongle per machine. Change BIOS settings, read logs, and install an OS across your datacenter or fleet, with no site visit.</p>
           <a class="btn" href="/ukvm/"><span data-edit="boot-cta">Learn more</span></a>
         </div>
       </article>
@@ -104,7 +104,7 @@
         <img class="headshot rise" src="/assets/headshot.webp" alt="Ross Mikulskis, founder of BUU Systems" width="640" height="797" loading="lazy" data-edit="headshot">
         <div class="rise" style="--d:90ms">
           <blockquote data-edit="quote">I like building things you can hold, and software that does real work.</blockquote>
-          <p class="byline" data-edit="byline"><strong>Ross Mikulskis</strong><br>Founder, BUU Systems</p>
+          <p class="byline" data-edit="byline"><strong>Ross Mikulskis</strong><br>Founder, BUU Systems LLC</p>
           <p data-edit="about-1">I build for other businesses, too: AI products, integrations with the tools you already use, and embedded systems. From a sketch to something running, and I stay with it once it's live.</p>
         </div>
       </div>
@@ -116,7 +116,7 @@
         <p data-edit="cta-body">Tell me what you have in mind. I reply within a day.</p>
         <div class="actions">
           <a class="btn solid" href="mailto:ross@buusystems.com"><span data-edit="cta-button">Email me</span></a>
-          <a class="btn line" href="sms:+16176909816"><span data-edit="cta-phone">Text +1 (617) 690 9816</span></a>
+          <a class="btn line" href="sms:+16176909816"><span data-edit="cta-phone">Text me</span></a>
         </div>
       </div>
     </section>
@@ -131,5 +131,6 @@
       </nav>
     </div>
   </footer>
+  <script>(function(){var o=new IntersectionObserver(function(l){l.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");o.unobserve(e.target)}})},{threshold:.08});[].forEach.call(document.querySelectorAll(".rise,.tile"),function(e){o.observe(e)})})()</script>
 </body>
 </html>

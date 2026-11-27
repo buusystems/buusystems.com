@@ -26,8 +26,10 @@ section.wrap > .feats.in-grid { margin: 1.25rem 0 0; }
 .fine { margin: 2rem 0 clamp(4rem, 8vw, 7rem); text-align: center; color: var(--soft); font-size: .9375rem; }
 .foot.plain { background: none; }
 @media (max-width: 860px) {
-  .feats { grid-template-columns: 1fr; gap: .9rem; }
-  .feat { padding: 1.6rem 1.5rem; }
+  .feats { grid-template-columns: 1fr; gap: .75rem; }
+  .feat { padding: 1.35rem 1.4rem; border-radius: 22px; }
+  .feat h2, .feat h3 { font-size: 1.3rem; }
+  .feat p { margin-top: .35rem; font-size: 1rem; }
   .lead { min-height: calc(100svh - 84px); }
   .t-boot.lead { min-height: 820px; }
   .lead .photo { height: 46%; }
