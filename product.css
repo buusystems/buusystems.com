@@ -11,7 +11,7 @@
 .lead.t-gascheck { justify-content: flex-start; }
 .lead .job { flex: none; margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); width: min(420px, 100% - 2.5rem); }
 .lead.t-bool { justify-content: flex-start; }
-.lead .chat { flex: none; margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); width: min(440px, 100% - 2.5rem); text-align: left; }
+.lead .phone { margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); text-align: left; }
 .btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
 .lead .photo { height: min(56%, 520px); object-position: 60% 62%; }
 .t-boot.lead { min-height: 1000px; }

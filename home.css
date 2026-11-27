@@ -89,34 +89,65 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 /* Bool */
 .t-bool { background: linear-gradient(135deg, #e4efff, #eef6ff 48%, #e2f3ff); }
 .t-bool .name { background: linear-gradient(90deg, #1f8fff, #0a5cf0); -webkit-background-clip: text; background-clip: text; color: transparent; width: fit-content; font-weight: 700; }
-.chat { flex: 0 1 410px; display: grid; gap: .7rem; margin: 2rem clamp(1.5rem, 4vw, 3.5rem) 2rem 0; padding: 1.5rem; border-radius: 30px; background: rgba(255, 255, 255, .55); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), 0 34px 70px -30px rgba(10, 80, 200, .45); transform: translate3d(calc((var(--mx, .5) - .5) * -14px), calc((var(--my, .5) - .5) * -10px), 0); transition: transform .5s var(--ease); }
-.row { display: flex; align-items: flex-end; gap: .75rem; transform-origin: 0 100%; }
-.row p { position: relative; padding: .55rem .95rem; border-radius: 9px 20px 20px 9px; background: #e9e9eb; color: #000; }
-.row p::after { content: ""; position: absolute; bottom: 0; left: -7px; width: 14px; height: 20px; background: inherit; transform: scaleX(-1); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 18' preserveAspectRatio='none'%3E%3Cpath d='M0 0H6C6 9 8 15 12 18H0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 18' preserveAspectRatio='none'%3E%3Cpath d='M0 0H6C6 9 8 15 12 18H0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; }
-.row b { display: block; margin: 0 0 .2rem .85rem; font-size: .75rem; font-weight: 600; color: var(--soft); }
-.row em { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--c); font-style: normal; }
-/* A reaction on the message's top corner: one round bubble with a heart and a count, trailing two dots back
-   to the message. Tapping it (home.js shows a finger doing so) lists who reacted. Drawn here; no system artwork. */
-.tap { position: absolute; top: -25px; right: -44px; display: flex; align-items: center; gap: 3px; height: 30px; padding: 0 10px 0 8px; border-radius: 15px; background: #e9e9eb; box-shadow: 0 0 0 2px #fff, 0 2px 6px -2px rgba(0, 0, 0, .18); color: #ff375f; font-size: .8125rem; font-weight: 700; line-height: 1; text-decoration: none; transition: transform .2s; }
-.tap::before, .tap::after { content: ""; position: absolute; border-radius: 50%; background: #e9e9eb; box-shadow: 0 0 0 2px #fff; }
-.tap::before { left: -2px; bottom: -5px; width: 9px; height: 9px; }
-.tap::after { left: -7px; bottom: -11px; width: 4.5px; height: 4.5px; }
-.tap svg { width: 15px; height: 15px; fill: currentColor; }
-.tap b { display: inline-block; min-width: .65em; color: #3a3a3c; text-align: center; }
+/* Bool's chat, on a phone. The phone is a generic modern handset drawn in CSS: a thin dark frame, a camera
+   pill, a status bar, a group header, the messages and a compose bar. */
+.phone { position: relative; flex: none; width: 272px; aspect-ratio: 9 / 19.3; margin: 2.2rem clamp(1.5rem, 4vw, 3.5rem) 2.2rem 0; padding: 9px; border-radius: 46px; background: linear-gradient(150deg, #4a4a4f, #1c1c1f 30%, #2c2c30 70%, #111113); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .16), inset 0 0 0 3px #0b0b0c, 0 44px 80px -34px rgba(10, 70, 190, .55), 0 18px 30px -20px rgba(0, 0, 0, .4); font-size: 15px; line-height: 1.3; letter-spacing: -.01em; transform: translate3d(calc((var(--mx, .5) - .5) * -14px), calc((var(--my, .5) - .5) * -10px), 0); transition: transform .5s var(--ease); }
+.phone::before, .phone::after { content: ""; position: absolute; width: 3px; border-radius: 2px; background: #2a2a2e; }
+.phone::before { left: -2px; top: 22%; height: 9%; box-shadow: 0 -38px 0 -0.5px #2a2a2e; }
+.phone::after { right: -2px; top: 26%; height: 13%; }
+.screen { position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 38px; overflow: hidden; background: #fff; }
+.status { position: relative; display: flex; align-items: center; justify-content: space-between; height: 44px; padding: 4px 24px 0 30px; font-size: 14px; color: #000; }
+.status b { font-weight: 600; }
+.island { position: absolute; left: 50%; top: 10px; width: 82px; height: 24px; margin-left: -41px; border-radius: 12px; background: #000; }
+.sys { display: flex; align-items: center; gap: 5px; }
+.sys svg { width: 16px; height: 11px; fill: #000; }
+.batt { position: relative; width: 23px; height: 11px; border-radius: 3.5px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .4); }
+.batt::before { content: ""; position: absolute; inset: 2px 5px 2px 2px; border-radius: 1.5px; background: #000; }
+.batt::after { content: ""; position: absolute; right: -2.5px; top: 3.5px; width: 1.5px; height: 4px; border-radius: 0 1px 1px 0; background: rgba(0, 0, 0, .4); }
+.head { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 2px 0 9px; border-bottom: .5px solid rgba(0, 0, 0, .12); background: rgba(249, 249, 249, .94); }
+.faces { display: flex; }
+.faces em { display: grid; place-items: center; width: 30px; height: 30px; margin: 0 -5px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px #f9f9f9; font-size: 15px; font-style: normal; }
+.head small { font-size: 11px; color: #000; }
+.head small i { font-style: normal; color: #8e8e93; }
+.chat { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 10px 12px 8px; }
+.compose { display: flex; align-items: center; gap: 8px; padding: 6px 12px 26px; }
+.compose i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #e9e9eb; color: #8e8e93; font-size: 20px; font-style: normal; line-height: 1; }
+.compose span { flex: 1; height: 32px; padding: 0 12px; border-radius: 16px; box-shadow: inset 0 0 0 1px #d1d1d6; color: #b4b4b9; line-height: 32px; font-size: 15px; }
+.screen::after { content: ""; position: absolute; left: 50%; bottom: 7px; width: 104px; height: 4px; margin-left: -52px; border-radius: 2px; background: #000; }
+.row { display: flex; align-items: flex-end; gap: 7px; transform-origin: 0 100%; transition: opacity .3s, filter .3s, transform .35s var(--spring); }
+.row p { position: relative; max-width: 190px; padding: 7px 12px; border-radius: 18px; background: #e9e9eb; color: #000; transition: filter .45s, transform .45s var(--ease); }
+.row p::after { content: ""; position: absolute; bottom: 0; left: -6px; width: 12px; height: 17px; background: inherit; transform: scaleX(-1); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 18' preserveAspectRatio='none'%3E%3Cpath d='M0 0H6C6 9 8 15 12 18H0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 18' preserveAspectRatio='none'%3E%3Cpath d='M0 0H6C6 9 8 15 12 18H0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; }
+.row b { display: block; margin: 0 0 2px 12px; font-size: 11px; font-weight: 500; color: #8e8e93; }
+.row em { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--c); font-size: 15px; font-style: normal; }
+.me { justify-content: flex-end; transform-origin: 100% 100%; }
+.me p { margin-right: 2px; background: #0a84ff; color: #fff; }
+.me p::after { left: auto; right: -6px; transform: none; }
+/* A reaction badge on the message's top corner, with a count. Blue once you have reacted too. */
+.row:has(.tap) { margin-top: 12px; }
+.tap { position: absolute; top: -17px; right: -18px; z-index: 2; display: flex; align-items: center; gap: 2px; height: 24px; padding: 0 7px 0 6px; border-radius: 12px; background: #e9e9eb; box-shadow: 0 0 0 2px #fff; color: #ff375f; font-size: 12px; font-weight: 700; line-height: 1; text-decoration: none; transition: transform .2s, background .3s, color .3s; }
+.tap svg { width: 13px; height: 13px; fill: currentColor; }
+.tap b { display: inline-block; min-width: .6em; margin: 0; color: #3a3a3c; font-size: 12px; font-weight: 700; text-align: center; transition: color .3s; }
+.tap.mine { background: #0a84ff; color: #fff; }
+.tap.mine b { color: #fff; }
 .tap.bump b { animation: bump .45s var(--spring); }
-.tap.pressed { transform: scale(.9); }
-.likers { position: absolute; top: 13px; right: -52px; z-index: 5; min-width: 168px; padding: .6rem .8rem .65rem; border-radius: 16px; background: rgba(255, 255, 255, .97); box-shadow: 0 0 0 1px rgba(0, 0, 0, .06), 0 20px 44px -16px rgba(0, 0, 0, .38); color: var(--ink); font-size: .9375rem; line-height: 1.2; text-align: left; opacity: 0; transform: translateY(-6px) scale(.7); transform-origin: 82% 0; pointer-events: none; transition: opacity .25s, transform .5s var(--spring); }
+.tap.pressed { transform: scale(.88); filter: brightness(.9); }
+/* Holding a message: it darkens a little, then lifts above a dimmed chat and the reactions appear over it. */
+.row.hold p { filter: brightness(.9); transform: scale(.97); }
+.screen.focus .head, .screen.focus .compose, .screen.focus .chat > .on:not(.lift) { opacity: .3; filter: blur(2px); }
+.row.lift { position: relative; z-index: 4; }
+.row.lift p { transform: scale(1.03); filter: none; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .35); }
+.picker { position: absolute; left: -6px; bottom: calc(100% + 12px); z-index: 5; display: flex; gap: 2px; padding: 5px 7px; border-radius: 22px; background: #fff; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .08), 0 12px 30px -8px rgba(0, 0, 0, .32); opacity: 0; transform: translateY(8px) scale(.6); transform-origin: 18% 100%; pointer-events: none; transition: opacity .2s, transform .45s var(--spring); }
+.picker.open { opacity: 1; transform: none; }
+.picker i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: 17px; font-style: normal; line-height: 1; transition: transform .25s var(--spring), background .2s, color .2s; }
+.picker .heart { color: #8e8e93; }
+.picker .heart svg { width: 18px; height: 18px; fill: currentColor; }
+.picker .heart.pick { background: #0a84ff; color: #fff; transform: scale(1.18); }
+.likers { position: absolute; top: 12px; right: -24px; z-index: 5; min-width: 150px; padding: 9px 12px 10px; border-radius: 14px; background: rgba(255, 255, 255, .98); box-shadow: 0 0 0 .5px rgba(0, 0, 0, .1), 0 16px 36px -12px rgba(0, 0, 0, .35); color: #000; font-size: 14px; line-height: 1.2; text-align: left; opacity: 0; transform: translateY(-6px) scale(.7); transform-origin: 85% 0; pointer-events: none; transition: opacity .25s, transform .5s var(--spring); }
 .likers.open { opacity: 1; transform: none; }
-.likers small { display: flex; align-items: center; gap: .35rem; margin-bottom: .3rem; color: var(--soft); font-size: .75rem; font-weight: 600; }
-.likers small svg { width: 12px; height: 12px; fill: #ff375f; }
-.likers > span { display: flex; align-items: center; gap: .55rem; padding: .28rem 0; font-weight: 600; }
-.likers em { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--c); font-size: .9rem; font-style: normal; }
-/* A touch marker, like a screen recording's, that taps the reaction. */
-.finger { position: absolute; top: -28px; right: -36px; z-index: 6; width: 36px; height: 36px; border-radius: 50%; background: rgba(60, 60, 67, .2); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .9), 0 4px 14px rgba(0, 0, 0, .18); opacity: 0; transform: translate(80px, 90px); pointer-events: none; transition: transform 1.1s cubic-bezier(.45, .05, .2, 1), opacity .4s; }
-.finger.show { opacity: 1; }
-.finger.go { transform: none; }
-.finger.press { transform: scale(.78); transition-duration: .16s; }
-.row:has(.tap) { margin-top: .8rem; }
+.likers small { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; color: #8e8e93; font-size: 11px; font-weight: 600; }
+.likers small svg { width: 11px; height: 11px; fill: #ff375f; }
+.likers > span { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-weight: 600; }
+.likers em { width: 24px; height: 24px; font-size: 13px; }
 /* "Typing": home.js shows the dots in a bubble before its words. */
 .dots { display: none; }
 .typing p { font-size: 0; }
@@ -126,15 +157,15 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .me { justify-content: flex-end; transform-origin: 100% 100%; }
 .me p { margin-right: 2px; border-radius: 20px 9px 9px 20px; background: #0a84ff; color: #fff; }
 .me p::after { left: auto; right: -7px; transform: none; }
-.card { display: flex; align-items: center; gap: 1.1rem; width: 100%; padding: 1.1rem; border: 0; border-radius: 22px; background: #fff; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
+.card { display: flex; align-items: center; gap: 14px; width: 100%; padding: 12px; border: 0; border-radius: 18px; background: #f2f2f7; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
 .card:focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; }
-.card small { display: block; color: var(--soft); font-size: .8125rem; }
-.card strong { display: block; font-size: 1.3rem; letter-spacing: -.02em; }
+.card small { display: block; color: #8e8e93; font-size: 11px; }
+.card strong { display: block; font-size: 17px; letter-spacing: -.02em; }
 /* The wheel (home.js spins it). Each face sits in its quarter, turned so it is upright when its quarter is on top. */
-.spin { position: relative; flex: none; font-size: 19px; transition: transform .4s var(--spring); }
+.spin { position: relative; flex: none; font-size: 15px; transition: transform .4s var(--spring); }
 .spin::before { content: ""; position: absolute; left: 50%; top: -5px; z-index: 1; margin-left: -6px; border: solid transparent; border-width: 9px 6px 0; border-top-color: var(--ink); }
 .card:active .spin { transform: scale(.94); }
-.wheel { position: relative; display: block; width: 82px; height: 82px; border-radius: 50%; background: radial-gradient(#fff 9px, transparent 10px), conic-gradient(#80bfff 0 25%, #ffd60a 0 50%, #6fdcae 0 75%, #ff8fa3 0); transform: rotate(var(--turn, -45deg)); transition: transform 3.4s cubic-bezier(.15, .7, .1, 1); }
+.wheel { position: relative; display: block; width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(#fff 9px, transparent 10px), conic-gradient(#80bfff 0 25%, #ffd60a 0 50%, #6fdcae 0 75%, #ff8fa3 0); transform: rotate(var(--turn, -45deg)); transition: transform 3.4s cubic-bezier(.15, .7, .1, 1); }
 .wheel i { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 1.4em; height: 1.4em; margin: -.7em; font-style: normal; line-height: 1; transform: rotate(var(--a)) translateY(-1.32em); }
 
 /* Gas Check NYC */
@@ -231,6 +262,7 @@ blockquote .q { transition: opacity .25s linear; }
   .js .tile:not(.in) .job-card li { opacity: 0; }
   /* The chat plays out (home.js): each message, the heart and the wheel appear in turn, in their own space. */
   .chat.play > :not(.on), .chat.play .tap:not(.on) { opacity: 0; }
+  .chat.play > .on { transition: opacity .3s, filter .3s; }
   .chat.play > .on { animation: pop .6s var(--spring) both; }
   .chat.play .tap.on { animation: tapin .55s var(--spring) both; }
   .js .tile.in .job-card li { animation: slide .5s var(--ease) calc(.2s + var(--n, 0) * .1s) both; }
@@ -243,7 +275,7 @@ blockquote .q { transition: opacity .25s linear; }
   .tile { min-height: 0; border-radius: 28px; }
   .wide .copy { padding-bottom: 0; }
   .job { flex: none; width: min(420px, 100% - 2.5rem); margin: 2rem auto 1.5rem; }
-  .chat { flex: none; width: min(440px, 100% - 2.5rem); margin: 1.75rem auto 1.5rem; padding: 1.1rem; }
+  .phone { width: 258px; margin: 1.75rem auto 1.75rem; }
   .t-boot { min-height: 540px; }
   .grid .photo { height: 54%; }
   /* Icon and name share a row, so the headline starts sooner. */
@@ -272,11 +304,6 @@ blockquote .q { transition: opacity .25s linear; }
   .dock a { padding: .32rem .75rem .32rem .34rem; gap: .45rem; font-size: .875rem; }
   .dock img { width: 26px; height: 26px; }
   .tile .copy > p:not(.name) { font-size: 1.0625rem; }
-  .chat { gap: .55rem; font-size: 1rem; }
-  .spin { font-size: 15px; }
-  .wheel { width: 64px; height: 64px; }
-  .card { padding: .9rem; }
-  .card strong { font-size: 1.15rem; }
   .contact p { font-size: 1.125rem; }
   .foot-in { justify-content: center; padding: .55rem .6rem; text-align: center; }
   .foot nav { justify-content: center; }
@@ -303,7 +330,7 @@ blockquote .q { transition: opacity .25s linear; }
 @media (hover: none) {
   .tile::after, .feat::after { content: none; }
   .js .tile.rise.in, .vt .tile.rise { transform: none; }
-  .chat { transform: none; }
+  .phone { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

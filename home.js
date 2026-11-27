@@ -97,14 +97,18 @@
     card.autoSpin = spin;
   }
 
-  // Bool's chat plays out when it scrolls into view, at a conversational pace: someone types, their message
-  // lands, a reply, a second message; a moment later the hearts come in one at a time, someone taps them to
-  // see who reacted, and then the wheel spins. Each message keeps its space throughout, so nothing moves.
-  if (!editing && !still) for (const chat of $$(".chat")) {
-    const items = [...chat.querySelectorAll(":scope > .row, :scope > .card")];
-    const tap = chat.querySelector(".tap"), count = tap && tap.querySelector("b"), likers = chat.querySelector(".likers"), finger = chat.querySelector(".finger");
+  // Bool's chat plays out on the phone when it scrolls into view, at a conversational pace: someone types,
+  // their message lands, a reply, a second message; Maya hearts it; then you press and hold that message,
+  // pick the heart from the reactions, tap the badge to see who reacted, and the wheel spins.
+  // Each message keeps its space throughout, so nothing on the page moves.
+  if (!editing && !still) for (const chat of $$(".phone .chat")) {
+    const screen = chat.closest(".screen"), items = [...chat.querySelectorAll(":scope > .row, :scope > .card")];
+    const row = chat.querySelector("[data-react]"), tap = chat.querySelector(".tap"), count = tap && tap.querySelector("b");
+    const picker = chat.querySelector(".picker"), heart = picker && picker.querySelector(".heart"), likers = chat.querySelector(".likers");
     const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    const bump = () => { tap.classList.remove("bump"); void tap.offsetWidth; tap.classList.add("bump"); };
     chat.classList.add("play");
+    if (tap) { tap.classList.remove("mine"); count.textContent = "1"; }
     new IntersectionObserver(async ([e], o) => {
       if (!e.isIntersecting) return;
       o.disconnect();
@@ -113,26 +117,28 @@
         const typed = el.querySelector(".dots");
         if (typed) { el.classList.add("on", "typing"); await wait(1700); el.classList.remove("typing"); }
         else el.classList.add("on");
-        if (tap && el.contains(tap)) {
-          await wait(2000);
-          count.textContent = "1"; tap.classList.add("on");
-          await wait(1500);
-          count.textContent = "2"; tap.classList.remove("bump"); void tap.offsetWidth; tap.classList.add("bump");
-          if (likers && finger) {
-            await wait(1300);
-            finger.classList.add("show"); await wait(350);
-            finger.classList.add("go"); await wait(1200);
-            finger.classList.add("press"); tap.classList.add("pressed"); await wait(170);
-            finger.classList.remove("press"); tap.classList.remove("pressed");
-            likers.classList.add("open"); await wait(450);
-            finger.classList.remove("show"); await wait(2800);
-            likers.classList.remove("open"); await wait(400);
-            finger.classList.remove("go");
+        if (el === row && tap && picker) {
+          await wait(1900);
+          tap.classList.add("on");                                   // Maya's heart
+          await wait(1700);
+          row.classList.add("hold"); await wait(600);                // you press and hold the message
+          row.classList.remove("hold"); row.classList.add("lift"); screen.classList.add("focus");
+          picker.classList.add("open"); await wait(1300);
+          heart.classList.add("pick"); await wait(550);              // and pick the heart
+          picker.classList.remove("open"); row.classList.remove("lift"); screen.classList.remove("focus");
+          await wait(300);
+          tap.classList.add("mine"); count.textContent = "2"; bump();
+          heart.classList.remove("pick");
+          if (likers) {
+            await wait(1600);
+            tap.classList.add("pressed"); await wait(160); tap.classList.remove("pressed");   // tap the badge
+            likers.classList.add("open"); await wait(2900);
+            likers.classList.remove("open"); await wait(500);
           }
         }
         await wait(typed ? 1300 : 1500);
       }
-      await wait(600);
+      await wait(500);
       const wheel = chat.querySelector("[data-wheel]");
       if (wheel && wheel.autoSpin) wheel.autoSpin();
     }, { threshold: 0.5 }).observe(chat);
