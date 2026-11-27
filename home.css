@@ -38,8 +38,7 @@ h1 { font-size: clamp(2.75rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.
 
 .icon { display: grid; place-items: center; width: 68px; max-width: 88%; aspect-ratio: 1; margin: 0 auto .45rem; border-radius: 23%; overflow: hidden; font-style: normal; box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .4); transition: transform .45s cubic-bezier(.3, 1.8, .5, 1); }
 .icon img { width: 100%; height: 100%; object-fit: cover; }
-.i-boot { background: linear-gradient(150deg, #ff3b30, #a80000); }
-.i-boot img { width: 66%; height: 66%; object-fit: contain; }
+.tile .icon { width: 64px; margin: 0 0 1rem; }
 
 /* Tiles */
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
