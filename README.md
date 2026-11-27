@@ -1,12 +1,10 @@
 # buusystems.com
 
-Static site on AWS: files on the Lightsail server (static IP 3.231.8.190) served by Caddy. Pushing `main`
+Static site on AWS (moved off GitHub Pages on 2026-11-27): files on the Lightsail server (static IP 3.231.8.190) served by Caddy. Pushing `main`
 to the `aws` git remote (a repository on that server) publishes at once; see `_tools/aws/`.
 
     _tools/publish.sh          # publish what is committed (the editor's Publish runs this)
     _tools/aws/setup.sh        # set up or update the server side (repository, hook, Caddy site)
-
-Preview address that works without DNS: https://buusystems.3-231-8-190.sslip.io
 
 - `/`: home page with Bool, Gas Check NYC and uKVM (`index.html`, `home.css`, `product.css`, `home.js`)
 - `/bool/`: Bool page with its feature cards (the home page shows one tile per product; details live on

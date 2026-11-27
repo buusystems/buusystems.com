@@ -6,7 +6,7 @@
 # in place before DNS points here. Caddy asks the endpoint below which names it may get certificates for.
 http://:8751 {
 	bind 127.0.0.1
-	@ours query domain=buusystems.com domain=www.buusystems.com domain=ukvm.buusystems.com domain=buusystems.3-231-8-190.sslip.io
+	@ours query domain=buusystems.com domain=www.buusystems.com domain=ukvm.buusystems.com
 	respond @ours 200
 	respond 403
 }
@@ -42,8 +42,7 @@ http://:8751 {
 	file_server
 }
 
-# buusystems.3-231-8-190.sslip.io is a preview address that works before DNS is switched; remove it afterwards.
-buusystems.com, buusystems.3-231-8-190.sslip.io {
+buusystems.com {
 	import buusite
 }
 
