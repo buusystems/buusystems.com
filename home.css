@@ -9,7 +9,7 @@
   --ease: cubic-bezier(.2, .8, .2, 1); --spring: cubic-bezier(.3, 1.5, .5, 1);
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+html { overflow-x: hidden; overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--page); color: var(--ink); font: 400 1.0625rem/1.47 var(--font); letter-spacing: -.012em; -webkit-font-smoothing: antialiased; overflow-x: hidden; overflow-x: clip; }
 img, svg { display: block; max-width: 100%; }
 h1, h2, p, blockquote { margin: 0; }
@@ -494,6 +494,7 @@ blockquote .q { transition: opacity .25s linear; }
   .grid > .t-gascheck:hover .job { transform: rotate(-1deg) translateY(-20px); }
 }
 @media (hover: none) {
+  .wash { inset: -80px 0 0; transform: none; }
   .tile::after, .feat::after { content: none; }
   .js .tile.rise.in, .vt .tile.rise { transform: none; }
   .phone { transform: scale(var(--k, 1)); }
