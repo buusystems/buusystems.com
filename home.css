@@ -1,5 +1,7 @@
 /* Home page and product pages (with product.css). */
 @font-face { font-family: Inter; font-style: normal; font-weight: 400 700; font-display: optional; src: url(/assets/inter-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* The smiling faces, in colour: some systems would otherwise draw them from a plain text font. */
+@font-face { font-family: "Face Emoji"; src: local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Noto Color Emoji"), local("NotoColorEmoji"); unicode-range: U+1F600-1F64F; }
 :root {
   --ink: #1d1d1f; --soft: #6e6e73; --page: #fbfbfd; --red: #d00;
   /* Apple devices use San Francisco and never download Inter. */
@@ -53,7 +55,7 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .globe canvas:active { cursor: grabbing; }
 .lede { max-width: 32rem; margin: 1.4rem auto 0; font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.38; color: var(--soft); text-wrap: balance; }
 .dock { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: clamp(1.6rem, 3vw, 2.2rem); }
-.dock a { display: inline-flex; align-items: center; gap: .55rem; padding: .38rem .95rem .38rem .4rem; border-radius: 99px; background: rgba(255, 255, 255, .8); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), 0 0 0 1px rgba(0, 0, 0, .05), 0 12px 26px -18px rgba(0, 0, 0, .4); font-size: .9375rem; font-weight: 600; text-decoration: none; transition: transform .4s var(--spring), box-shadow .3s; }
+.dock a { display: inline-flex; align-items: center; gap: .55rem; padding: .5rem 1.1rem .5rem .55rem; border-radius: 99px; background: rgba(255, 255, 255, .8); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), 0 0 0 1px rgba(0, 0, 0, .05), 0 12px 26px -18px rgba(0, 0, 0, .4); font-size: .9375rem; font-weight: 600; text-decoration: none; transition: transform .4s var(--spring), box-shadow .3s; }
 .dock a:active { transform: scale(.95); }
 .dock img { width: 30px; height: 30px; border-radius: 23%; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .1), 0 2px 5px -1px rgba(0, 0, 0, .22); }
 
@@ -89,29 +91,84 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 /* Bool */
 .t-bool { background: linear-gradient(135deg, #e4efff, #eef6ff 48%, #e2f3ff); }
 .t-bool .name { background: linear-gradient(90deg, #1f8fff, #0a5cf0); -webkit-background-clip: text; background-clip: text; color: transparent; width: fit-content; font-weight: 700; }
-/* Bool's chat, on a phone. The handset is a generic modern phone drawn in CSS; the screen inside is Bool's
-   own chat screen (~/code/bool/web/styles.css, White look): channel header, messages with names and times,
-   the like button beside each bubble, the composer, and the message sheet a long press opens. */
-.phone { position: relative; flex: none; width: 272px; aspect-ratio: 9 / 19.3; margin: 2.2rem clamp(1.5rem, 4vw, 3.5rem) 2.2rem 0; padding: 9px; border-radius: 46px; background: linear-gradient(150deg, #4a4a4f, #1c1c1f 30%, #2c2c30 70%, #111113); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .16), inset 0 0 0 3px #0b0b0c, 0 44px 80px -34px rgba(10, 70, 190, .55), 0 18px 30px -20px rgba(0, 0, 0, .4); font-size: 14px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); transform: translate3d(calc((var(--mx, .5) - .5) * -14px), calc((var(--my, .5) - .5) * -10px), 0); transition: transform .5s var(--ease); }
+/* Bool, on a phone. The handset is a generic modern phone drawn in CSS; the screen inside follows Bool's own
+   phone layout (~/code/bool/web/styles.css, White look): the space with its channels, apps and direct messages,
+   and a channel with messages, the composer, and the sheet a long press opens. home.js plays scenes on it. */
+.phone { position: relative; flex: none; width: 272px; aspect-ratio: 9 / 19.3; margin: 2.2rem clamp(1.5rem, 4vw, 3.5rem) 2.2rem 0; padding: 9px; border-radius: 46px; background: linear-gradient(150deg, #4a4a4f, #1c1c1f 30%, #2c2c30 70%, #111113); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .16), inset 0 0 0 3px #0b0b0c, 0 44px 80px -34px rgba(10, 70, 190, .55), 0 18px 30px -20px rgba(0, 0, 0, .4); font: 14px/1.3 "Face Emoji", var(--font); letter-spacing: -.01em; color: var(--ink); transform: translate3d(calc((var(--mx, .5) - .5) * -14px), calc((var(--my, .5) - .5) * -10px), 0) scale(var(--k, 1)); transition: transform .5s var(--ease); }
 .phone::before, .phone::after { content: ""; position: absolute; width: 3px; border-radius: 2px; background: #2a2a2e; }
 .phone::before { left: -2px; top: 22%; height: 9%; box-shadow: 0 -38px 0 -0.5px #2a2a2e; }
 .phone::after { right: -2px; top: 26%; height: 13%; }
-.screen { --bg: #fff; --solid: #fff; --ink: #0d0d0f; --ink2: #5b5b61; --ink3: #77777d; --line: #e9e9ec; --bubble: #e9e9eb; position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 38px; overflow: hidden; background: var(--bg); color: var(--ink); transition: background .5s, color .5s; }
+.screen { --bg: #fff; --solid: #fff; --ink: #0d0d0f; --ink2: #5b5b61; --ink3: #77777d; --line: #e9e9ec; --bubble: #e9e9eb; --hover: color-mix(in srgb, var(--ink) 6%, transparent); --sel: color-mix(in srgb, var(--ink) 12%, transparent); position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 38px; overflow: hidden; background: var(--bg); color: var(--ink); transition: background .5s, color .5s; }
 /* Bool's looks (from ~/code/bool/web/styles.css). */
 .screen[data-look="paper"] { --bg: #fffdf8; --solid: #fffdf8; --ink: #1d1a14; --ink2: #625c50; --ink3: #7c7566; --line: #e9e3d6; --bubble: #f2ede2; }
 .screen[data-look="gray"] { --bg: #1f1f22; --solid: #2a2a2e; --ink: #f3f3f5; --ink2: #b0b0b7; --ink3: #8e8e96; --line: #34343a; --bubble: #2e2e33; }
 .screen[data-look="black"] { --bg: #000; --solid: #121214; --ink: #f5f5f7; --ink2: #a5a5ad; --ink3: #85858d; --line: #242428; --bubble: #1f1f23; }
 .screen::after { content: ""; position: absolute; left: 50%; bottom: 7px; z-index: 9; width: 100px; height: 4px; margin-left: -50px; border-radius: 2px; background: var(--ink); }
+.screen .ic { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 /* Status bar: time and icons each centred in the space either side of the camera, as on the real thing. */
-.status { position: relative; display: grid; grid-template-columns: 1fr 84px 1fr; align-items: center; height: 42px; padding-top: 3px; font-size: 13px; }
-.status b { justify-self: center; font-weight: 600; }
+.status { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 84px 1fr; align-items: center; flex: none; height: 42px; padding-top: 3px; }
+.status b { justify-self: center; font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
 .island { width: 76px; height: 22px; justify-self: center; border-radius: 11px; background: #000; }
-.status b { font-size: 14px; letter-spacing: -.01em; }
 .sys { justify-self: center; display: flex; align-items: center; gap: 5px; color: var(--ink); }
 .sys .wifi { width: 16px; height: 11.5px; }
 .sys .batt { width: 25px; height: 12px; }
-.head { display: flex; align-items: center; gap: 7px; padding: 4px 12px 9px 8px; border-bottom: 1px solid var(--line); }
-.back { width: 9px; height: 9px; margin: 0 2px 0 4px; border: solid var(--ink); border-width: 0 0 2px 2px; transform: rotate(45deg); }
+
+/* Two screens side by side, as the app has them on a phone: the space, and the channel pushed over it. */
+.nav { position: relative; flex: 1; min-height: 0; }
+.pane { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--bg); transition: transform .55s cubic-bezier(.32, .72, 0, 1), background .5s; }
+.space::after { content: ""; position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity .55s; }
+.nav[data-at="room"] .space { transform: translateX(-26%); }
+.nav[data-at="room"] .space::after { opacity: .07; }
+.nav[data-at="space"] .room { transform: translateX(102%); }
+.nav.cut .pane, .nav.cut .space::after { transition: none; }
+.nav.fade { animation: fadein .4s var(--ease); }
+.press { background: var(--sel) !important; transform: scale(.96); }
+
+/* The space: its neighbours along the top, then channels, apps and direct messages; a tab bar floats below. */
+.strip { display: flex; gap: 9px; padding: 5px 15px 3px; }
+.strip i { position: relative; display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 30%; background: color-mix(in srgb, var(--t) 17%, var(--solid)); font-size: 17px; font-style: normal; line-height: 1; opacity: .6; }
+.strip i.on { opacity: 1; transform: scale(1.06); }
+.strip i.add { background: none; box-shadow: inset 0 0 0 1.5px var(--line); color: var(--ink3); font-size: 16px; opacity: 1; }
+.strip b, .row u { display: grid; place-items: center; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: #d9302a; color: #fff; font-size: 9.5px; font-weight: 700; line-height: 1; text-decoration: none; }
+.strip b { position: absolute; top: -4px; right: -5px; box-shadow: 0 0 0 2px var(--bg); }
+.side-head { display: flex; align-items: center; gap: 2px; padding: 9px 10px 6px 16px; }
+.side-head span { flex: 1; min-width: 0; line-height: 1.1; }
+.side-head b { display: block; font-size: 22px; font-weight: 800; letter-spacing: -.04em; }
+.side-head small { color: var(--ink2); font-size: 10.5px; }
+.ib { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; color: var(--ink2); transition: background .2s, transform .25s var(--ease); }
+.search { display: flex; align-items: center; gap: 6px; flex: none; height: 28px; margin: 2px 12px 2px; padding: 0 9px; border-radius: 9px; background: var(--hover); color: var(--ink3); font-size: 12px; }
+.search .ic { width: 13px; height: 13px; }
+.rows { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; padding: 0 8px; }
+.rows > small { flex: none; padding: 9px 8px 3px; color: var(--ink3); font-size: 10.5px; font-weight: 600; }
+.row { display: flex; align-items: center; gap: 8px; flex: none; height: 31px; padding: 0 8px; border-radius: 11px; color: var(--ink2); font-size: 13.5px; transition: background .2s, transform .25s var(--ease); }
+.row > i { width: 22px; text-align: center; font-size: 15px; font-style: normal; }
+.row > b { flex: 1; min-width: 0; overflow: hidden; font-weight: 500; white-space: nowrap; text-overflow: ellipsis; }
+.row > em, .row .two em { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--c); font-size: 12px; font-style: normal; }
+.row .two { position: relative; background: none; }
+.row .two em { position: absolute; left: 0; top: 0; width: 15px; height: 15px; font-size: 8.5px; }
+.row .two em + em { left: auto; top: auto; right: 0; bottom: 0; box-shadow: 0 0 0 1.5px var(--bg); }
+.row u { display: none; }
+.row.unread { color: var(--ink); }
+.row.unread > b { font-weight: 700; }
+.row.unread u { display: grid; animation: likein .45s var(--spring); }
+.row .lk { width: 12px; height: 12px; color: var(--ink3); }
+.apps { display: flex; flex-wrap: wrap; gap: 5px; padding: 3px 6px 2px; }
+.apps span { display: flex; align-items: center; gap: 4px; height: 25px; padding: 0 9px 0 6px; border-radius: 9px; background: var(--hover); color: var(--ink); font-size: 11.5px; font-weight: 550; white-space: nowrap; transition: background .2s, transform .25s var(--ease); }
+.apps i { font-size: 12.5px; font-style: normal; }
+.apps .adder { order: 9; background: none; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink3); }
+.apps [data-app]:not(.in), .tabbar [data-app]:not(.in) { display: none; }
+.tabbar { position: absolute; left: 9px; right: 9px; bottom: 17px; z-index: 2; display: flex; padding: 4px; border-radius: 23px; background: color-mix(in srgb, var(--solid) 94%, transparent); box-shadow: 0 0 0 1px var(--line), 0 12px 26px -12px rgba(0, 0, 0, .4); transition: background .5s; }
+.tabbar span { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 4px 0 3px; border-radius: 19px; color: var(--ink3); font-size: 8px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.tabbar span:first-child { order: -1; }
+.tabbar .you { order: 9; }
+.tabbar .on { background: var(--hover); color: var(--ink); }
+.tabbar i { display: grid; place-items: center; height: 18px; font-size: 14px; font-style: normal; line-height: 1; }
+.tabbar .ic { width: 17px; height: 17px; }
+.space .new { animation: pop .55s var(--spring) .5s both; }
+
+/* A channel: header, messages, composer. */
+.head { display: flex; align-items: center; gap: 7px; flex: none; padding: 4px 12px 9px 8px; border-bottom: 1px solid var(--line); }
+.back { flex: none; width: 9px; height: 9px; margin: 0 2px 0 4px; border: solid var(--ink); border-width: 0 0 2px 2px; transform: rotate(45deg); }
 .head-emoji { font-size: 20px; }
 .head-text { flex: 1; min-width: 0; line-height: 1.15; }
 .head-text b { display: block; font-size: 14px; font-weight: 700; letter-spacing: -.02em; }
@@ -119,28 +176,31 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .stack { display: flex; }
 .stack em, .av, .liked em { display: grid; place-items: center; flex: none; border-radius: 50%; background: var(--c); font-style: normal; }
 .stack em { width: 22px; height: 22px; margin-left: -6px; box-shadow: 0 0 0 2px var(--bg); font-size: 11px; }
+.room.page .stack, .room.page .compose { display: none; }
 .chat { position: relative; flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 8px 8px 6px 10px; }
 /* Older messages slide up under the header as new ones arrive, like a real chat. */
 .msg { flex: none; display: flex; align-items: flex-start; gap: 7px; transition: opacity .3s, filter .3s; }
 .typing .like { visibility: hidden; }
 .msg.mine { flex-direction: row-reverse; }
 .av { width: 26px; height: 26px; margin-top: 2px; font-size: 14px; }
+/* Bool itself speaks as the app's icon. */
+.av.b { overflow: hidden; border-radius: 29%; background: #fff; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .16), 0 1px 3px -1px rgba(0, 0, 0, .3); }
+.av.b img { width: 100%; height: 100%; }
 .main { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
 .mine .main { align-items: flex-end; }
 .meta { display: flex; align-items: baseline; gap: 5px; margin: 0 3px 2px; font-size: 11px; white-space: nowrap; }
 .meta b { font-weight: 650; }
 .meta time { color: var(--ink3); font-size: 9.5px; }
-.brow { display: flex; align-items: flex-end; gap: 1px; }
+.brow { position: relative; display: flex; align-items: flex-end; gap: 1px; }
 .mine .brow { flex-direction: row-reverse; }
 /* Round bubbles with a tail, mirrored so it comes off the top corner next to the sender. The tail shares the
    bubble's colour and overlaps it, so it joins without a seam. */
-.bubble { position: relative; max-width: 172px; padding: 6px 11px; border-radius: 17px; border-top-left-radius: 4px; background: var(--bubble); transition: filter .3s, transform .35s var(--ease); }
+.bubble { position: relative; max-width: 172px; padding: 6px 11px; border-radius: 17px; border-top-left-radius: 4px; background: var(--bubble); transition: filter .3s, transform .35s var(--ease), background .5s; }
 .bubble::before { content: ""; position: absolute; top: 0; left: -6px; width: 13px; height: 15px; background: inherit; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'%3E%3Cpath d='M0 0H14V16C11 14.5 8.6 11.5 7.4 8.2 6.4 5 4 1.6 0 0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'%3E%3Cpath d='M0 0H14V16C11 14.5 8.6 11.5 7.4 8.2 6.4 5 4 1.6 0 0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; }
 .mine .bubble { border-top-left-radius: 17px; border-top-right-radius: 4px; background: #0a84ff; color: #fff; }
 .mine .bubble::before { left: auto; right: -6px; transform: scaleX(-1); }
 .bot .card { border-top-left-radius: 4px; }
 /* Likes: nothing shows until someone likes a message (double tap or press and hold); then a heart and a count. */
-.brow { position: relative; }
 .brow:has(.like) { margin-bottom: 11px; }
 .like { position: absolute; right: -9px; bottom: -13px; z-index: 2; display: inline-flex; align-items: center; justify-content: center; gap: 2px; height: 22px; padding: 0 7px 0 6px; border: 0; border-radius: 11px; background: var(--solid); box-shadow: 0 0 0 1px var(--line), 0 2px 6px -2px rgba(0, 0, 0, .2); font: inherit; font-size: 10.5px; color: var(--ink2); transition: transform .25s var(--spring); }
 .like i { font-size: 11px; font-style: normal; filter: grayscale(1); opacity: .35; transition: filter .25s, opacity .25s, transform .3s var(--spring); }
@@ -154,14 +214,23 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .like.bump b { animation: bump .45s var(--spring); }
 .like.pop i { animation: likepop .5s var(--spring); }
 .burst { position: absolute; z-index: 8; font-size: 13px; pointer-events: none; animation: burst .9s var(--ease) forwards; }
-.compose { display: flex; align-items: center; gap: 4px; margin: 4px 10px 22px; padding: 3px; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); }
+/* The composer grows as the words wrap; the emoji button gives way to Send once there is something to send. */
+.compose { display: flex; align-items: flex-end; gap: 4px; flex: none; margin: 4px 10px 22px; padding: 3px; border-radius: 20px; box-shadow: inset 0 0 0 1px var(--line); }
 .compose i { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; color: var(--ink2); font-size: 18px; font-style: normal; line-height: 1; }
-.compose span { flex: 1; color: var(--ink3); font-size: 12.5px; white-space: nowrap; overflow: hidden; }
+.compose span { flex: 1; min-width: 0; padding: 6px 0; color: var(--ink3); font-size: 12.5px; line-height: 1.3; overflow-wrap: anywhere; }
+.compose .send { display: none; width: 24px; height: 24px; margin: 2px; background: #0a84ff; color: #fff; transition: transform .2s var(--ease); }
+.compose .send .ic { width: 14px; height: 14px; stroke-width: 2.8; }
+.compose .send.press { background: #0a84ff !important; transform: scale(.8); }
+.compose.typed span { color: var(--ink); }
+.compose.typed span::after { content: ""; display: inline-block; width: 1.5px; height: 1.15em; margin-left: 1px; vertical-align: -.2em; background: #0a84ff; animation: caret 1s steps(1) infinite; }
+.compose.typed .emo { display: none; }
+.compose.typed .send { display: grid; animation: likein .3s var(--spring); }
+.compose .at { color: #0a84ff; font-weight: 650; }
 /* Long press: the message presses in, then Bool's message sheet rises from the bottom of the screen. */
 .msg.hold .bubble { filter: brightness(.92); transform: scale(.96); }
 .scrim { position: absolute; inset: 0; z-index: 6; background: rgba(0, 0, 0, .28); opacity: 0; pointer-events: none; transition: opacity .3s; }
 .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; display: flex; flex-direction: column; gap: 9px; padding: 0 14px 26px; border-radius: 24px 24px 0 0; background: var(--solid); box-shadow: 0 -10px 30px -12px rgba(0, 0, 0, .3); transform: translateY(105%); transition: transform .45s var(--ease); }
-.screen.sheeted .scrim { opacity: 1; }
+.screen.sheeted .scrim, .screen.dim .scrim { opacity: 1; }
 .screen.sheeted .sheet { transform: none; }
 .sheet .grab { width: 34px; height: 4px; margin: 7px auto 0; border-radius: 2px; background: var(--ink3); }
 .sheet > b { font-size: 15px; font-weight: 700; letter-spacing: -.02em; }
@@ -174,37 +243,38 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .menu { display: flex; flex-direction: column; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); }
 .menu span { padding: 8px 11px; font-size: 12.5px; font-weight: 500; }
 .menu span + span { border-top: 1px solid var(--line); }
-/* (feature demos) */
-/* The Bool page's feature demos: each is a view on the phone's screen; the picker beside it switches them. */
+
+/* The Bool page's feature demos: each is a view in the channel's place; the picker beside the phone switches them. */
 .views { position: relative; flex: 1; min-height: 0; display: flex; }
-.views .view { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateX(14px); transition: opacity .35s, transform .45s var(--ease), visibility 0s .35s; }
-.views .view.on { opacity: 1; visibility: visible; transform: none; transition: opacity .35s, transform .45s var(--ease); }
+.views .view { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; opacity: 0; visibility: hidden; }
+.views .view.on { opacity: 1; visibility: visible; }
 .view .chat { flex: 1; }
-.tabs { display: flex; gap: 4px; padding: 8px 8px; overflow: hidden; border-bottom: 1px solid var(--line); }
-.tabs span { flex: none; padding: 4px 8px; border-radius: 12px; background: var(--bubble); font-size: 10.5px; font-weight: 600; white-space: nowrap; transition: transform .45s var(--ease), opacity .3s, max-width .45s var(--ease), padding .45s var(--ease); }
-.tabs span.on { background: var(--ink); color: var(--bg); }
-.tabs span[data-app]:not(.in) { max-width: 0; padding-inline: 0; opacity: 0; transform: scale(.6); }
-.tabs span[data-app].in { max-width: 120px; }
-.list { display: flex; flex-direction: column; margin: 12px 10px; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--line); }
-.list small { padding: 9px 12px 4px; color: var(--ink3); font-size: 10.5px; font-weight: 600; }
-.list span { display: flex; align-items: center; gap: 9px; padding: 9px 12px; font-size: 13px; font-weight: 500; transition: background .3s; }
-.list span + span { border-top: 1px solid var(--line); }
-.list i { font-style: normal; font-size: 15px; }
-.list u { margin-left: auto; width: 34px; height: 20px; border-radius: 10px; background: var(--line); position: relative; transition: background .3s; }
+/* Apps: a switch each; the ones that are on can be dragged into order. */
+.list { position: relative; display: flex; flex-direction: column; margin: 10px 10px 0; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--line); }
+.list small { padding: 9px 12px 3px; color: var(--ink3); font-size: 10.5px; font-weight: 600; }
+.list span { position: relative; display: grid; grid-template-columns: 30px 1fr auto; align-items: center; column-gap: 9px; padding: 7px 10px 7px 9px; border-radius: 14px; transition: background .3s, transform .5s var(--ease), box-shadow .3s; }
+.list span + span::before { content: ""; position: absolute; left: 48px; right: 0; top: 0; height: 1px; background: var(--line); }
+.list i { grid-row: span 2; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: var(--bubble); font-size: 15px; font-style: normal; }
+.list b { font-size: 12.5px; font-weight: 600; line-height: 1.2; }
+.list em { grid-column: 2; color: var(--ink3); font-size: 10.5px; font-style: normal; line-height: 1.2; }
+.list u { grid-row: 1 / span 2; grid-column: 3; position: relative; width: 34px; height: 20px; border-radius: 10px; background: var(--line); transition: background .3s; }
 .list u::after { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .3s var(--spring); }
 .list span.in u { background: #30d158; }
 .list span.in u::after { transform: translateX(14px); }
-.list span.tapped { background: var(--bubble); }
+.list span.lift { z-index: 2; background: var(--solid); box-shadow: 0 0 0 1px var(--line), 0 12px 24px -10px rgba(0, 0, 0, .35); transform: scale(1.04); }
+.list span.lift::before, .list span.lift + span::before { content: none; }
+.hint { display: flex; align-items: center; gap: 8px; margin: 9px 10px 0; padding: 8px 10px; border-radius: 14px; background: var(--hover); color: var(--ink2); font-size: 11.5px; }
+.hint img { flex: none; width: 22px; height: 22px; border-radius: 29%; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .16); }
+.hint b { color: var(--ink); font-weight: 650; }
 .at { font-weight: 650; }
 .mine .at { color: #fff; }
-.av.b { background: var(--ink); color: var(--bg); font-size: 13px; font-weight: 800; }
-.slots { display: flex; flex-direction: column; width: 196px; padding: 9px 11px; border-radius: 4px 16px 16px 16px; border: 1px solid var(--line); background: var(--solid); font-size: 12px; }
-.slots > b { margin-bottom: 4px; font-size: 13px; }
-.slots span { display: flex; justify-content: space-between; padding: 4px 0; border-top: 1px solid var(--line); }
-.slots em { font-style: normal; color: var(--ink3); transition: color .3s; }
+.slots { display: flex; flex-direction: column; width: 196px; padding: 9px 11px 5px; border-radius: 4px 16px 16px 16px; border: 1px solid var(--line); background: var(--solid); font-size: 12px; }
+.slots > b { margin-bottom: 5px; font-size: 13px; }
+.slots span { display: flex; align-items: center; justify-content: space-between; height: 27px; border-top: 1px solid var(--line); }
+.slots em { display: flex; align-items: center; gap: 4px; font-style: normal; color: var(--ink3); }
 .slots em.taken { color: var(--ink); font-weight: 650; animation: bump .45s var(--spring); }
-.view .compose-text { color: var(--ink); }
-.lock { display: flex; flex-direction: column; align-items: center; gap: 5px; margin: 18px 14px 0; padding: 14px; border-radius: 18px; background: var(--bubble); text-align: center; }
+.slots em.taken::before { content: attr(data-face); display: grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; background: var(--c); font-size: 9.5px; }
+.lock { display: flex; flex-direction: column; align-items: center; gap: 5px; margin: 14px 12px 0; padding: 14px; border-radius: 18px; background: var(--bubble); text-align: center; transition: background .5s; }
 .lock i { font-size: 26px; font-style: normal; }
 .lock b { font-size: 13.5px; margin-bottom: 2px; }
 .lock span { font-size: 12px; color: var(--ink2); opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .45s var(--ease); }
@@ -212,25 +282,25 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .lock span.in { opacity: 1; transform: none; }
 .sys-note { align-self: center; padding: 4px 10px; border-radius: 10px; background: var(--bubble); color: var(--ink2); font-size: 11px; }
 .chat.play > .sys-note:not(.on) { opacity: 0; }
-.sticker { position: absolute; right: 4px; top: -26px; font-size: 34px; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3)); opacity: 0; transform: scale(2.2) rotate(-30deg); transition: opacity .3s, transform .45s var(--spring); }
+.sticker { position: absolute; right: -5px; bottom: -27px; font-size: 30px; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3)); opacity: 0; transform: scale(2.2) rotate(-30deg); transition: opacity .3s, transform .45s var(--spring); }
 .sticker.in { opacity: 1; transform: rotate(12deg); }
 .chip { align-self: center; margin: 0 0 12px; padding: 5px 12px; border-radius: 13px; background: var(--ink); color: var(--bg); font-size: 11.5px; font-weight: 650; transition: opacity .25s; }
 .chip.swap { opacity: 0; }
 .view[data-view="yours"] .chat { justify-content: center; }
 .like.swap i { animation: likepop .5s var(--spring); }
-.links { display: flex; flex-direction: column; gap: 8px; padding: 14px 10px; }
-.links span { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; column-gap: 9px; padding: 9px 10px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .45s var(--ease); }
+.links { display: flex; flex-direction: column; gap: 8px; padding: 12px 10px; }
+.links span { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; column-gap: 8px; padding: 9px 9px; white-space: nowrap; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .45s var(--ease); }
 .links span.in { opacity: 1; transform: none; }
 .links i { grid-row: span 2; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #fff; font-size: 13px; font-weight: 800; font-style: normal; }
-.links b { font-size: 12.5px; }
+.links b { font-size: 12px; letter-spacing: -.02em; }
 .links small { font-size: 10.5px; color: var(--ink3); }
-.links u { grid-row: 1 / span 2; grid-column: 3; padding: 3px 8px; border-radius: 9px; background: var(--bubble); color: var(--ink3); font-size: 10.5px; font-weight: 650; text-decoration: none; transition: background .3s, color .3s; }
+.links u { grid-row: 1 / span 2; grid-column: 3; padding: 3px 7px; border-radius: 9px; background: var(--bubble); color: var(--ink3); font-size: 10px; font-weight: 650; text-decoration: none; transition: background .3s, color .3s; }
 .links u::before { content: "…"; }
 .links span.done u { background: color-mix(in srgb, #30d158 22%, var(--solid)); color: #1f8a3f; }
 .links span.done u::before { content: "✓ "; }
 .gcal { background: #1a73e8; } .slack { background: #4a154b; } .discord { background: #5865f2; }
 .links .event { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 8px 11px; border-left: 4px solid #1a73e8; border-radius: 6px 14px 14px 6px; }
-.passkey { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 16px 12px 14px; border-radius: 22px; background: var(--solid); box-shadow: 0 0 0 1px var(--line), 0 -8px 30px -12px rgba(0, 0, 0, .3); transform: translateY(120%); transition: transform .5s var(--ease); }
+.passkey { position: absolute; z-index: 8; left: 10px; right: 10px; bottom: 22px; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 16px 12px 14px; border-radius: 22px; background: var(--solid); box-shadow: 0 0 0 1px var(--line), 0 -8px 30px -12px rgba(0, 0, 0, .3); transform: translateY(130%); transition: transform .5s var(--ease); }
 .passkey.in { transform: none; }
 .passkey i { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 4px; border-radius: 50%; background: var(--bubble); font-size: 26px; font-style: normal; }
 .passkey.scan i { animation: scan 1s ease-in-out infinite; }
@@ -239,7 +309,8 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .passkey.done u { opacity: 1; background: color-mix(in srgb, #30d158 22%, var(--solid)); color: #1f8a3f; }
 .passkey.done u::before { content: "✓ "; }
 @keyframes scan { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, #0a84ff 25%, transparent); } }
-.compose span.typed { color: var(--ink); }
+@keyframes caret { 50% { opacity: 0; } }
+@keyframes fadein { from { opacity: 0; } }
 
 /* "Typing": home.js shows the dots in a bubble before its words. */
 .dots { display: none; }
@@ -359,6 +430,7 @@ blockquote .q { transition: opacity .25s linear; }
   /* The chat plays out (home.js): each message, the heart and the wheel appear in turn, in their own space. */
   .chat.play > :not(.on) { opacity: 0; }
   .chat.play > .on { animation: pop .6s var(--spring) both; }
+  .chat.play > .was { animation: none; }
   .js .tile.in .job-card li { animation: slide .5s var(--ease) calc(.2s + var(--n, 0) * .1s) both; }
   .job-card li:nth-child(2) { --n: 1; } .job-card li:nth-child(3) { --n: 2; }
 }
@@ -394,8 +466,8 @@ blockquote .q { transition: opacity .25s linear; }
   .bar nav { gap: 0; font-size: .875rem; }
   .bar nav a { padding: .45rem .6rem; }
   .bar nav a.cta { margin-left: .2rem; padding-inline: .8rem; }
-  .dock { gap: .45rem; }
-  .dock a { padding: .32rem .75rem .32rem .34rem; gap: .45rem; font-size: .875rem; }
+  .dock { gap: .35rem; }
+  .dock a { padding: .42rem .66rem .42rem .44rem; gap: .42rem; font-size: .85rem; }
   .dock img { width: 26px; height: 26px; }
   .tile .copy > p:not(.name) { font-size: 1.0625rem; }
   .contact p { font-size: 1.125rem; }
@@ -404,7 +476,7 @@ blockquote .q { transition: opacity .25s linear; }
 }
 @media (max-width: 380px) {
   .dock { gap: .35rem; }
-  .dock a { padding: .28rem .6rem .28rem .3rem; gap: .35rem; font-size: .8125rem; }
+  .dock a { padding: .36rem .62rem .36rem .4rem; gap: .35rem; font-size: .8125rem; }
   .dock img { width: 22px; height: 22px; }
 }
 @media (max-width: 350px) {
@@ -424,7 +496,7 @@ blockquote .q { transition: opacity .25s linear; }
 @media (hover: none) {
   .tile::after, .feat::after { content: none; }
   .js .tile.rise.in, .vt .tile.rise { transform: none; }
-  .phone { transform: none; }
+  .phone { transform: scale(var(--k, 1)); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

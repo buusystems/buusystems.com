@@ -50,6 +50,20 @@ section.wrap > .feats.in-grid { margin: 1.25rem 0 0; }
   .lead.t-bool .ctas { justify-content: flex-start; margin-top: 1.2rem; }
   .lead.t-bool .phone { margin: clamp(2.5rem, 5vw, 3.5rem) 0; }
 }
+/* A short screen (a small laptop): tighten the copy so all six features sit above the fold. */
+@media (min-width: 861px) and (max-height: 839px) {
+  .lead.t-bool .copy { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  .lead.t-bool .icon { width: 44px; margin-bottom: .5rem; }
+  .lead.t-bool h1 { max-width: none; font-size: 2rem; }
+  .lead.t-bool .ctas, .lead.t-bool .pick { margin-top: .9rem; }
+  .lead.t-bool .btn { padding-block: .6rem; }
+  .pick button { padding: .34rem .9rem .44rem; }
+  .lead.t-bool .phone { margin-block: 1.5rem; }
+}
+/* Room to spare: the phone is drawn larger, so the demos are easy to read. */
+@media (min-width: 1100px) and (min-height: 840px) {
+  .lead.t-bool .phone { --k: 1.16; margin: calc(clamp(2.5rem, 5vw, 3.5rem) + 47px) 22px; }
+}
 /* Phones: the features become a row of chips right above the phone, with the chosen one's text below. */
 @media (max-width: 860px) {
   .pick { flex-direction: row; gap: .4rem; overflow-x: auto; margin: 1.5rem -1.5rem 0; padding: .2rem 1.5rem .4rem; scrollbar-width: none; scroll-snap-type: x proximity; }

@@ -104,28 +104,50 @@
   const STOP = {};
   const runner = () => { const run = { live: true }; run.wait = (ms) => new Promise((ok, no) => setTimeout(() => (run.live ? ok() : no(STOP)), ms)); return run; };
   const again = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
-  const typeIn = async (run, chat, el, ms = 1700) => { el.classList.add("on", "typing"); await run.wait(ms); el.classList.remove("typing"); };
+  const typeIn = async (run, el, ms = 1700) => { el.classList.add("on", "typing"); await run.wait(ms); el.classList.remove("typing"); };
+  const press = async (run, el, ms = 260) => { el.classList.add("press"); await run.wait(ms); el.classList.remove("press"); };
+  // The phone has two screens: the space (its channels, apps and direct messages) and whatever is open over it.
+  const go = async (run, screen, at) => { screen.querySelector(".nav").dataset.at = at; await run.wait(650); };
+  // Type into the composer, which grows as the words wrap, then send.
+  const write = async (run, screen, text) => {
+    const box = screen.querySelector(".compose"), line = box.querySelector("span"), hint = line.textContent;
+    box.classList.add("typed"); line.textContent = "";
+    for (let i = 1; i <= text.length; i++) {
+      line.innerHTML = text.slice(0, i).replace(/^@Bool/, '<b class="at">@Bool</b>');
+      await run.wait(text[i - 1] === " " ? 95 : 50);
+    }
+    await run.wait(450);
+    await press(run, box.querySelector(".send"), 170);
+    box.classList.remove("typed"); line.textContent = hint;
+  };
 
-  // "Start with a chat": Maya asks, you reply, Sam answers; Maya likes it; you press and hold it, Bool's
-  // message sheet shows who liked it, you tap the heart and the like lands; then the wheel spins.
+  // "Start with a chat": a message lands in big-yums, you open it and reply, Sam answers; Maya likes it; you
+  // press and hold it, Bool's message sheet shows who liked it, you tap the heart; then the wheel spins.
   async function sceneChat(run, screen, view) {
-    const chat = view.querySelector(".chat"), items = [...chat.children];
-    const row = chat.querySelector("[data-react]"), like = row && row.querySelector(".like"), count = like && like.querySelector("b");
+    const chat = view.querySelector(".chat"), [first, mine, ...rest] = chat.children;
+    const door = screen.querySelector('.space [data-chan="yums"]');
+    const row = chat.querySelector("[data-react]"), like = row.querySelector(".like"), count = like.querySelector("b");
     const heart = screen.querySelector(".reacts .heart"), liked = screen.querySelector(".liked");
     const burst = () => {
-      const s = screen.getBoundingClientRect(), r = like.getBoundingClientRect();
+      const s = screen.getBoundingClientRect(), r = like.getBoundingClientRect(), k = s.width / screen.offsetWidth;   // the phone may be drawn larger
       for (let k = 0; k < 6; k++) {
         const b = document.createElement("i"); b.className = "burst"; b.textContent = "❤️";
-        b.style.left = r.left - s.left + 6 + "px"; b.style.top = r.top - s.top + 4 + "px";
+        b.style.left = (r.left - s.left) / k + 6 + "px"; b.style.top = (r.top - s.top) / k + 4 + "px";
         const ang = -Math.PI / 2 + (k - 2.5) * 0.45;
         b.style.setProperty("--bx", Math.cos(ang) * 34 + "px"); b.style.setProperty("--by", Math.sin(ang) * 34 + "px");
         screen.append(b); setTimeout(() => b.remove(), 950);
       }
     };
-    await run.wait(600);
-    for (const el of items) {
-      if (el.querySelector(".dots")) await typeIn(run, chat, el); else el.classList.add("on");
-      if (el === row && like) {
+    first.classList.add("on", "was");
+    await run.wait(1100);
+    door.classList.add("unread"); await run.wait(1500);
+    await press(run, door); await go(run, screen, "room"); door.classList.remove("unread");
+    await run.wait(900);
+    await write(run, screen, mine.querySelector(".bubble").textContent);
+    mine.classList.add("on"); await run.wait(1300);
+    for (const el of rest) {
+      if (el.querySelector(".dots")) await typeIn(run, el); else el.classList.add("on");
+      if (el === row) {
         await run.wait(1900);
         like.classList.add("some"); count.textContent = "1"; again(like, "bump");
         await run.wait(1800);
@@ -136,7 +158,7 @@
         screen.classList.remove("sheeted"); await run.wait(420);
         heart.classList.remove("pick");
         like.classList.add("on"); count.textContent = "2"; again(like, "bump"); again(like, "pop"); burst();
-        if (liked) liked.insertAdjacentHTML("beforeend", '<em style="--c:#b8b8c0">🙂</em>You');
+        liked.insertAdjacentHTML("beforeend", '<em style="--c:#b8b8c0">🙂</em>You');
       }
       await run.wait(el.querySelector(".dots") ? 1300 : 1500);
     }
@@ -145,49 +167,54 @@
     if (wheel && wheel.autoSpin) { wheel.autoSpin(); await run.wait(3800); }
   }
 
-  // "Add what you need": switch apps on, they appear as tabs, then one is dragged to the front.
+  // "Add what you need": from the space, open Apps; switch two on, drag one to the top, switch one off; back in
+  // the space they are in the Apps list and on the tab bar, in that order.
   async function sceneApps(run, screen, view) {
-    await run.wait(700);
-    for (const app of ["cal", "sign", "split"]) {
-      const row = view.querySelector(`.list [data-app="${app}"]`), tab = view.querySelector(`.tabs [data-app="${app}"]`);
-      row.classList.add("tapped"); await run.wait(250);
-      row.classList.add("in"); row.classList.remove("tapped"); tab.classList.add("in");
-      await run.wait(1000);
+    const space = screen.querySelector(".space"), list = view.querySelector(".list");
+    const item = (a) => list.querySelector(`[data-app="${a}"]`);
+    const flip = async (a, on) => { await press(run, item(a), 220); item(a).classList.toggle("in", on); };
+    await run.wait(1100);
+    await press(run, space.querySelector(".adder")); await go(run, screen, "room");
+    await run.wait(400);
+    await flip("sign", true); await run.wait(900);
+    await flip("split", true); await run.wait(1000);
+    const k = screen.getBoundingClientRect().width / screen.offsetWidth;   // the phone may be drawn larger
+    const rows = [...list.querySelectorAll("[data-app]")], move = item("split"), was = new Map(rows.map((r) => [r, r.getBoundingClientRect().top]));
+    move.classList.add("lift"); await run.wait(380);
+    list.insertBefore(move, rows[0]);
+    for (const r of rows) { r.style.transition = "none"; r.style.transform = `translateY(${(was.get(r) - r.getBoundingClientRect().top) / k}px) scale(${r === move ? 1.04 : 1})`; }
+    void list.offsetWidth;
+    for (const r of rows) { r.style.transition = ""; r.style.transform = ""; }
+    await run.wait(750); move.classList.remove("lift");
+    await run.wait(800);
+    await flip("tasks", false); await run.wait(1000);
+    const on = [...list.querySelectorAll("[data-app].in")].map((r) => r.dataset.app);
+    for (const bar of space.querySelectorAll(".apps, .tabbar")) for (const el of bar.querySelectorAll("[data-app]")) {
+      const k = on.indexOf(el.dataset.app), show = k >= 0 && (k < 3 || bar.classList.contains("apps"));
+      el.style.order = k;
+      if (show && !el.classList.contains("in")) el.classList.add("in", "new"); else if (!show) el.classList.remove("in");
     }
-    // reorder: Split moves in front of Calendar
-    const tabs = view.querySelector(".tabs"), move = tabs.querySelector('[data-app="split"]'), before = tabs.querySelector('[data-app="cal"]');
-    const all = [...tabs.children], first = new Map(all.map((t) => [t, t.getBoundingClientRect().left]));
-    tabs.insertBefore(move, before);
-    for (const t of all) { const dx = first.get(t) - t.getBoundingClientRect().left; t.style.transition = "none"; t.style.transform = `translateX(${dx}px)`; }
-    void tabs.offsetWidth;
-    for (const t of all) { t.style.transition = ""; t.style.transform = ""; }
-    move.animate([{ transform: "scale(1)" }, { transform: "scale(1.12)" }, { transform: "scale(1)" }], { duration: 500 });
-    await run.wait(1400);
-    const off = view.querySelector('.list [data-app="split"]');
-    off.classList.add("tapped"); await run.wait(250); off.classList.remove("in", "tapped"); move.classList.remove("in");
-    await run.wait(1600);
+    await go(run, screen, "space");
+    await run.wait(2600);
   }
 
   // "Just ask Bool": you mention @Bool, it sets up a sign-up sheet, and people fill it in.
   async function sceneAsk(run, screen, view) {
-    const chat = view.querySelector(".chat"), [ask, reply, card] = chat.children, box = screen.querySelector(".compose span");
-    const text = "@Bool make a potluck sign-up for friday";
-    await run.wait(600);
-    box.classList.add("typed"); box.textContent = "";
-    for (const ch of text) { box.textContent += ch; await run.wait(38); }
-    await run.wait(350);
-    box.classList.remove("typed"); box.textContent = "Message #big-yums";
-    ask.classList.add("on"); await run.wait(700);
-    await typeIn(run, chat, reply, 1500);
+    const chat = view.querySelector(".chat"), [ask, reply, card] = chat.children;
+    await run.wait(800);
+    await write(run, screen, "@Bool make a potluck sign-up for friday");
+    ask.classList.add("on"); await run.wait(800);
+    await typeIn(run, reply, 1500);
     await run.wait(700); card.classList.add("on"); await run.wait(1100);
     for (const em of card.querySelectorAll("[data-who]")) { em.textContent = em.dataset.who; em.classList.add("taken"); await run.wait(900); }
     await run.wait(1500);
   }
 
-  // "Private means private": a private channel says what can't see it, and @Bool can't read it.
+  // "Private means private": open the private channel; it says what can't see it, and @Bool can't read it.
   async function scenePrivate(run, screen, view) {
     const chat = view.querySelector(".chat");
-    await run.wait(500);
+    await run.wait(1100);
+    await press(run, screen.querySelector('.space [data-chan="santa"]')); await go(run, screen, "room");
     for (const s of view.querySelectorAll(".lock span")) { s.classList.add("in"); await run.wait(650); }
     await run.wait(500);
     for (const el of chat.children) { el.classList.add("on"); await run.wait(1100); }
@@ -202,55 +229,67 @@
     await run.wait(900);
     for (const e of ["🥒", "🍕", "🔥"]) { like.textContent = e; again(like.parentNode, "swap"); await run.wait(1100); }
     await say("Your stickers"); await run.wait(400); sticker.classList.add("in"); await run.wait(1400);
-    for (const [look, name] of [["paper", "Paper"], ["gray", "Gray"], ["black", "Black"], ["", "White"]]) {
-      await say(name); if (look) screen.dataset.look = look; else delete screen.dataset.look;
-      await run.wait(1300);
-    }
-    await run.wait(600);
+    // the looks: Paper in the channel, Gray and Black back in the space, then home to White
+    await say("Paper"); screen.dataset.look = "paper"; await run.wait(1300);
+    screen.dataset.look = "gray"; await go(run, screen, "space"); await run.wait(900);
+    screen.dataset.look = "black"; await run.wait(1500);
+    delete screen.dataset.look; await run.wait(1400);
   }
 
   // "Works with what you use": calendar sync, Slack and Discord webhooks, then sign in with a passkey.
   async function sceneWorks(run, screen, view) {
-    await run.wait(500);
+    await run.wait(1100);
+    await press(run, screen.querySelector(".space .gear")); await go(run, screen, "room");
     for (const s of view.querySelectorAll("[data-link]")) {
       s.classList.add("in"); await run.wait(650);
       if (s.querySelector("u")) { s.classList.add("done"); await run.wait(500); }
     }
     await run.wait(700);
     const pk = view.querySelector(".passkey");
-    pk.classList.add("in"); await run.wait(500); pk.classList.add("scan"); await run.wait(1600);
+    screen.classList.add("dim"); pk.classList.add("in"); await run.wait(500); pk.classList.add("scan"); await run.wait(1600);
     pk.classList.remove("scan"); pk.classList.add("done"); await run.wait(1800);
   }
 
   const SCENES = { chat: sceneChat, apps: sceneApps, ask: sceneAsk, private: scenePrivate, yours: sceneYours, works: sceneWorks };
-  const LENGTH = { chat: 27000, apps: 7500, ask: 11000, private: 7500, yours: 12500, works: 8500 };   // for the progress bar
-  const HEAD = { private: ["🔒", "secret-santa", "Private · 5 members"] };
+  const LENGTH = { chat: 23300, apps: 11300, ask: 12100, private: 9500, yours: 12400, works: 10800 };   // for the progress bar
+  const START = { ask: "room", yours: "room" };   // the others begin in the space
+  // What the open screen's header says, where it isn't big-yums. `page` screens have no composer.
+  const ROOM = {
+    apps: { emoji: "🧩", name: "Apps", sub: "Home Team", page: true },
+    private: { emoji: "🎁", name: "secret-santa", sub: "🔒 Private · 4 people", stack: '<em style="--c:#64d2ff">🐼</em><em style="--c:#ffb340">🦉</em><em style="--c:#a8e6a3">🐸</em>', hint: "Message #secret-santa" },
+    works: { emoji: "🔗", name: "Connections", sub: "Home Team", page: true },
+  };
 
   for (const phone of $$(".phone")) {
     if (editing || still) continue;
-    const screen = phone.querySelector(".screen"), views = screen.querySelector(".views");
-    const pick = views && document.querySelector(".pick");
+    const screen = phone.querySelector(".screen"), nav = screen.querySelector(".nav"), room = screen.querySelector(".room"), views = screen.querySelector(".views");
+    const pick = document.querySelector(".pick");
     // Remember how everything starts, so each play begins from a clean screen.
-    const roots = [...screen.querySelectorAll(views ? ".view, .sheet, .head, .compose" : ".chat, .sheet, .head, .compose")];
+    const roots = [...screen.querySelectorAll(".space, .head, .view, .compose, .sheet")];
     const reset = new Map(roots.map((el) => [el, el.innerHTML]));
     const restore = (el) => { el.innerHTML = reset.get(el); el.querySelectorAll("[data-wheel]").forEach(bindWheel); };
+    const jump = (at) => { nav.classList.add("cut"); nav.dataset.at = at; void nav.offsetWidth; nav.classList.remove("cut"); again(nav, "fade"); };
     let run = null;
     const play = async (name) => {
       if (run) run.live = false;
       run = runner();
-      const me = run;
-      screen.classList.remove("sheeted"); delete screen.dataset.look;
+      const me = run, view = views.querySelector(`[data-view="${name}"]`), r = ROOM[name];
+      screen.classList.remove("sheeted", "dim"); delete screen.dataset.look;
       roots.forEach(restore);
-      const view = views ? views.querySelector(`[data-view="${name}"]`) : screen;
-      if (views) for (const v of views.children) v.classList.toggle("on", v === view);
-      const h = HEAD[name];
-      if (h) { const head = screen.querySelector(".head"); head.querySelector(".head-emoji").textContent = h[0]; head.querySelector(".head-text b").textContent = h[1]; head.querySelector(".head-text small").textContent = h[2]; }
+      for (const v of views.children) v.classList.toggle("on", v === view);
+      room.classList.toggle("page", !!(r && r.page));
+      if (r) {
+        room.querySelector(".head-emoji").textContent = r.emoji; room.querySelector(".head-text b").textContent = r.name; room.querySelector(".head-text small").textContent = r.sub;
+        if (r.stack) room.querySelector(".stack").innerHTML = r.stack;
+        if (r.hint) room.querySelector(".compose span").textContent = r.hint;
+      }
+      jump(START[name] || "space");
       view.querySelectorAll(".chat").forEach((c) => c.classList.add("play"));
       try { await SCENES[name](me, screen, view); return me.live; } catch (e) { if (e !== STOP) throw e; return false; }
     };
+    nav.classList.add("cut"); nav.dataset.at = "space"; void nav.offsetWidth; nav.classList.remove("cut");   // waits on the space until it plays
 
     if (!pick) {   // the home page: the chat plays once when it comes into view
-      screen.querySelectorAll(".chat").forEach((c) => c.classList.add("play"));
       new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); play("chat"); } }, { threshold: 0.5 }).observe(screen);
       continue;
     }
@@ -271,6 +310,7 @@
       const finished = await play(tabs[i].dataset.scene);
       if (finished && current === i) {
         tabs[i].style.setProperty("--p", 1); cancelAnimationFrame(raf);
+        phone.dataset.took = Math.round(performance.now() - t0);
         await new Promise((r) => setTimeout(r, 1800));
         if (current === i) choose((i + 1) % tabs.length);
       }
