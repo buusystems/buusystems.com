@@ -78,8 +78,8 @@
     });
   }
 
-  // Bool's wheel: tap it to pick who drives. It also spins once by itself after the chat has played (below).
-  for (const card of $$("[data-wheel]")) {
+  // Bool's wheel: tap it to pick who drives. The chat below also spins it once when it has played.
+  const bindWheel = (card) => {
     const wheel = card.querySelector(".wheel"), out = card.querySelector("strong"), hint = card.querySelector("small");
     const faces = [...wheel.children];
     let turn = -45, busy = false, last = 0;
@@ -90,61 +90,198 @@
       const rest = -parseFloat(faces[pick].style.getPropertyValue("--a"));   // the turn that puts this face on top
       turn += 1440 + ((rest - turn) % 360 + 360) % 360;
       wheel.style.setProperty("--turn", turn + "deg");
-      out.textContent = "Spinning\u2026";
+      out.textContent = "Spinning…";
       setTimeout(() => { out.textContent = faces[pick].dataset.name + " drives"; hint.textContent = "Tap to spin again"; busy = false; }, still ? 60 : 3450);
     };
     card.addEventListener("click", spin);
     card.autoSpin = spin;
-  }
+  };
+  $$("[data-wheel]").forEach(bindWheel);
 
-  // Bool's chat plays out on the phone when it scrolls into view, at a conversational pace: Maya types and
-  // sends, you reply, Sam types and sends, Maya likes Sam's message; then you press and hold it, Bool's
-  // message sheet rises showing who liked it, you tap the heart, the sheet closes and the like lands on the
-  // message; then the wheel spins. Each message keeps its space throughout, so nothing on the page moves.
-  if (!editing && !still) for (const chat of $$(".phone .chat")) {
-    const screen = chat.closest(".screen"), items = [...chat.children];
+  // ---- Bool's phone ----
+  // Scenes play on the phone's screen. Each gets `wait`, which throws once the scene has been replaced (the
+  // visitor picked another feature), so a scene simply stops where it is.
+  const STOP = {};
+  const runner = () => { const run = { live: true }; run.wait = (ms) => new Promise((ok, no) => setTimeout(() => (run.live ? ok() : no(STOP)), ms)); return run; };
+  const again = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+  const typeIn = async (run, chat, el, ms = 1700) => { el.classList.add("on", "typing"); await run.wait(ms); el.classList.remove("typing"); };
+
+  // "Start with a chat": Maya asks, you reply, Sam answers; Maya likes it; you press and hold it, Bool's
+  // message sheet shows who liked it, you tap the heart and the like lands; then the wheel spins.
+  async function sceneChat(run, screen, view) {
+    const chat = view.querySelector(".chat"), items = [...chat.children];
     const row = chat.querySelector("[data-react]"), like = row && row.querySelector(".like"), count = like && like.querySelector("b");
     const heart = screen.querySelector(".reacts .heart"), liked = screen.querySelector(".liked");
-    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-    const again = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
     const burst = () => {
       const s = screen.getBoundingClientRect(), r = like.getBoundingClientRect();
       for (let k = 0; k < 6; k++) {
-        const b = document.createElement("i"); b.className = "burst"; b.textContent = "\u2764\ufe0f";
+        const b = document.createElement("i"); b.className = "burst"; b.textContent = "❤️";
         b.style.left = r.left - s.left + 6 + "px"; b.style.top = r.top - s.top + 4 + "px";
         const ang = -Math.PI / 2 + (k - 2.5) * 0.45;
         b.style.setProperty("--bx", Math.cos(ang) * 34 + "px"); b.style.setProperty("--by", Math.sin(ang) * 34 + "px");
         screen.append(b); setTimeout(() => b.remove(), 950);
       }
     };
-    chat.classList.add("play");
-    new IntersectionObserver(async ([e], o) => {
-      if (!e.isIntersecting) return;
-      o.disconnect();
-      await wait(700);
-      for (const el of items) {
-        const typed = el.querySelector(".dots");
-        if (typed) { el.classList.add("on", "typing"); await wait(1700); el.classList.remove("typing"); }
-        else el.classList.add("on");
-        if (el === row && like) {
-          await wait(1900);
-          like.classList.add("some"); count.textContent = "1"; again(like, "bump");           // Maya likes it
-          await wait(1800);
-          row.classList.add("hold"); await wait(650);                                         // press and hold
-          row.classList.remove("hold"); screen.classList.add("sheeted");
-          await wait(1900);                                                                    // read who liked it
-          heart.classList.add("pick"); await wait(450);                                        // tap the heart
-          screen.classList.remove("sheeted"); await wait(420);
-          heart.classList.remove("pick");
-          like.classList.add("on"); count.textContent = "2"; again(like, "bump"); again(like, "pop"); burst();
-          if (liked) liked.insertAdjacentHTML("beforeend", '<em style="--c:#b8b8c0">\ud83d\ude42</em>You');
-        }
-        await wait(typed ? 1300 : 1500);
+    await run.wait(600);
+    for (const el of items) {
+      if (el.querySelector(".dots")) await typeIn(run, chat, el); else el.classList.add("on");
+      if (el === row && like) {
+        await run.wait(1900);
+        like.classList.add("some"); count.textContent = "1"; again(like, "bump");
+        await run.wait(1800);
+        row.classList.add("hold"); await run.wait(650);
+        row.classList.remove("hold"); screen.classList.add("sheeted");
+        await run.wait(1900);
+        heart.classList.add("pick"); await run.wait(450);
+        screen.classList.remove("sheeted"); await run.wait(420);
+        heart.classList.remove("pick");
+        like.classList.add("on"); count.textContent = "2"; again(like, "bump"); again(like, "pop"); burst();
+        if (liked) liked.insertAdjacentHTML("beforeend", '<em style="--c:#b8b8c0">🙂</em>You');
       }
-      await wait(500);
-      const wheel = chat.querySelector("[data-wheel]");
-      if (wheel && wheel.autoSpin) wheel.autoSpin();
-    }, { threshold: 0.5 }).observe(chat);
+      await run.wait(el.querySelector(".dots") ? 1300 : 1500);
+    }
+    await run.wait(400);
+    const wheel = chat.querySelector("[data-wheel]");
+    if (wheel && wheel.autoSpin) { wheel.autoSpin(); await run.wait(3800); }
+  }
+
+  // "Add what you need": switch apps on, they appear as tabs, then one is dragged to the front.
+  async function sceneApps(run, screen, view) {
+    await run.wait(700);
+    for (const app of ["cal", "sign", "split"]) {
+      const row = view.querySelector(`.list [data-app="${app}"]`), tab = view.querySelector(`.tabs [data-app="${app}"]`);
+      row.classList.add("tapped"); await run.wait(250);
+      row.classList.add("in"); row.classList.remove("tapped"); tab.classList.add("in");
+      await run.wait(1000);
+    }
+    // reorder: Split moves in front of Calendar
+    const tabs = view.querySelector(".tabs"), move = tabs.querySelector('[data-app="split"]'), before = tabs.querySelector('[data-app="cal"]');
+    const all = [...tabs.children], first = new Map(all.map((t) => [t, t.getBoundingClientRect().left]));
+    tabs.insertBefore(move, before);
+    for (const t of all) { const dx = first.get(t) - t.getBoundingClientRect().left; t.style.transition = "none"; t.style.transform = `translateX(${dx}px)`; }
+    void tabs.offsetWidth;
+    for (const t of all) { t.style.transition = ""; t.style.transform = ""; }
+    move.animate([{ transform: "scale(1)" }, { transform: "scale(1.12)" }, { transform: "scale(1)" }], { duration: 500 });
+    await run.wait(1400);
+    const off = view.querySelector('.list [data-app="split"]');
+    off.classList.add("tapped"); await run.wait(250); off.classList.remove("in", "tapped"); move.classList.remove("in");
+    await run.wait(1600);
+  }
+
+  // "Just ask Bool": you mention @Bool, it sets up a sign-up sheet, and people fill it in.
+  async function sceneAsk(run, screen, view) {
+    const chat = view.querySelector(".chat"), [ask, reply, card] = chat.children, box = screen.querySelector(".compose span");
+    const text = "@Bool make a potluck sign-up for friday";
+    await run.wait(600);
+    box.classList.add("typed"); box.textContent = "";
+    for (const ch of text) { box.textContent += ch; await run.wait(38); }
+    await run.wait(350);
+    box.classList.remove("typed"); box.textContent = "Message #big-yums";
+    ask.classList.add("on"); await run.wait(700);
+    await typeIn(run, chat, reply, 1500);
+    await run.wait(700); card.classList.add("on"); await run.wait(1100);
+    for (const em of card.querySelectorAll("[data-who]")) { em.textContent = em.dataset.who; em.classList.add("taken"); await run.wait(900); }
+    await run.wait(1500);
+  }
+
+  // "Private means private": a private channel says what can't see it, and @Bool can't read it.
+  async function scenePrivate(run, screen, view) {
+    const chat = view.querySelector(".chat");
+    await run.wait(500);
+    for (const s of view.querySelectorAll(".lock span")) { s.classList.add("in"); await run.wait(650); }
+    await run.wait(500);
+    for (const el of chat.children) { el.classList.add("on"); await run.wait(1100); }
+    await run.wait(1600);
+  }
+
+  // "Make it yours": the like button becomes your own, a sticker lands, then the looks change.
+  async function sceneYours(run, screen, view) {
+    const chat = view.querySelector(".chat"), chip = view.querySelector(".chip"), like = view.querySelector(".like i"), sticker = view.querySelector(".sticker");
+    const say = async (t) => { chip.classList.add("swap"); await run.wait(250); chip.textContent = t; chip.classList.remove("swap"); };
+    for (const el of chat.children) el.classList.add("on");
+    await run.wait(900);
+    for (const e of ["🥒", "🍕", "🔥"]) { like.textContent = e; again(like.parentNode, "swap"); await run.wait(1100); }
+    await say("Your stickers"); await run.wait(400); sticker.classList.add("in"); await run.wait(1400);
+    for (const [look, name] of [["paper", "Paper"], ["gray", "Gray"], ["black", "Black"], ["", "White"]]) {
+      await say(name); if (look) screen.dataset.look = look; else delete screen.dataset.look;
+      await run.wait(1300);
+    }
+    await run.wait(600);
+  }
+
+  // "Works with what you use": calendar sync, Slack and Discord webhooks, then sign in with a passkey.
+  async function sceneWorks(run, screen, view) {
+    await run.wait(500);
+    for (const s of view.querySelectorAll("[data-link]")) {
+      s.classList.add("in"); await run.wait(650);
+      if (s.querySelector("u")) { s.classList.add("done"); await run.wait(500); }
+    }
+    await run.wait(700);
+    const pk = view.querySelector(".passkey");
+    pk.classList.add("in"); await run.wait(500); pk.classList.add("scan"); await run.wait(1600);
+    pk.classList.remove("scan"); pk.classList.add("done"); await run.wait(1800);
+  }
+
+  const SCENES = { chat: sceneChat, apps: sceneApps, ask: sceneAsk, private: scenePrivate, yours: sceneYours, works: sceneWorks };
+  const LENGTH = { chat: 27000, apps: 7500, ask: 11000, private: 7500, yours: 12500, works: 8500 };   // for the progress bar
+  const HEAD = { private: ["🔒", "secret-santa", "Private · 5 members"] };
+
+  for (const phone of $$(".phone")) {
+    if (editing || still) continue;
+    const screen = phone.querySelector(".screen"), views = screen.querySelector(".views");
+    const pick = views && document.querySelector(".pick");
+    // Remember how everything starts, so each play begins from a clean screen.
+    const roots = [...screen.querySelectorAll(views ? ".view, .sheet, .head, .compose" : ".chat, .sheet, .head, .compose")];
+    const reset = new Map(roots.map((el) => [el, el.innerHTML]));
+    const restore = (el) => { el.innerHTML = reset.get(el); el.querySelectorAll("[data-wheel]").forEach(bindWheel); };
+    let run = null;
+    const play = async (name) => {
+      if (run) run.live = false;
+      run = runner();
+      const me = run;
+      screen.classList.remove("sheeted"); delete screen.dataset.look;
+      roots.forEach(restore);
+      const view = views ? views.querySelector(`[data-view="${name}"]`) : screen;
+      if (views) for (const v of views.children) v.classList.toggle("on", v === view);
+      const h = HEAD[name];
+      if (h) { const head = screen.querySelector(".head"); head.querySelector(".head-emoji").textContent = h[0]; head.querySelector(".head-text b").textContent = h[1]; head.querySelector(".head-text small").textContent = h[2]; }
+      view.querySelectorAll(".chat").forEach((c) => c.classList.add("play"));
+      try { await SCENES[name](me, screen, view); return me.live; } catch (e) { if (e !== STOP) throw e; return false; }
+    };
+
+    if (!pick) {   // the home page: the chat plays once when it comes into view
+      screen.querySelectorAll(".chat").forEach((c) => c.classList.add("play"));
+      new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); play("chat"); } }, { threshold: 0.5 }).observe(screen);
+      continue;
+    }
+
+    // The Bool page: the picker chooses the scene; when one finishes, the next one starts.
+    const tabs = [...pick.querySelectorAll("[data-scene]")], desc = document.querySelector(".pick-desc");
+    let current = 0, t0 = 0, raf = 0;
+    const progress = () => {
+      const tab = tabs[current], p = Math.min(1, (performance.now() - t0) / LENGTH[tab.dataset.scene]);
+      tab.style.setProperty("--p", p.toFixed(3)); raf = requestAnimationFrame(progress);
+    };
+    const choose = async (i, user) => {
+      current = i;
+      tabs.forEach((t, k) => { t.setAttribute("aria-selected", k === i ? "true" : "false"); t.style.setProperty("--p", 0); });
+      if (desc) desc.textContent = tabs[i].querySelector("span").textContent;
+      if (user && matchMedia("(max-width: 860px)").matches) tabs[i].scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+      cancelAnimationFrame(raf); t0 = performance.now(); progress();
+      const finished = await play(tabs[i].dataset.scene);
+      if (finished && current === i) {
+        tabs[i].style.setProperty("--p", 1); cancelAnimationFrame(raf);
+        await new Promise((r) => setTimeout(r, 1800));
+        if (current === i) choose((i + 1) % tabs.length);
+      }
+    };
+    tabs.forEach((t, i) => t.addEventListener("click", () => choose(i, true)));
+    pick.addEventListener("keydown", (e) => {
+      const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (!d) return; e.preventDefault();
+      const i = (current + d + tabs.length) % tabs.length; tabs[i].focus(); choose(i, true);
+    });
+    new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); choose(0); } }, { threshold: 0.4 }).observe(screen);
   }
 
   // The globe: the "o" in "world". A flat land map (256x128, light = land) is wrapped onto a sphere

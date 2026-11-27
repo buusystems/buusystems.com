@@ -36,7 +36,7 @@ a:focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; border-radius
 /* Hero */
 .hero { position: relative; padding: clamp(3.25rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5.25rem); text-align: center; }
 .hero::before { content: ""; position: absolute; inset: -80px 0 0; z-index: -1; background: radial-gradient(circle, rgba(29, 29, 31, .13) 1px, transparent 1.6px) 50% 0 / 26px 26px; -webkit-mask-image: radial-gradient(ellipse 62% 72% at 50% 42%, #000, transparent 76%); mask-image: radial-gradient(ellipse 62% 72% at 50% 42%, #000, transparent 76%); }
-.wash { position: absolute; inset: -80px 0 0; z-index: -2; overflow: hidden; -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); transform: translate3d(calc(var(--px, 0) * -26px), calc(var(--py, 0) * -18px), 0); transition: transform 1.2s var(--ease); }
+.wash { position: absolute; inset: -80px -48px 0; z-index: -2; overflow: hidden; -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); transform: translate3d(calc(var(--px, 0) * -26px), calc(var(--py, 0) * -18px), 0); transition: transform 1.2s var(--ease); }
 /* Plain gradients rather than blurred shapes: nothing for a phone to filter. */
 .wash i { position: absolute; width: 78vw; height: 78vw; min-width: 560px; min-height: 560px; border-radius: 50%; opacity: .6; will-change: transform; animation: drift 18s ease-in-out infinite alternate; }
 .wash i:nth-child(1) { left: -30%; top: -12%; background: radial-gradient(closest-side, #ffb1a3, rgba(255, 177, 163, 0)); }
@@ -55,7 +55,7 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .dock { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: clamp(1.6rem, 3vw, 2.2rem); }
 .dock a { display: inline-flex; align-items: center; gap: .55rem; padding: .38rem .95rem .38rem .4rem; border-radius: 99px; background: rgba(255, 255, 255, .8); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), 0 0 0 1px rgba(0, 0, 0, .05), 0 12px 26px -18px rgba(0, 0, 0, .4); font-size: .9375rem; font-weight: 600; text-decoration: none; transition: transform .4s var(--spring), box-shadow .3s; }
 .dock a:active { transform: scale(.95); }
-.dock img { width: 30px; height: 30px; border-radius: 23%; }
+.dock img { width: 30px; height: 30px; border-radius: 23%; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .1), 0 2px 5px -1px rgba(0, 0, 0, .22); }
 
 .icon { display: grid; place-items: center; width: 68px; max-width: 88%; aspect-ratio: 1; margin: 0 auto .45rem; border-radius: 23%; overflow: hidden; font-style: normal; box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .4); transition: transform .45s cubic-bezier(.3, 1.8, .5, 1); }
 .icon img { width: 100%; height: 100%; object-fit: cover; }
@@ -92,30 +92,33 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 /* Bool's chat, on a phone. The handset is a generic modern phone drawn in CSS; the screen inside is Bool's
    own chat screen (~/code/bool/web/styles.css, White look): channel header, messages with names and times,
    the like button beside each bubble, the composer, and the message sheet a long press opens. */
-.phone { position: relative; flex: none; width: 272px; aspect-ratio: 9 / 19.3; margin: 2.2rem clamp(1.5rem, 4vw, 3.5rem) 2.2rem 0; padding: 9px; border-radius: 46px; background: linear-gradient(150deg, #4a4a4f, #1c1c1f 30%, #2c2c30 70%, #111113); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .16), inset 0 0 0 3px #0b0b0c, 0 44px 80px -34px rgba(10, 70, 190, .55), 0 18px 30px -20px rgba(0, 0, 0, .4); font-size: 14px; line-height: 1.3; letter-spacing: -.01em; color: #0d0d0f; transform: translate3d(calc((var(--mx, .5) - .5) * -14px), calc((var(--my, .5) - .5) * -10px), 0); transition: transform .5s var(--ease); }
+.phone { position: relative; flex: none; width: 272px; aspect-ratio: 9 / 19.3; margin: 2.2rem clamp(1.5rem, 4vw, 3.5rem) 2.2rem 0; padding: 9px; border-radius: 46px; background: linear-gradient(150deg, #4a4a4f, #1c1c1f 30%, #2c2c30 70%, #111113); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .16), inset 0 0 0 3px #0b0b0c, 0 44px 80px -34px rgba(10, 70, 190, .55), 0 18px 30px -20px rgba(0, 0, 0, .4); font-size: 14px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); transform: translate3d(calc((var(--mx, .5) - .5) * -14px), calc((var(--my, .5) - .5) * -10px), 0); transition: transform .5s var(--ease); }
 .phone::before, .phone::after { content: ""; position: absolute; width: 3px; border-radius: 2px; background: #2a2a2e; }
 .phone::before { left: -2px; top: 22%; height: 9%; box-shadow: 0 -38px 0 -0.5px #2a2a2e; }
 .phone::after { right: -2px; top: 26%; height: 13%; }
-.screen { position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 38px; overflow: hidden; background: #fff; }
-.screen::after { content: ""; position: absolute; left: 50%; bottom: 7px; z-index: 9; width: 100px; height: 4px; margin-left: -50px; border-radius: 2px; background: #0d0d0f; }
+.screen { --bg: #fff; --solid: #fff; --ink: #0d0d0f; --ink2: #5b5b61; --ink3: #77777d; --line: #e9e9ec; --bubble: #e9e9eb; position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 38px; overflow: hidden; background: var(--bg); color: var(--ink); transition: background .5s, color .5s; }
+/* Bool's looks (from ~/code/bool/web/styles.css). */
+.screen[data-look="paper"] { --bg: #fffdf8; --solid: #fffdf8; --ink: #1d1a14; --ink2: #625c50; --ink3: #7c7566; --line: #e9e3d6; --bubble: #f2ede2; }
+.screen[data-look="gray"] { --bg: #1f1f22; --solid: #2a2a2e; --ink: #f3f3f5; --ink2: #b0b0b7; --ink3: #8e8e96; --line: #34343a; --bubble: #2e2e33; }
+.screen[data-look="black"] { --bg: #000; --solid: #121214; --ink: #f5f5f7; --ink2: #a5a5ad; --ink3: #85858d; --line: #242428; --bubble: #1f1f23; }
+.screen::after { content: ""; position: absolute; left: 50%; bottom: 7px; z-index: 9; width: 100px; height: 4px; margin-left: -50px; border-radius: 2px; background: var(--ink); }
 /* Status bar: time and icons each centred in the space either side of the camera, as on the real thing. */
 .status { position: relative; display: grid; grid-template-columns: 1fr 84px 1fr; align-items: center; height: 42px; padding-top: 3px; font-size: 13px; }
 .status b { justify-self: center; font-weight: 600; }
 .island { width: 76px; height: 22px; justify-self: center; border-radius: 11px; background: #000; }
-.sys { justify-self: center; display: flex; align-items: center; gap: 4px; }
-.sys svg { width: 14px; height: 10px; fill: #0d0d0f; }
-.batt { position: relative; width: 20px; height: 10px; margin-right: 2px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .4); }
-.batt::before { content: ""; position: absolute; inset: 2px 4px 2px 2px; border-radius: 1.5px; background: #0d0d0f; }
-.batt::after { content: ""; position: absolute; right: -2.5px; top: 3px; width: 1.5px; height: 4px; border-radius: 0 1px 1px 0; background: rgba(0, 0, 0, .4); }
-.head { display: flex; align-items: center; gap: 7px; padding: 4px 12px 9px 8px; border-bottom: 1px solid #e9e9ec; }
-.back { width: 9px; height: 9px; margin: 0 2px 0 4px; border: solid #0d0d0f; border-width: 0 0 2px 2px; transform: rotate(45deg); }
+.status b { font-size: 14px; letter-spacing: -.01em; }
+.sys { justify-self: center; display: flex; align-items: center; gap: 5px; color: var(--ink); }
+.sys .wifi { width: 16px; height: 11.5px; }
+.sys .batt { width: 25px; height: 12px; }
+.head { display: flex; align-items: center; gap: 7px; padding: 4px 12px 9px 8px; border-bottom: 1px solid var(--line); }
+.back { width: 9px; height: 9px; margin: 0 2px 0 4px; border: solid var(--ink); border-width: 0 0 2px 2px; transform: rotate(45deg); }
 .head-emoji { font-size: 20px; }
 .head-text { flex: 1; min-width: 0; line-height: 1.15; }
 .head-text b { display: block; font-size: 14px; font-weight: 700; letter-spacing: -.02em; }
-.head-text small { font-size: 10.5px; color: #5b5b61; }
+.head-text small { font-size: 10.5px; color: var(--ink2); }
 .stack { display: flex; }
 .stack em, .av, .liked em { display: grid; place-items: center; flex: none; border-radius: 50%; background: var(--c); font-style: normal; }
-.stack em { width: 22px; height: 22px; margin-left: -6px; box-shadow: 0 0 0 2px #fff; font-size: 11px; }
+.stack em { width: 22px; height: 22px; margin-left: -6px; box-shadow: 0 0 0 2px var(--bg); font-size: 11px; }
 .chat { position: relative; flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 8px 8px 6px 10px; }
 /* Older messages slide up under the header as new ones arrive, like a real chat. */
 .msg { flex: none; display: flex; align-items: flex-start; gap: 7px; transition: opacity .3s, filter .3s; }
@@ -126,51 +129,118 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .mine .main { align-items: flex-end; }
 .meta { display: flex; align-items: baseline; gap: 5px; margin: 0 3px 2px; font-size: 11px; white-space: nowrap; }
 .meta b { font-weight: 650; }
-.meta time { color: #77777d; font-size: 9.5px; }
+.meta time { color: var(--ink3); font-size: 9.5px; }
 .brow { display: flex; align-items: flex-end; gap: 1px; }
 .mine .brow { flex-direction: row-reverse; }
 /* Round bubbles with a tail, mirrored so it comes off the top corner next to the sender. The tail shares the
    bubble's colour and overlaps it, so it joins without a seam. */
-.bubble { position: relative; max-width: 172px; padding: 6px 11px; border-radius: 17px; border-top-left-radius: 4px; background: #e9e9eb; transition: filter .3s, transform .35s var(--ease); }
+.bubble { position: relative; max-width: 172px; padding: 6px 11px; border-radius: 17px; border-top-left-radius: 4px; background: var(--bubble); transition: filter .3s, transform .35s var(--ease); }
 .bubble::before { content: ""; position: absolute; top: 0; left: -6px; width: 13px; height: 15px; background: inherit; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'%3E%3Cpath d='M0 0H14V16C11 14.5 8.6 11.5 7.4 8.2 6.4 5 4 1.6 0 0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'%3E%3Cpath d='M0 0H14V16C11 14.5 8.6 11.5 7.4 8.2 6.4 5 4 1.6 0 0Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%; }
 .mine .bubble { border-top-left-radius: 17px; border-top-right-radius: 4px; background: #0a84ff; color: #fff; }
 .mine .bubble::before { left: auto; right: -6px; transform: scaleX(-1); }
 .bot .card { border-top-left-radius: 4px; }
 /* Likes: nothing shows until someone likes a message (double tap or press and hold); then a heart and a count. */
 .brow { position: relative; }
-[data-react] .brow { margin-bottom: 11px; }
-.like { position: absolute; right: -9px; bottom: -13px; z-index: 2; display: inline-flex; align-items: center; justify-content: center; gap: 2px; height: 22px; padding: 0 7px 0 6px; border: 0; border-radius: 11px; background: #fff; box-shadow: 0 0 0 1px #e9e9ec, 0 2px 6px -2px rgba(0, 0, 0, .2); font: inherit; font-size: 10.5px; color: #5b5b61; transition: transform .25s var(--spring); }
+.brow:has(.like) { margin-bottom: 11px; }
+.like { position: absolute; right: -9px; bottom: -13px; z-index: 2; display: inline-flex; align-items: center; justify-content: center; gap: 2px; height: 22px; padding: 0 7px 0 6px; border: 0; border-radius: 11px; background: var(--solid); box-shadow: 0 0 0 1px var(--line), 0 2px 6px -2px rgba(0, 0, 0, .2); font: inherit; font-size: 10.5px; color: var(--ink2); transition: transform .25s var(--spring); }
 .like i { font-size: 11px; font-style: normal; filter: grayscale(1); opacity: .35; transition: filter .25s, opacity .25s, transform .3s var(--spring); }
 .like b { font-weight: 650; }
 .like b:empty { display: none; }
 .like:not(.some) { visibility: hidden; }
 .like.some { animation: likein .45s var(--spring); }
 .like.some i { filter: none; opacity: .85; }
-.like.on { color: #0d0d0f; }
+.like.on { color: var(--ink); }
 .like.on i { filter: none; opacity: 1; transform: scale(1.12); }
 .like.bump b { animation: bump .45s var(--spring); }
 .like.pop i { animation: likepop .5s var(--spring); }
 .burst { position: absolute; z-index: 8; font-size: 13px; pointer-events: none; animation: burst .9s var(--ease) forwards; }
-.compose { display: flex; align-items: center; gap: 4px; margin: 4px 10px 22px; padding: 3px; border-radius: 22px; box-shadow: inset 0 0 0 1px #d8d8dc; }
-.compose i { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; color: #5b5b61; font-size: 18px; font-style: normal; line-height: 1; }
-.compose span { flex: 1; color: #9a9aa0; font-size: 12.5px; white-space: nowrap; overflow: hidden; }
+.compose { display: flex; align-items: center; gap: 4px; margin: 4px 10px 22px; padding: 3px; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); }
+.compose i { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; color: var(--ink2); font-size: 18px; font-style: normal; line-height: 1; }
+.compose span { flex: 1; color: var(--ink3); font-size: 12.5px; white-space: nowrap; overflow: hidden; }
 /* Long press: the message presses in, then Bool's message sheet rises from the bottom of the screen. */
 .msg.hold .bubble { filter: brightness(.92); transform: scale(.96); }
 .scrim { position: absolute; inset: 0; z-index: 6; background: rgba(0, 0, 0, .28); opacity: 0; pointer-events: none; transition: opacity .3s; }
-.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; display: flex; flex-direction: column; gap: 9px; padding: 0 14px 26px; border-radius: 24px 24px 0 0; background: #fff; box-shadow: 0 -10px 30px -12px rgba(0, 0, 0, .3); transform: translateY(105%); transition: transform .45s var(--ease); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; display: flex; flex-direction: column; gap: 9px; padding: 0 14px 26px; border-radius: 24px 24px 0 0; background: var(--solid); box-shadow: 0 -10px 30px -12px rgba(0, 0, 0, .3); transform: translateY(105%); transition: transform .45s var(--ease); }
 .screen.sheeted .scrim { opacity: 1; }
 .screen.sheeted .sheet { transform: none; }
-.sheet .grab { width: 34px; height: 4px; margin: 7px auto 0; border-radius: 2px; background: #77777d; }
+.sheet .grab { width: 34px; height: 4px; margin: 7px auto 0; border-radius: 2px; background: var(--ink3); }
 .sheet > b { font-size: 15px; font-weight: 700; letter-spacing: -.02em; }
 .reacts { display: flex; justify-content: space-between; }
-.reacts i { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; box-shadow: inset 0 0 0 1px #e9e9ec; font-size: 18px; font-style: normal; color: #5b5b61; transition: transform .25s var(--spring), background .25s; }
+.reacts i { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line); font-size: 18px; font-style: normal; color: var(--ink2); transition: transform .25s var(--spring), background .25s; }
 .reacts .heart.pick { background: color-mix(in srgb, #0a84ff 24%, #fff); transform: scale(1.3); }
-.liked { display: flex; align-items: center; gap: 5px; color: #5b5b61; font-size: 11.5px; }
+.liked { display: flex; align-items: center; gap: 5px; color: var(--ink2); font-size: 11.5px; }
 .liked i { font-size: 11px; font-style: normal; }
 .liked em { width: 18px; height: 18px; font-size: 10px; }
-.menu { display: flex; flex-direction: column; border-radius: 14px; box-shadow: inset 0 0 0 1px #e9e9ec; }
+.menu { display: flex; flex-direction: column; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); }
 .menu span { padding: 8px 11px; font-size: 12.5px; font-weight: 500; }
-.menu span + span { border-top: 1px solid #e9e9ec; }
+.menu span + span { border-top: 1px solid var(--line); }
+/* (feature demos) */
+/* The Bool page's feature demos: each is a view on the phone's screen; the picker beside it switches them. */
+.views { position: relative; flex: 1; min-height: 0; display: flex; }
+.views .view { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateX(14px); transition: opacity .35s, transform .45s var(--ease), visibility 0s .35s; }
+.views .view.on { opacity: 1; visibility: visible; transform: none; transition: opacity .35s, transform .45s var(--ease); }
+.view .chat { flex: 1; }
+.tabs { display: flex; gap: 4px; padding: 8px 8px; overflow: hidden; border-bottom: 1px solid var(--line); }
+.tabs span { flex: none; padding: 4px 8px; border-radius: 12px; background: var(--bubble); font-size: 10.5px; font-weight: 600; white-space: nowrap; transition: transform .45s var(--ease), opacity .3s, max-width .45s var(--ease), padding .45s var(--ease); }
+.tabs span.on { background: var(--ink); color: var(--bg); }
+.tabs span[data-app]:not(.in) { max-width: 0; padding-inline: 0; opacity: 0; transform: scale(.6); }
+.tabs span[data-app].in { max-width: 120px; }
+.list { display: flex; flex-direction: column; margin: 12px 10px; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--line); }
+.list small { padding: 9px 12px 4px; color: var(--ink3); font-size: 10.5px; font-weight: 600; }
+.list span { display: flex; align-items: center; gap: 9px; padding: 9px 12px; font-size: 13px; font-weight: 500; transition: background .3s; }
+.list span + span { border-top: 1px solid var(--line); }
+.list i { font-style: normal; font-size: 15px; }
+.list u { margin-left: auto; width: 34px; height: 20px; border-radius: 10px; background: var(--line); position: relative; transition: background .3s; }
+.list u::after { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .3s var(--spring); }
+.list span.in u { background: #30d158; }
+.list span.in u::after { transform: translateX(14px); }
+.list span.tapped { background: var(--bubble); }
+.at { font-weight: 650; }
+.mine .at { color: #fff; }
+.av.b { background: var(--ink); color: var(--bg); font-size: 13px; font-weight: 800; }
+.slots { display: flex; flex-direction: column; width: 196px; padding: 9px 11px; border-radius: 4px 16px 16px 16px; border: 1px solid var(--line); background: var(--solid); font-size: 12px; }
+.slots > b { margin-bottom: 4px; font-size: 13px; }
+.slots span { display: flex; justify-content: space-between; padding: 4px 0; border-top: 1px solid var(--line); }
+.slots em { font-style: normal; color: var(--ink3); transition: color .3s; }
+.slots em.taken { color: var(--ink); font-weight: 650; animation: bump .45s var(--spring); }
+.view .compose-text { color: var(--ink); }
+.lock { display: flex; flex-direction: column; align-items: center; gap: 5px; margin: 18px 14px 0; padding: 14px; border-radius: 18px; background: var(--bubble); text-align: center; }
+.lock i { font-size: 26px; font-style: normal; }
+.lock b { font-size: 13.5px; margin-bottom: 2px; }
+.lock span { font-size: 12px; color: var(--ink2); opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .45s var(--ease); }
+.lock span::before { content: "✓ "; color: #30d158; font-weight: 700; }
+.lock span.in { opacity: 1; transform: none; }
+.sys-note { align-self: center; padding: 4px 10px; border-radius: 10px; background: var(--bubble); color: var(--ink2); font-size: 11px; }
+.chat.play > .sys-note:not(.on) { opacity: 0; }
+.sticker { position: absolute; right: 4px; top: -26px; font-size: 34px; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3)); opacity: 0; transform: scale(2.2) rotate(-30deg); transition: opacity .3s, transform .45s var(--spring); }
+.sticker.in { opacity: 1; transform: rotate(12deg); }
+.chip { align-self: center; margin: 0 0 12px; padding: 5px 12px; border-radius: 13px; background: var(--ink); color: var(--bg); font-size: 11.5px; font-weight: 650; transition: opacity .25s; }
+.chip.swap { opacity: 0; }
+.view[data-view="yours"] .chat { justify-content: center; }
+.like.swap i { animation: likepop .5s var(--spring); }
+.links { display: flex; flex-direction: column; gap: 8px; padding: 14px 10px; }
+.links span { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; column-gap: 9px; padding: 9px 10px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .45s var(--ease); }
+.links span.in { opacity: 1; transform: none; }
+.links i { grid-row: span 2; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #fff; font-size: 13px; font-weight: 800; font-style: normal; }
+.links b { font-size: 12.5px; }
+.links small { font-size: 10.5px; color: var(--ink3); }
+.links u { grid-row: 1 / span 2; grid-column: 3; padding: 3px 8px; border-radius: 9px; background: var(--bubble); color: var(--ink3); font-size: 10.5px; font-weight: 650; text-decoration: none; transition: background .3s, color .3s; }
+.links u::before { content: "…"; }
+.links span.done u { background: color-mix(in srgb, #30d158 22%, var(--solid)); color: #1f8a3f; }
+.links span.done u::before { content: "✓ "; }
+.gcal { background: #1a73e8; } .slack { background: #4a154b; } .discord { background: #5865f2; }
+.links .event { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 8px 11px; border-left: 4px solid #1a73e8; border-radius: 6px 14px 14px 6px; }
+.passkey { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 16px 12px 14px; border-radius: 22px; background: var(--solid); box-shadow: 0 0 0 1px var(--line), 0 -8px 30px -12px rgba(0, 0, 0, .3); transform: translateY(120%); transition: transform .5s var(--ease); }
+.passkey.in { transform: none; }
+.passkey i { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 4px; border-radius: 50%; background: var(--bubble); font-size: 26px; font-style: normal; }
+.passkey.scan i { animation: scan 1s ease-in-out infinite; }
+.passkey b { font-size: 13.5px; } .passkey small { font-size: 11px; color: var(--ink3); }
+.passkey u { margin-top: 6px; padding: 4px 10px; border-radius: 10px; background: var(--bubble); color: var(--ink3); font-size: 11px; font-weight: 650; text-decoration: none; opacity: 0; transition: opacity .3s; }
+.passkey.done u { opacity: 1; background: color-mix(in srgb, #30d158 22%, var(--solid)); color: #1f8a3f; }
+.passkey.done u::before { content: "✓ "; }
+@keyframes scan { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, #0a84ff 25%, transparent); } }
+.compose span.typed { color: var(--ink); }
+
 /* "Typing": home.js shows the dots in a bubble before its words. */
 .dots { display: none; }
 .typing .bubble { font-size: 0; }
@@ -180,9 +250,9 @@ h1 { font-size: clamp(2.7rem, 7.4vw, 5.5rem); font-weight: 700; line-height: 1.0
 .me { justify-content: flex-end; transform-origin: 100% 100%; }
 .me p { margin-right: 2px; border-radius: 20px 9px 9px 20px; background: #0a84ff; color: #fff; }
 .me p::after { left: auto; right: -7px; transform: none; }
-.card { display: flex; align-items: center; gap: 12px; width: 200px; padding: 10px 12px; border: 1px solid #e9e9ec; border-radius: 16px; background: #fff; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
+.card { display: flex; align-items: center; gap: 12px; width: 200px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--solid); color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
 .card:focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; }
-.card small { display: block; color: #77777d; font-size: 10.5px; }
+.card small { display: block; color: var(--ink3); font-size: 10.5px; }
 .card strong { display: block; font-size: 15px; letter-spacing: -.02em; }
 /* The wheel (home.js spins it). Each face sits in its quarter, turned so it is upright when its quarter is on top. */
 .spin { position: relative; flex: none; font-size: 12.5px; transition: transform .4s var(--spring); }

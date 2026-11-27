@@ -12,15 +12,6 @@
 .lead .job { flex: none; margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); width: min(420px, 100% - 2.5rem); }
 .lead.t-bool { justify-content: flex-start; }
 .lead .phone { margin: 2.5rem auto clamp(2.5rem, 6vw, 4rem); text-align: left; }
-/* The Bool page: copy and phone side by side, so the phone is in view as soon as the page opens. */
-@media (min-width: 861px) {
-  .lead.t-bool { flex-direction: row; align-items: center; justify-content: center; gap: clamp(2rem, 6vw, 5rem); }
-  .lead.t-bool .copy { flex: 0 1 30rem; align-items: flex-start; padding-bottom: clamp(2.5rem, 6vw, 4.5rem); text-align: left; }
-  .lead.t-bool h1 { max-width: 12ch; font-size: clamp(2.6rem, 4.4vw, 3.9rem); }
-  .lead.t-bool .copy > p:not(.name) { max-width: 28rem; }
-  .lead.t-bool .ctas { justify-content: flex-start; }
-  .lead.t-bool .phone { margin: clamp(2.5rem, 5vw, 4rem) 0; }
-}
 .btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
 .lead .photo { height: min(56%, 520px); object-position: 60% 62%; }
 .t-boot.lead { min-height: 1000px; }
@@ -33,6 +24,46 @@
 .feats.in-grid { grid-column: 1 / -1; margin: 0 0 clamp(2.5rem, 6vw, 4.5rem); padding-bottom: 0; }
 section.wrap > .feats.in-grid { margin: 1.25rem 0 0; }
 .fine { margin: 2rem 0 clamp(4rem, 8vw, 7rem); text-align: center; color: var(--soft); font-size: .9375rem; }
+/* The Bool page: copy, the feature picker and the phone. Picking a feature plays its demo on the phone. */
+.pick { display: flex; flex-direction: column; gap: 2px; width: 100%; margin-top: 1.6rem; text-align: left; }
+.pick button { position: relative; display: flex; flex-direction: column; gap: .15rem; padding: .65rem .9rem; overflow: hidden; border: 0; border-radius: 16px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: background .25s; }
+.pick button b { font-size: 1.0625rem; font-weight: 650; letter-spacing: -.02em; opacity: .55; transition: opacity .25s; }
+.pick button span { display: none; color: var(--soft); font-size: .9375rem; line-height: 1.4; }
+.pick button[aria-selected="true"] { background: rgba(255, 255, 255, .7); box-shadow: 0 0 0 1px rgba(255, 255, 255, .9), 0 10px 24px -16px rgba(10, 60, 160, .5); }
+.pick button[aria-selected="true"] b { opacity: 1; }
+.pick button[aria-selected="true"] span { display: block; }
+.pick button:hover b { opacity: 1; }
+.pick .prog { position: absolute; left: .9rem; right: .9rem; bottom: 5px; height: 2px; border-radius: 1px; background: rgba(10, 132, 255, .18); opacity: 0; }
+.pick .prog::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: #0a84ff; transform: scaleX(var(--p, 0)); transform-origin: 0 50%; }
+.pick button[aria-selected="true"] .prog { opacity: 1; }
+.pick-desc { display: none; }
+@media (min-width: 861px) {
+  .lead.t-bool { flex-direction: row; align-items: center; justify-content: center; gap: clamp(2rem, 5vw, 4.5rem); }
+  .lead.t-bool .copy { flex: 0 1 28rem; align-items: flex-start; padding-bottom: clamp(2.5rem, 5vw, 3.5rem); text-align: left; }
+  .lead.t-bool { min-height: 0; }
+  .lead.t-bool .copy { padding-top: clamp(2rem, 4vw, 3rem); }
+  .lead.t-bool .icon { width: 56px; margin-bottom: .8rem; }
+  .lead.t-bool h1 { max-width: 16ch; font-size: clamp(2.2rem, 3.4vw, 2.9rem); }
+  .lead.t-bool .copy > p:not(.name) { max-width: 28rem; margin-top: .7rem; font-size: 1.0625rem; }
+  .lead.t-bool .pick { margin-top: 1.2rem; }
+  .pick button { padding: .5rem .9rem .6rem; }
+  .lead.t-bool .ctas { justify-content: flex-start; margin-top: 1.2rem; }
+  .lead.t-bool .phone { margin: clamp(2.5rem, 5vw, 3.5rem) 0; }
+}
+/* Phones: the features become a row of chips right above the phone, with the chosen one's text below. */
+@media (max-width: 860px) {
+  .pick { flex-direction: row; gap: .4rem; overflow-x: auto; margin: 1.5rem -1.5rem 0; padding: .2rem 1.5rem .4rem; scrollbar-width: none; scroll-snap-type: x proximity; }
+  .pick::-webkit-scrollbar { display: none; }
+  .pick button { flex: none; padding: .5rem .85rem; border-radius: 99px; background: rgba(255, 255, 255, .55); scroll-snap-align: center; }
+  .pick button b { font-size: .9375rem; white-space: nowrap; opacity: .7; }
+  .pick button[aria-selected="true"] { background: #1d1d1f; box-shadow: none; }
+  .pick button[aria-selected="true"] b { color: #fff; }
+  .pick button[aria-selected="true"] span { display: none; }
+  .pick .prog { left: .85rem; right: .85rem; bottom: 4px; background: rgba(255, 255, 255, .25); }
+  .pick .prog::after { background: #fff; }
+  .pick-desc { display: block; min-height: 2.9em; margin-top: .8rem; color: var(--soft); font-size: 1rem !important; }
+  .lead.t-bool .phone { margin-top: 1.2rem; }
+}
 @media (max-width: 860px) {
   .feats { grid-template-columns: 1fr; gap: .75rem; }
   .feat { padding: 1.35rem 1.4rem; border-radius: 22px; }
