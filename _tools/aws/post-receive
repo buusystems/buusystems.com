@@ -1,0 +1,14 @@
+#!/bin/sh
+# Git hook on the server (~/git/buusystems.com.git/hooks/post-receive, installed by _tools/aws/setup.sh).
+# Pushing main here publishes the site: the pushed files replace /var/www/buusystems.com, without the
+# editor, the tools and other files that are not part of the site.
+set -e
+while read -r old new ref; do
+  [ "$ref" = refs/heads/main ] || continue
+  tmp=$(mktemp -d)
+  git archive "$new" | tar -x -C "$tmp"
+  rm -rf "$tmp/_editor" "$tmp/_tools" "$tmp/README.md" "$tmp/CNAME" "$tmp/.gitignore"
+  rsync -a --delete --chmod=D755,F644 "$tmp/" /var/www/buusystems.com/
+  rm -rf "$tmp"
+  echo "buusystems.com: published $(git rev-parse --short "$new")"
+done

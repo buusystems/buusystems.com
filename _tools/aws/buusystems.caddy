@@ -1,0 +1,61 @@
+# buusystems.com on AWS: static files on the Lightsail server (static IP 3.231.8.190), served by Caddy.
+# Installed as /etc/caddy/sites/buusystems.caddy by _tools/aws/setup.sh. The files in /var/www/buusystems.com
+# are checked out by a git hook whenever main is pushed to the "aws" remote (see post-receive).
+#
+# Certificates are issued the first time a visitor arrives for a name ("on demand"), so this config can be
+# in place before DNS points here. Caddy asks the endpoint below which names it may get certificates for.
+http://:8751 {
+	bind 127.0.0.1
+	@ours query domain=buusystems.com domain=www.buusystems.com domain=ukvm.buusystems.com domain=buusystems.3-231-8-190.sslip.io
+	respond @ours 200
+	respond 403
+}
+
+(buusite) {
+	root * /var/www/buusystems.com
+	encode zstd gzip
+	tls {
+		on_demand
+	}
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+	# Pages are always checked for a newer copy; files with ?v= in their address never change; other
+	# assets are kept for a day.
+	@versioned query v=*
+	@assets {
+		path /assets/* /favicon.ico /apple-touch-icon.png
+		not query v=*
+	}
+	@pages {
+		not path /assets/* /favicon.ico /apple-touch-icon.png
+		not query v=*
+	}
+	header @versioned Cache-Control "public, max-age=31536000, immutable"
+	header @assets Cache-Control "public, max-age=86400"
+	header @pages Cache-Control "no-cache"
+	handle_errors {
+		respond "{err.status_code} {err.status_text}" {err.status_code}
+	}
+	file_server
+}
+
+# buusystems.3-231-8-190.sslip.io is a preview address that works before DNS is switched; remove it afterwards.
+buusystems.com, buusystems.3-231-8-190.sslip.io {
+	import buusite
+}
+
+www.buusystems.com {
+	tls {
+		on_demand
+	}
+	redir https://buusystems.com{uri} permanent
+}
+
+# The uKVM page at its own address: same files, with the product page as the front page.
+ukvm.buusystems.com {
+	rewrite / /ukvm/index.html
+	import buusite
+}

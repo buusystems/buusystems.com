@@ -216,15 +216,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
             log.append(out)
             if code != 0:
                 return self.send(400, {"error": out})
-        code, out = git("push")
-        log.append(out)
-        if code != 0:
-            return self.send(400, {"error": out})
-        # Refresh the copy on ukvm.buusystems.com.
-        done = subprocess.run([str(ROOT / "_tools" / "subdomains.sh")], capture_output=True, text=True)
+        # Push to the AWS server; a git hook there puts the site live (ukvm.buusystems.com is the same files).
+        done = subprocess.run([str(ROOT / "_tools" / "publish.sh")], capture_output=True, text=True)
         log.append(done.stdout + done.stderr)
         if done.returncode != 0:
-            return self.send(400, {"error": "buusystems.com is published, but a subdomain copy failed:\n" + log[-1]})
+            return self.send(400, {"error": "Saved and committed, but publishing failed:\n" + log[-1]})
         self.send(200, {"log": "\n".join(x for x in log if x)})
 
 

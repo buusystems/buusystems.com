@@ -25,7 +25,7 @@
     const go = tile.querySelector("a.btn[href^='/']");
     if (!go) continue;
     tile.style.cursor = "pointer";
-    tile.addEventListener("click", (e) => { if (!e.target.closest("a, button")) go.click(); });
+    tile.addEventListener("click", (e) => { if (!e.target.closest("a, button")) location.assign(go.href); });
   }
 
   // The quote fills in word by word as it scrolls up the screen.
