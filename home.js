@@ -199,14 +199,14 @@
       };
 
       const CRUISE = W / 15000;   // one turn every 15 s, in map columns per millisecond
-      let speed = CRUISE, last = 0, running = false, seen = true, grab = null;
+      let speed = CRUISE, dir = 1, last = 0, running = false, seen = true, grab = null;   // dir: the way it turns on its own
       const tick = (t) => {
         if (!running) return;
         requestAnimationFrame(tick);
         const dt = t - last;
         if (dt < 30 && !grab) return;   // 30 frames a second is plenty for a slow turn
         last = t;
-        if (!grab) { speed += (CRUISE - speed) * Math.min(1, dt / 1100); turn += speed * Math.min(50, dt); }
+        if (!grab) { speed += (dir * CRUISE - speed) * Math.min(1, dt / 1400); turn += speed * Math.min(50, dt); }
         draw();
       };
       const sync = () => {
@@ -218,7 +218,7 @@
       document.addEventListener("visibilitychange", sync);
       new ResizeObserver(() => { build(); draw(); }).observe(cv);
 
-      // Drag to spin it; it coasts back to its own pace.
+      // Drag to spin it: it coasts down to its own pace and keeps turning the way you flicked it.
       const perPx = () => W / (Math.PI * cv.offsetWidth);
       cv.addEventListener("pointerdown", (e) => { grab = { x: e.clientX, t: e.timeStamp }; speed = 0; cv.setPointerCapture(e.pointerId); });
       cv.addEventListener("pointermove", (e) => {
@@ -228,7 +228,10 @@
         grab = { x: e.clientX, t: e.timeStamp };
         if (!running) draw();
       });
-      const drop = () => { grab = null; speed = Math.max(-0.6, Math.min(0.6, speed)); };
+      const drop = () => {
+        grab = null; speed = Math.max(-0.6, Math.min(0.6, speed));
+        if (Math.abs(speed) > CRUISE * 0.25) dir = Math.sign(speed);
+      };
       cv.addEventListener("pointerup", drop); cv.addEventListener("pointercancel", drop);
 
       build(); draw(); sync();
